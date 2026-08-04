@@ -10,6 +10,7 @@ import AddEvent from "./layout/admin/pages/events/AddEvent";
 import ManageEvent from "./layout/admin/pages/events/ManageEvent";
 import SearchPage from "./pages/SearchPage";
 import EventDetail from "./pages/EventDetails";
+import RegisterPage from "./auth/RegisterPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/manage-event" element={<ManageEvent />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/event/:id" element={<EventDetail />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} theme="dark" />
       </BrowserRouter>
