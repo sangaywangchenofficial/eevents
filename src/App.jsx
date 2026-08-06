@@ -11,6 +11,8 @@ import ManageEvent from "./layout/admin/pages/events/ManageEvent";
 import SearchPage from "./pages/SearchPage";
 import EventDetail from "./pages/EventDetails";
 import RegisterPage from "./auth/RegisterPage";
+import LoginPage from "./auth/LoginPage";
+import UserDashboard from "./layout/user/pages/UserDashboard";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/event/:id" element={<EventDetail />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} theme="dark" />
       </BrowserRouter>
