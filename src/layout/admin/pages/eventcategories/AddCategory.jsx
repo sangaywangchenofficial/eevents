@@ -22,10 +22,12 @@ const AddCategory = () => {
 
         try {
             // Updated API endpoint for event category
+            const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
             const response = await fetch('http://127.0.0.1:8000/api/v1/add-category/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    ...(adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {}),
                 },
                 body: JSON.stringify({ category_name: categoryName.trim() })
 
@@ -56,20 +58,20 @@ const AddCategory = () => {
 
                     {/* Page Navigation Title & Breadcrumb Block */}
                     <div className="mb-6">
-                        <h1 className="text-xl font-bold font-serif text-stone-100 tracking-wide flex items-center gap-2">
-                            <MdOutlineFastfood className="text-purple-400" />
+                        <h1 className="text-xl font-bold font-serif text-gray-900 dark:text-stone-100 tracking-wide flex items-center gap-2">
+                            <MdOutlineFastfood className="text-purple-600 dark:text-purple-400" />
                             Event Category
                         </h1>
-                        <p className="text-xs text-stone-400 mt-1">
+                        <p className="text-xs text-gray-500 dark:text-stone-400 mt-1">
                             Create new event category classifications for your event management system.
                         </p>
                     </div>
 
                     {/* Main Form Interactive Card */}
-                    <div className="bg-zinc-950 border border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-500/20 transition-all duration-300">
-                        <div className="border-b border-stone-800/60 bg-stone-950/40 px-6 py-4 flex items-center gap-2.5">
-                            <BiPlusCircle className="text-purple-400 text-lg" />
-                            <h2 className="text-xs font-semibold text-stone-300 uppercase tracking-wider">
+                    <div className="bg-white dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
+                        <div className="border-b border-gray-200 dark:border-stone-800/60 bg-gray-50 dark:bg-stone-950/40 px-6 py-4 flex items-center gap-2.5">
+                            <BiPlusCircle className="text-purple-600 dark:text-purple-400 text-lg" />
+                            <h2 className="text-xs font-semibold text-gray-700 dark:text-stone-300 uppercase tracking-wider">
                                 Add New Category
                             </h2>
                         </div>
@@ -78,11 +80,11 @@ const AddCategory = () => {
 
                             {/* Category Input Field Block */}
                             <div>
-                                <label htmlFor="categoryName" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                <label htmlFor="categoryName" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                     Category Name
                                 </label>
                                 <div className="relative group/input">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                         <BiCategory className="text-lg" />
                                     </div>
                                     <input
@@ -92,7 +94,7 @@ const AddCategory = () => {
                                         value={categoryName}
                                         onChange={(e) => setCategoryName(e.target.value)}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                         placeholder="e.g., Conference, Workshop, Seminar, Gala"
                                         maxLength={50}
                                     />

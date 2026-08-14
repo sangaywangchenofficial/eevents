@@ -15,8 +15,9 @@ const ManageEvent = () => {
             .then(res => res.json())
             .then(data => {
                 console.log("Django API Response Data:", data);
-                setEvents(data);
-                setAllEvents(data);
+                const eventsList = data.data && Array.isArray(data.data) ? data.data : (Array.isArray(data) ? data : []);
+                setEvents(eventsList);
+                setAllEvents(eventsList);
             })
             .catch(err => console.error("API Error:", err))
     }, [])
@@ -94,9 +95,9 @@ const ManageEvent = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-                        <div className="w-full sm:w-auto bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
-                            <span className="text-gray-600 text-sm font-medium">
-                                Total Events: <strong className="text-gray-900">{events ? events.length : 0}</strong>
+                        <div className="w-full sm:w-auto bg-gray-100 dark:bg-stone-800 px-4 py-2 rounded-lg border border-gray-200 dark:border-stone-700 transition-colors">
+                            <span className="text-gray-600 dark:text-stone-300 text-sm font-medium">
+                                Total Events: <strong className="text-gray-900 dark:text-stone-100">{events ? events.length : 0}</strong>
                             </span>
                         </div>
 
@@ -108,7 +109,7 @@ const ManageEvent = () => {
                                 <input
                                     type="text"
                                     placeholder="Search by name, description, or location..."
-                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
                                     onChange={(e) => handleSearch(e.target.value)}
                                 />
                             </div>
@@ -125,11 +126,11 @@ const ManageEvent = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase">
+                                    <tr className="bg-gray-50 dark:bg-stone-800/50 border-b border-gray-200 dark:border-stone-700 text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase">
                                         <th className="px-6 py-3 text-center w-16">Sr.No</th>
                                         <th className="px-6 py-3 min-w-[150px]">Event Name</th>
                                         <th className="px-6 py-3 min-w-[200px]">Description</th>
@@ -138,23 +139,23 @@ const ManageEvent = () => {
                                         <th className="px-6 py-3 text-center w-40">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 text-sm text-gray-700">
+                                <tbody className="divide-y divide-gray-200 dark:divide-stone-700 text-sm text-gray-700 dark:text-stone-300">
                                     {events && events.length > 0 ? (
                                         events.map((event, index) => (
-                                            <tr key={event.id || event.pk || index} className="hover:bg-gray-50 transition-colors">
-                                                <td className="px-6 py-3 text-center font-medium text-gray-500">
+                                            <tr key={event.id || event.pk || index} className="hover:bg-gray-50 dark:hover:bg-stone-800/50 transition-colors">
+                                                <td className="px-6 py-3 text-center font-medium text-gray-500 dark:text-stone-400">
                                                     {index + 1}
                                                 </td>
-                                                <td className="px-6 py-3 font-medium text-gray-900">
+                                                <td className="px-6 py-3 font-medium text-gray-900 dark:text-stone-100">
                                                     {getEventName(event)}
                                                 </td>
-                                                <td className="px-6 py-3 text-gray-600 max-w-xs truncate">
+                                                <td className="px-6 py-3 text-gray-600 dark:text-stone-400 max-w-xs truncate">
                                                     {event.description || event.event_description || event.details || "No description"}
                                                 </td>
-                                                <td className="px-6 py-3 text-gray-500">
+                                                <td className="px-6 py-3 text-gray-500 dark:text-stone-400">
                                                     {getEventLocation(event)}
                                                 </td>
-                                                <td className="px-6 py-3 text-gray-500">
+                                                <td className="px-6 py-3 text-gray-500 dark:text-stone-400">
                                                     {formatDate(getEventDate(event))}
                                                 </td>
                                                 <td className="px-6 py-3">
@@ -186,18 +187,18 @@ const ManageEvent = () => {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
+                                            <td colSpan="6" className="px-6 py-8 text-center text-gray-500 dark:text-stone-400">
                                                 {allEvents.length === 0 ? (
                                                     <div className="flex flex-col items-center gap-2">
                                                         <span className="text-lg">📅</span>
                                                         <p>No events found</p>
-                                                        <p className="text-xs text-gray-400">Try adding your first event</p>
+                                                        <p className="text-xs text-gray-400 dark:text-stone-500">Try adding your first event</p>
                                                     </div>
                                                 ) : (
                                                     <div className="flex flex-col items-center gap-2">
                                                         <span className="text-lg">🔍</span>
                                                         <p>No events match your search</p>
-                                                        <p className="text-xs text-gray-400">Try adjusting your search terms</p>
+                                                        <p className="text-xs text-gray-400 dark:text-stone-500">Try adjusting your search terms</p>
                                                     </div>
                                                 )}
                                             </td>

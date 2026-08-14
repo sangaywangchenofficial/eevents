@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "framer-motion": "^13.0.0",
+    "lucide-react": "^1.30.0",
     "prop-types": "^15.8.1",
     "react": "^19.2.7",
     "react-csv": "^2.2.2",

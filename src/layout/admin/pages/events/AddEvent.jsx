@@ -30,7 +30,10 @@ const AddEvent = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/v1/view-categories/');
+                const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
+                const response = await fetch('http://127.0.0.1:8000/api/v1/view-categories/', {
+                    headers: adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {},
+                });
 
                 // Check if response is ok before parsing JSON
                 if (!response.ok) {
@@ -192,19 +195,23 @@ const AddEvent = () => {
                 formData.append('event_image', imageFile);
             }
 
+            const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
             const response = await fetch('http://127.0.0.1:8000/api/v1/add-event/', {
                 method: 'POST',
                 body: formData,
-                // Don't set Content-Type header when using FormData
+                // Don't set Content-Type header when using FormData - browser sets it with boundary
+                headers: adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {},
             });
 
             // Try to parse JSON response
             let data;
+            const textResponse = await response.text();
             try {
-                data = await response.json();
+                data = JSON.parse(textResponse);
             } catch (parseError) {
                 console.error('Error parsing JSON:', parseError);
-                throw new Error('Invalid response from server');
+                console.error('Raw Server Response:', textResponse);
+                throw new Error('Invalid response from server: ' + textResponse.substring(0, 100));
             }
 
             if (response.status === 201 || response.status === 200) {
@@ -228,12 +235,17 @@ const AddEvent = () => {
                     fileInputRef.current.value = '';
                 }
             } else {
+                // If there's a detailed traceback from our backend 500 capture, log it
+                if (data.traceback) {
+                    console.error('Backend 500 Error Traceback:', data.traceback);
+                }
+                
                 // Handle validation errors from backend
                 if (data.errors) {
                     const errorMessages = Object.values(data.errors).flat().join(' ');
                     toast.error(errorMessages || data.message || 'Failed to add event item');
                 } else {
-                    toast.error(data.message || 'Failed to add event item');
+                    toast.error(data.error || data.message || 'Failed to add event item');
                 }
             }
         } catch (error) {
@@ -264,20 +276,20 @@ const AddEvent = () => {
 
                     {/* Page Navigation Title & Breadcrumb Block */}
                     <div className="mb-6">
-                        <h1 className="text-xl font-bold font-serif text-stone-100 tracking-wide flex items-center gap-2">
-                            <MdOutlineEvent className="text-purple-400" />
+                        <h1 className="text-xl font-bold font-serif text-gray-900 dark:text-stone-100 tracking-wide flex items-center gap-2">
+                            <MdOutlineEvent className="text-purple-600 dark:text-purple-400" />
                             Add Event Item
                         </h1>
-                        <p className="text-xs text-stone-400 mt-1">
+                        <p className="text-xs text-gray-500 dark:text-stone-400 mt-1">
                             Add new event items to your event management system.
                         </p>
                     </div>
 
                     {/* Main Form Interactive Card */}
-                    <div className="bg-zinc-950 border border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-500/20 transition-all duration-300">
-                        <div className="border-b border-stone-800/60 bg-stone-950/40 px-6 py-4 flex items-center gap-2.5">
-                            <BiPlusCircle className="text-purple-400 text-lg" />
-                            <h2 className="text-xs font-semibold text-stone-300 uppercase tracking-wider">
+                    <div className="bg-white dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
+                        <div className="border-b border-gray-200 dark:border-stone-800/60 bg-gray-50 dark:bg-stone-950/40 px-6 py-4 flex items-center gap-2.5">
+                            <BiPlusCircle className="text-purple-600 dark:text-purple-400 text-lg" />
+                            <h2 className="text-xs font-semibold text-gray-700 dark:text-stone-300 uppercase tracking-wider">
                                 Add Event Item
                             </h2>
                         </div>
@@ -286,11 +298,11 @@ const AddEvent = () => {
 
                             {/* Event Category Dropdown Select */}
                             <div>
-                                <label htmlFor="eventCategory" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                <label htmlFor="eventCategory" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                     Event Category <span className="text-red-400">*</span>
                                 </label>
                                 <div className="relative group/input">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                         <BiCategory className="text-lg" />
                                     </div>
                                     <select
@@ -298,31 +310,31 @@ const AddEvent = () => {
                                         value={selectedCategory}
                                         onChange={(e) => setSelectedCategory(e.target.value)}
                                         disabled={isSubmitting || categories.length === 0}
-                                        className="w-full pl-10 pr-10 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm appearance-none"
+                                        className="w-full pl-10 pr-10 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm appearance-none"
                                         required
                                     >
-                                        <option value="" className="bg-stone-900 text-stone-400">
+                                        <option value="" className="bg-white dark:bg-stone-900 text-gray-400 dark:text-stone-400">
                                             {categories.length === 0 ? 'No categories available' : 'Select Event Category'}
                                         </option>
                                         {categories && categories.map((category) => (
                                             <option
                                                 key={category.id || category.pk || Math.random()}
                                                 value={category.id || category.pk}
-                                                className="bg-stone-900 text-stone-100"
+                                                className="bg-white dark:bg-stone-900 text-gray-900 dark:text-stone-100"
                                             >
                                                 {category.name || category.category_name || category.title || "Unnamed Category"}
                                             </option>
                                         ))}
                                     </select>
                                     {/* Custom dropdown arrow */}
-                                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-stone-500">
+                                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500">
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </div>
                                 </div>
                                 {categories.length === 0 && (
-                                    <p className="text-xs text-amber-400 mt-1.5">
+                                    <p className="text-xs text-amber-500 dark:text-amber-400 mt-1.5">
                                         No categories available. Please add a category first.
                                     </p>
                                 )}
@@ -330,11 +342,11 @@ const AddEvent = () => {
 
                             {/* Event Name Input */}
                             <div>
-                                <label htmlFor="event_name" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                <label htmlFor="event_name" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                     Event Name <span className="text-red-400">*</span>
                                 </label>
                                 <div className="relative group/input">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                         <MdOutlineEvent className="text-lg" />
                                     </div>
                                     <input
@@ -345,7 +357,7 @@ const AddEvent = () => {
                                         value={eventData.event_name}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                         placeholder="Enter event name"
                                         maxLength={50}
                                     />
@@ -354,7 +366,7 @@ const AddEvent = () => {
 
                             {/* Event Description Input */}
                             <div>
-                                <label htmlFor="event_description" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                <label htmlFor="event_description" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                     Event Description <span className="text-red-400">*</span>
                                 </label>
                                 <div className="relative group/input">
@@ -366,12 +378,12 @@ const AddEvent = () => {
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
                                         rows="4"
-                                        className="w-full px-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm resize-y"
+                                        className="w-full px-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm resize-y"
                                         placeholder="Enter event description"
                                         maxLength={200}
                                     />
                                 </div>
-                                <div className="text-right text-xs text-stone-500 mt-1">
+                                <div className="text-right text-xs text-gray-500 dark:text-stone-500 mt-1">
                                     {eventData.event_description.length}/200
                                 </div>
                             </div>
@@ -380,7 +392,7 @@ const AddEvent = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Event Date Input */}
                                 <div>
-                                    <label htmlFor="event_date" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                    <label htmlFor="event_date" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                         Event Date <span className="text-red-400">*</span>
                                     </label>
                                     <div className="relative group/input">
@@ -392,7 +404,7 @@ const AddEvent = () => {
                                             value={eventData.event_date}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-full px-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                            className="w-full px-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm [&::-webkit-calendar-picker-indicator]:dark:invert"
                                             min={new Date().toISOString().split('T')[0]} // Prevent past dates (optional)
                                         />
                                     </div>
@@ -400,11 +412,11 @@ const AddEvent = () => {
 
                                 {/* Event Time Input */}
                                 <div>
-                                    <label htmlFor="event_time" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                    <label htmlFor="event_time" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                         Event Time <span className="text-red-400">*</span>
                                     </label>
                                     <div className="relative group/input">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                             <BiTime className="text-lg" />
                                         </div>
                                         <input
@@ -415,7 +427,7 @@ const AddEvent = () => {
                                             value={eventData.event_time}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm [&::-webkit-calendar-picker-indicator]:dark:invert"
                                         />
                                     </div>
                                 </div>
@@ -425,11 +437,11 @@ const AddEvent = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Event Location Input */}
                                 <div>
-                                    <label htmlFor="event_location" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                    <label htmlFor="event_location" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                         Event Location <span className="text-red-400">*</span>
                                     </label>
                                     <div className="relative group/input">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                             <BiMap className="text-lg" />
                                         </div>
                                         <input
@@ -440,7 +452,7 @@ const AddEvent = () => {
                                             value={eventData.event_location}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                             placeholder="Enter event location"
                                             maxLength={100}
                                         />
@@ -449,11 +461,11 @@ const AddEvent = () => {
 
                                 {/* Event Price Input */}
                                 <div>
-                                    <label htmlFor="event_price" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                    <label htmlFor="event_price" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                         Event Price (Nu) <span className="text-red-400">*</span>
                                     </label>
                                     <div className="relative group/input">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                             <BiMoney className="text-lg" />
                                         </div>
                                         <input
@@ -466,7 +478,7 @@ const AddEvent = () => {
                                             value={eventData.event_price}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                             placeholder="0.00"
                                         />
                                     </div>
@@ -477,11 +489,11 @@ const AddEvent = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Event Quantity Input */}
                                 <div>
-                                    <label htmlFor="event_quantity" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                    <label htmlFor="event_quantity" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                         Event Quantity <span className="text-red-400">*</span>
                                     </label>
                                     <div className="relative group/input">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                             <BiHash className="text-lg" />
                                         </div>
                                         <input
@@ -493,7 +505,7 @@ const AddEvent = () => {
                                             value={eventData.event_quantity}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                             placeholder="Enter quantity"
                                         />
                                     </div>
@@ -509,9 +521,9 @@ const AddEvent = () => {
                                             checked={eventData.is_event_available}
                                             onChange={handleInputChange}
                                             disabled={isSubmitting}
-                                            className="w-5 h-5 rounded border-stone-700 bg-stone-900/40 text-purple-600 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-stone-950"
+                                            className="w-5 h-5 rounded border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-900/40 text-purple-600 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-stone-950"
                                         />
-                                        <label htmlFor="is_event_available" className="text-sm text-stone-300 cursor-pointer">
+                                        <label htmlFor="is_event_available" className="text-sm text-gray-700 dark:text-stone-300 cursor-pointer">
                                             Event is Available
                                         </label>
                                     </div>
@@ -520,11 +532,11 @@ const AddEvent = () => {
 
                             {/* Event Image Upload */}
                             <div>
-                                <label htmlFor="event_image" className="block text-xs font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                                <label htmlFor="event_image" className="block text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase tracking-wider mb-2">
                                     Event Image
                                 </label>
                                 <div className="relative group/input">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-stone-500 group-focus-within/input:text-purple-600 dark:group-focus-within/input:text-purple-400 group-focus-within/input:scale-110 transition-all duration-300">
                                         <BiImage className="text-lg" />
                                     </div>
                                     <input
@@ -535,14 +547,14 @@ const AddEvent = () => {
                                         accept="image/*"
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-stone-900/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
                                     />
                                 </div>
-                                <p className="text-xs text-stone-500 mt-1.5">
+                                <p className="text-xs text-gray-500 dark:text-stone-500 mt-1.5">
                                     Upload an image for your event (JPG, PNG, GIF, WEBP). Max size: 5MB
                                 </p>
                                 {imageFile && (
-                                    <p className="text-xs text-green-400 mt-1">
+                                    <p className="text-xs text-green-600 dark:text-green-400 mt-1">
                                         Selected: {imageFile.name} ({(imageFile.size / 1024).toFixed(1)} KB)
                                     </p>
                                 )}
