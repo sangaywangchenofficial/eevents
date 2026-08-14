@@ -1,1 +1,99 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --color-primary: #6B21A8;
+    --color-primary-hover: #581C87;
+    --color-secondary: #8B5CF6;
+    --color-accent: #A855F7;
+    --color-bg-main: #FFFFFF;
+    --color-bg-section: #FAF8FF;
+    --color-text-dark: #1E1B4B;
+    --color-text-body: #475569;
+    --color-border: #E9D5FF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #475569;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: #1E1B4B;
+  }
+}
+
+/* Custom Utilities for Premium SaaS + Bhutan Aesthetics */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(233, 213, 255, 0.6);
+}
+
+.glass-panel-dark {
+  background: rgba(30, 27, 75, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(233, 213, 255, 0.7);
+  box-shadow: 0 10px 30px -10px rgba(107, 33, 168, 0.08);
+}
+
+/* Subtle Bhutanese Motif Pattern Background */
+.bhutan-pattern-bg {
+  background-color: #FAF8FF;
+  background-image: radial-gradient(#8B5CF6 0.65px, transparent 0.65px), radial-gradient(#8B5CF6 0.65px, #FAF8FF 0.65px);
+  background-size: 26px 26px;
+  background-position: 0 0, 13px 13px;
+  opacity: 0.95;
+}
+
+.bhutan-cloud-overlay {
+  position: relative;
+}
+
+.bhutan-cloud-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%2F6B21A8' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Glow effects */
+.glow-purple {
+  box-shadow: 0 0 50px -10px rgba(168, 85, 247, 0.35);
+}
+
+.glow-subtle {
+  box-shadow: 0 20px 40px -15px rgba(107, 33, 168, 0.12);
+}

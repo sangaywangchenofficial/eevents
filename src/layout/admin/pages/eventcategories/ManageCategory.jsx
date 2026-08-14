@@ -14,10 +14,10 @@ const ManageCategory = () => {
         fetch('http://127.0.0.1:8000/api/v1/view-categories/')
             .then(res => res.json()) // Convert the response to JSON format
             .then(data => {
-                // This will help you see the exact JSON keys in your browser inspect console
                 console.log("Django API Response Data:", data);
-                setCategories(data);
-                setAllCategories(data); // FIXED: Changed 'date' to 'data'
+                const categoriesArray = Array.isArray(data) ? data : (data.data || data.results || []);
+                setCategories(categoriesArray);
+                setAllCategories(categoriesArray);
             })
             .catch(err => console.error("API Error:", err))
     }, [])
@@ -52,9 +52,9 @@ const ManageCategory = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-                        <div className="w-full sm:w-auto bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
-                            <span className="text-gray-600 text-sm font-medium">
-                                Total Categories: <strong className="text-gray-900">{categories ? categories.length : 0}</strong>
+                        <div className="w-full sm:w-auto bg-gray-100 dark:bg-stone-800 px-4 py-2 rounded-lg border border-gray-200 dark:border-stone-700 transition-colors">
+                            <span className="text-gray-600 dark:text-stone-300 text-sm font-medium">
+                                Total Categories: <strong className="text-gray-900 dark:text-stone-100">{categories ? categories.length : 0}</strong>
                             </span>
                         </div>
 
@@ -66,7 +66,7 @@ const ManageCategory = () => {
                                 <input
                                     type="text"
                                     placeholder="Search by category name..."
-                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"
+                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
                                     onChange={(e) => handleSearch(e.target.value)}
                                 />
                             </div>
@@ -86,26 +86,26 @@ const ManageCategory = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase">
+                                <tr className="bg-gray-50 dark:bg-stone-800/50 border-b border-gray-200 dark:border-stone-700 text-xs font-semibold text-gray-600 dark:text-stone-400 uppercase">
                                     <th className="px-6 py-3 text-center w-20">Sr.No</th>
                                     <th className="px-6 py-3">Category Name</th>
                                     <th className="px-6 py-3">Creation Date</th>
                                     <th className="px-6 py-3 text-center w-40">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 text-sm text-gray-700">
+                            <tbody className="divide-y divide-gray-200 dark:divide-stone-700 text-sm text-gray-700 dark:text-stone-300">
                                 {categories && categories.map((category, index) => (
-                                    <tr key={category.id || category.pk || index} className="hover:bg-gray-50">
-                                        <td className="px-6 py-3 text-center font-medium text-gray-500">
+                                    <tr key={category.id || category.pk || index} className="hover:bg-gray-50 dark:hover:bg-stone-800/50 transition-colors">
+                                        <td className="px-6 py-3 text-center font-medium text-gray-500 dark:text-stone-400">
                                             {index + 1}
                                         </td>
-                                        <td className="px-6 py-3 font-medium text-gray-900">
+                                        <td className="px-6 py-3 font-medium text-gray-900 dark:text-stone-100">
                                             {category.name || category.category_name || category.title || "No Name Found"}
                                         </td>
-                                        <td className="px-6 py-3 text-gray-500">
+                                        <td className="px-6 py-3 text-gray-500 dark:text-stone-400">
                                             {category.created_at || category.createdAt || category.created || "N/A"}
                                         </td>
                                         <td className="px-6 py-3">

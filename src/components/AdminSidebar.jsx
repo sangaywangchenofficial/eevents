@@ -5,23 +5,24 @@ import {
     MdDashboard,
     MdPersonAddAlt1,
     MdOutlineCategory,
-    MdSearch,
+    MdReport,
     MdRateReview,
     MdKeyboardArrowDown,
     MdOutlineEvent,
     MdCalendarToday
 } from 'react-icons/md';
 import { IoAddCircleOutline, IoSettingsOutline } from 'react-icons/io5';
+import logo from '../assets/logo.png';
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ isDarkMode }) => {
     const location = useLocation();
 
     // Helper function to check if a route is currently active
     const isActive = (path) => location.pathname === path;
 
     // Shared active and inactive style variables for menu buttons
-    const activeClass = "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-950/40";
-    const inactiveClass = "text-stone-400 hover:bg-stone-800/60 hover:text-purple-400 transition-all duration-300";
+    const activeClass = "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/20 dark:shadow-purple-950/40";
+    const inactiveClass = "text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300";
 
     // Managed multi-dropdown open/close visibility tracking state states
     const [dropdownMenus, setDropdownMenus] = useState({
@@ -38,16 +39,14 @@ const AdminSidebar = () => {
     };
 
     return (
-        <aside className="w-64 h-screen bg-zinc-950 border-r border-stone-800/80 p-5 flex flex-col justify-between sticky top-0 overflow-y-auto">
+        <aside className="w-64 h-screen bg-white dark:bg-zinc-950 border-r border-gray-200 dark:border-stone-800/80 p-5 flex flex-col justify-between sticky top-0 overflow-y-auto transition-colors duration-300">
             <div>
 
                 {/* Main Brand Logo Area */}
                 <div className="flex items-center space-x-3 mb-8 px-2">
-                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 shadow-inner">
-                        <MdAdminPanelSettings className="text-2xl" />
-                    </div>
+                    <img src={logo} alt="eEvents Logo" className="h-10 w-auto object-contain" />
                     <div>
-                        <h1 className="font-serif font-bold text-stone-100 tracking-wide leading-none">eEvents Admin</h1>
+                        <h1 className="font-serif font-bold text-gray-900 dark:text-stone-100 tracking-wide leading-none">eEvents Admin</h1>
                         <span className="text-[10px] text-purple-400/80 font-medium uppercase tracking-widest mt-1 block">Management</span>
                     </div>
                 </div>
@@ -78,7 +77,7 @@ const AdminSidebar = () => {
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('eventCategory')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventCategory ? 'text-purple-400 bg-stone-900/40' : 'text-stone-400 hover:bg-stone-800/60 hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventCategory ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdOutlineCategory className="text-xl" />
@@ -89,12 +88,12 @@ const AdminSidebar = () => {
 
                         {/* Sub-menu options drop list items container */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.eventCategory ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Add Category */}
                                 <Link
                                     to="/add-category"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-addcategory') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-category') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Add Category</span>
@@ -103,7 +102,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Manage Category */}
                                 <Link
                                     to="/manage-category"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-managecategory') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-category') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Manage Category</span>
@@ -117,7 +116,7 @@ const AdminSidebar = () => {
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('eventMenu')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventMenu ? 'text-purple-400 bg-stone-900/40' : 'text-stone-400 hover:bg-stone-800/60 hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventMenu ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdOutlineEvent className="text-xl" />
@@ -128,12 +127,12 @@ const AdminSidebar = () => {
 
                         {/* Sub-menu list container for Event Menu items */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.eventMenu ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Add Menu Item */}
                                 <Link
                                     to="/add-event"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-addmenuitem') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-event') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Add Event</span>
@@ -142,7 +141,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Manage Menu Items */}
                                 <Link
                                     to="/manage-event"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-managemenuitems') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-event') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Manage Event</span>
@@ -156,7 +155,7 @@ const AdminSidebar = () => {
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('bookings')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.bookings ? 'text-purple-400 bg-stone-900/40' : 'text-stone-400 hover:bg-stone-800/60 hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.bookings ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdCalendarToday className="text-xl" />
@@ -167,12 +166,12 @@ const AdminSidebar = () => {
 
                         {/* Sub-menu list container for Bookings items */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.bookings ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Bookings List */}
                                 <Link
                                     to="/booking-list"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-orderlist') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-list') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Bookings List</span>
@@ -181,7 +180,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Booking Confirm */}
                                 <Link
                                     to="/booking-confirm"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-orderconfirm') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirm') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Booking Confirm</span>
@@ -190,7 +189,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Booking Not Confirm */}
                                 <Link
                                     to="/booking-not-confirm"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-ordernotconfirm') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-not-confirm') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Not Confirm</span>
@@ -199,7 +198,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Booking Cancel */}
                                 <Link
                                     to="/booking-cancel"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-ordercancel') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-cancel') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Cancel</span>
@@ -208,7 +207,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Booking Confirmed */}
                                 <Link
                                     to="/booking-confirmed"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-bookingdelivered') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirmed') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Confirmed</span>
@@ -217,7 +216,7 @@ const AdminSidebar = () => {
                                 {/* Sub item: Booking Status */}
                                 <Link
                                     to="/booking-status"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin-orderstatus') ? 'text-purple-400 font-semibold' : 'text-stone-500 hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-status') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Status</span>
@@ -228,11 +227,11 @@ const AdminSidebar = () => {
 
                     {/* Search Link */}
                     <Link
-                        to="/search"
+                        to="/booking-report"
                         className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive('/admin-search') ? activeClass : inactiveClass}`}
                     >
-                        <MdSearch className="text-xl" />
-                        <span>Search</span>
+                        <MdReport className="text-xl" />
+                        <span>Booking Report</span>
                     </Link>
 
                     {/* Manage Reviews Link */}
@@ -248,7 +247,7 @@ const AdminSidebar = () => {
             </div>
 
             {/* Footer Admin Session Meta Area */}
-            <div className="pt-4 border-t border-stone-800/60 flex items-center justify-between px-2 text-xs text-stone-500">
+            <div className="pt-4 border-t border-gray-200 dark:border-stone-800/60 flex items-center justify-between px-2 text-xs text-gray-500 dark:text-stone-500">
                 <span className="truncate">Active Terminal</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
             </div>
