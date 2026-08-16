@@ -51,11 +51,21 @@ const Footer = () => {
           {/* Column 1: Brand Info - Centered on Mobile */}
           <div className="lg:col-span-4 flex flex-col items-center text-center md:items-start md:text-left space-y-4">
             <div className="flex items-center space-x-2.5 cursor-pointer">
+<<<<<<< HEAD
               <img src={logo} alt="eEvents Logo" className="h-9 w-auto object-contain" />
               <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent hidden">
                 eEvents
               </span>
               <span className="text-gray-900 dark:text-stone-100 text-xl font-semibold">Eventbtn</span>
+=======
+              <img src={logo} alt="eEvents Logo" className="h-14 w-auto object-contain" />
+              <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent hidden">
+                eEvents
+              </span>
+              <span className="font-poppins font-extrabold text-xl tracking-tight bg-gradient-to-r from-[#3B82F6] via-[#7C3AED] to-[#A855F7] bg-clip-text text-transparent select-none">
+                Event<span className="font-light italic">btn</span>
+              </span>
+>>>>>>> feature/homepage
             </div>
             <p className="text-sm leading-relaxed max-w-sm text-gray-500">
               Discover, organize, and manage world-class events effortlessly. Your ultimate gateway to global conferences, local meetups, and everything in between.

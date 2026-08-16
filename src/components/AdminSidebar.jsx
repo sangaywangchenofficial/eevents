@@ -9,7 +9,8 @@ import {
     MdRateReview,
     MdKeyboardArrowDown,
     MdOutlineEvent,
-    MdCalendarToday
+    MdCalendarToday,
+    MdSearch
 } from 'react-icons/md';
 import { IoAddCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import logo from '../assets/logo.png';
@@ -44,7 +45,11 @@ const AdminSidebar = ({ isDarkMode }) => {
 
                 {/* Main Brand Logo Area */}
                 <div className="flex items-center space-x-3 mb-8 px-2">
+<<<<<<< HEAD
                     <img src={logo} alt="eEvents Logo" className="h-10 w-auto object-contain" />
+=======
+                    <img src={logo} alt="eEvents Logo" className="h-14 w-auto object-contain" />
+>>>>>>> feature/homepage
                     <div>
                         <h1 className="font-serif font-bold text-gray-900 dark:text-stone-100 tracking-wide leading-none">eEvents Admin</h1>
                         <span className="text-[10px] text-purple-400/80 font-medium uppercase tracking-widest mt-1 block">Management</span>
@@ -170,8 +175,13 @@ const AdminSidebar = ({ isDarkMode }) => {
 
                                 {/* Sub item: Bookings List */}
                                 <Link
+<<<<<<< HEAD
                                     to="/booking-list"
                                     className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-list') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+=======
+                                    to="/admin/bookings"
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin/bookings') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+>>>>>>> feature/homepage
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Bookings List</span>
@@ -232,6 +242,18 @@ const AdminSidebar = ({ isDarkMode }) => {
                     >
                         <MdReport className="text-xl" />
                         <span>Booking Report</span>
+<<<<<<< HEAD
+=======
+                    </Link>
+
+                    <Link
+                        to="/search-bookings"
+                        className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive('/search-bookings') ? activeClass : inactiveClass
+                            }`}
+                    >
+                        <MdSearch className="text-xl" />
+                        <span>Search</span>
+>>>>>>> feature/homepage
                     </Link>
 
                     {/* Manage Reviews Link */}

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +15,12 @@ import BookingConfirm from "./layout/admin/pages/bookings/BookingConfirm";
 import BookingConfirmed from "./layout/admin/pages/bookings/BookingConfirmed";
 import BookingStatus from "./layout/admin/pages/bookings/BookingStatus";
 import BookingCancel from "./layout/admin/pages/bookings/BookingCancel";
+<<<<<<< HEAD
+=======
+import BookingReport from "./layout/admin/pages/bookingreport/bookingreport";
+import BookingsDetails from "./layout/admin/pages/bookings/BookingsDetails";
+import SearchBookings from "./layout/admin/pages/searchbookings/SearchBookings";
+>>>>>>> feature/homepage
 import SearchPage from "./pages/SearchPage";
 import EventDetail from "./pages/EventDetails";
 import RegisterPage from "./auth/RegisterPage";
@@ -34,7 +40,10 @@ import BookingGuide from "./pages/BookingGuide";
 import TermsOfService from "./pages/TermSection";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Categories from "./pages/CategoriesPage";
+<<<<<<< HEAD
 import BookingReport from "./layout/admin/pages/bookingreport/bookingreport";
+=======
+>>>>>>> feature/homepage
 
 
 function App() {
@@ -71,7 +80,17 @@ function App() {
           <Route path="/terms-conditions" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/booking-not-confirm" element={<BookingNotConfrim />} />
+<<<<<<< HEAD
           <Route path="/booking-list" element={<BookingList />} />
+=======
+
+          {/* Admin Booking Routes - Fixed */}
+          <Route path="/admin/bookings" element={<BookingList />} />
+          <Route path="/admin/bookings/:id" element={<BookingsDetails />} />
+          <Route path="/booking-list" element={<Navigate to="/admin/bookings" replace />} />
+          <Route path="/search-bookings" element={<SearchBookings />} />
+
+>>>>>>> feature/homepage
           <Route path="/booking-cancel" element={<BookingCancel />} />
           <Route path="/booking-confirm" element={<BookingConfirm />} />
           <Route path="/booking-confirmed" element={<BookingConfirmed />} />

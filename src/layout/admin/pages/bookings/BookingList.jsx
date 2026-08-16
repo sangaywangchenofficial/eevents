@@ -67,7 +67,22 @@ const BookingList = () => {
                 total_price: b.total_price || 0,
                 booking_date: b.booking_date || b.booking_date_formatted,
                 is_booked: b.is_booked || false,
+<<<<<<< HEAD
                 user_name: b.user_name || 'User'
+=======
+                user_name: b.user_name || 'User',
+                // Additional fields for detailed view
+                event_id: b.event_id || b.event?.id,
+                user_id: b.user_id || b.user?.id,
+                user_email: b.user_email || b.user?.email || 'N/A',
+                user_phone: b.user_phone || b.user?.phone || 'N/A',
+                event_date: b.event_date || b.event?.event_date || 'N/A',
+                event_location: b.event_location || b.event?.location || 'N/A',
+                event_description: b.event_description || b.event?.description || 'N/A',
+                booking_reference: b.booking_reference || b.reference || `BK-${b.id}`,
+                payment_status: b.payment_status || 'N/A',
+                payment_method: b.payment_method || 'N/A'
+>>>>>>> feature/homepage
             })));
         } catch (err) {
             setError(err.message || 'Failed to load bookings.');
@@ -93,6 +108,14 @@ const BookingList = () => {
         } catch { return { date: 'N/A', time: 'N/A' }; }
     };
 
+<<<<<<< HEAD
+=======
+    const handleViewDetails = (bookingId) => {
+        // Navigate to the booking details page with the booking ID
+        navigate(`/admin/bookings/${bookingId}`);
+    };
+
+>>>>>>> feature/homepage
     if (loading) {
         return (
             <AdminLayout>
@@ -151,7 +174,11 @@ const BookingList = () => {
                             <table className="min-w-full bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
                                 <thead className="bg-gray-100 dark:bg-zinc-700">
                                     <tr>
+<<<<<<< HEAD
                                         {['ID', 'User', 'Event', 'Quantity', 'Total Price', 'Booking Date', 'Time', 'Status'].map(h => (
+=======
+                                        {['ID', 'User', 'Event', 'Quantity', 'Total Price', 'Booking Date', 'Time', 'Status', 'Actions'].map(h => (
+>>>>>>> feature/homepage
                                             <th key={h} className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-stone-300 uppercase tracking-wider">
                                                 {h}
                                             </th>
@@ -177,6 +204,21 @@ const BookingList = () => {
                                                         {booking.is_booked ? 'Confirmed' : 'Pending'}
                                                     </span>
                                                 </td>
+<<<<<<< HEAD
+=======
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                                    <button
+                                                        onClick={() => handleViewDetails(booking.id)}
+                                                        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors duration-200 flex items-center gap-1"
+                                                    >
+                                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
+                                                        View Details
+                                                    </button>
+                                                </td>
+>>>>>>> feature/homepage
                                             </tr>
                                         );
                                     })}
@@ -190,4 +232,8 @@ const BookingList = () => {
     );
 };
 
+<<<<<<< HEAD
 export default BookingList;
+=======
+export default BookingList;
+>>>>>>> feature/homepage

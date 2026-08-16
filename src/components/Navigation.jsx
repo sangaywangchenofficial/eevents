@@ -120,9 +120,17 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
 
           {/* Logo Section */}
+<<<<<<< HEAD
           <Link to="/" className="flex items-center gap-2.5 group">
             <img src={logo} alt="eEvents Logo" className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             <span className="text-gray-900 dark:text-stone-100 text-xl font-semibold">Eventbtn</span>
+=======
+          <Link to="/" className="flex items-center gap-1 group">
+            <img src={logo} alt="eEvents Logo" className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+            <span className="font-poppins font-extrabold text-xl tracking-tight bg-gradient-to-r from-[#3B82F6] via-[#7C3AED] to-[#A855F7] bg-clip-text text-transparent select-none">
+              Event<span className="font-light italic">btn</span>
+            </span>
+>>>>>>> feature/homepage
           </Link>
 
           {/* Desktop Navigation Links */}
