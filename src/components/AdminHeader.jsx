@@ -68,7 +68,7 @@ const AdminHeader = ({
 
                 {/* System Name Brand Indicator */}
                 <div className="hidden sm:block flex items-center gap-2">
-                    <img src={logo} alt="eEvents Logo" className="h-8 w-auto object-contain" />
+                    <img src={logo} alt="eEvents Logo" className="h-12 w-auto object-contain" />
                     <span className="font-serif font-bold text-gray-900 dark:text-stone-100 text-lg tracking-wide hidden">
                         eEvents <span className="text-purple-600 dark:text-purple-400">Admin</span>
                     </span>
