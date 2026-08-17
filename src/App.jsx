@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
 import AdminLogin from "./adminauth/AdminLogin";
-import AdminDashboard from "./layout/admin/AdminDashboard";
+import AdminDashboard from "./layout/admin/pages/dashboard/AdminDashboard";
 import AddCategory from "./layout/admin/pages/eventcategories/AddCategory";
 import ManageCategory from "./layout/admin/pages/eventcategories/ManageCategory";
 import AddEvent from "./layout/admin/pages/events/AddEvent";
@@ -37,6 +37,9 @@ import BookingGuide from "./pages/BookingGuide";
 import TermsOfService from "./pages/TermSection";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Categories from "./pages/CategoriesPage";
+import EditCategory from "./layout/admin/pages/eventcategories/EditCategory";
+import EditEvent from "./layout/admin/pages/events/EditEvent";
+import ManageUser from "./layout/admin/pages/manageusers/ManageUser";
 
 
 function App() {
@@ -64,6 +67,7 @@ function App() {
           <Route path="/events" element={<SearchPage />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/event/:id" element={<EventDetail />} />
+          <Route path="/edit-event/:id" element={<EditEvent />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -72,7 +76,7 @@ function App() {
           <Route path="/booking-guide" element={<BookingGuide />} />
           <Route path="/terms-conditions" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/booking-not-confirm" element={<BookingNotConfrim />} />
+
 
           {/* Admin Booking Routes - Fixed */}
           <Route path="/admin/bookings" element={<BookingList />} />
@@ -85,6 +89,10 @@ function App() {
           <Route path="/booking-confirmed" element={<BookingConfirmed />} />
           <Route path="/booking-status" element={<BookingStatus />} />
           <Route path="/booking-report" element={<BookingReport />} />
+          <Route path="/booking-not-confirm" element={<BookingNotConfrim />} />
+          <Route path="/edit-category/:id" element={<EditCategory />} />
+          <Route path="/manage-users" element={<ManageUser />} />
+
 
           <Route
             path="/userdashboard"

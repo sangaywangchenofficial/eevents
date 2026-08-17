@@ -72,19 +72,22 @@ const AdminLogin = () => {
 
     return (
         <PublicLayout>
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-900 via-zinc-900 to-purple-950/40 p-4">
-                <div className="w-full max-w-md bg-zinc-900/90 backdrop-blur-md border border-stone-800 rounded-2xl shadow-2xl p-8">
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f1f1c] via-[#1E352F] to-[#0a2820] p-4">
+                <div className="w-full max-w-md bg-[#0f1f1c]/90 backdrop-blur-md border border-[#29BBA3]/20 rounded-2xl shadow-2xl p-8 shadow-[#29BBA3]/10">
 
                     {/* Header / Brand Logo Area */}
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/10 text-purple-400 mb-4 border border-purple-500/20 shadow-inner">
-                            <MdAdminPanelSettings className="text-3xl" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 mb-4 shadow-lg shadow-teal-900/40">
+                            <svg viewBox="0 0 24 24" fill="none" className="w-9 h-9 text-white" stroke="currentColor" strokeWidth="2">
+                                <path d="M3 9l1.5-1.5a2.5 2.5 0 010-3.54L6 3l15 15-1.5 1.5a2.5 2.5 0 01-3.54 0L15 18H9l-1.5 1.5a2.5 2.5 0 01-3.54 0L3 18V9z" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M9 9h6M9 12h6M9 15h4" strokeLinecap="round" />
+                            </svg>
                         </div>
-                        <h1 className="text-2xl font-serif font-bold text-stone-100 tracking-wide">
-                            eEvents
+                        <h1 className="text-2xl font-black text-white tracking-widest uppercase">
+                            TIX<span className="text-teal-400">ELO</span>
                         </h1>
-                        <p className="text-xs text-purple-400/80 font-medium uppercase tracking-widest mt-1">
-                            Event Control Panel
+                        <p className="text-xs text-teal-400/80 font-medium uppercase tracking-widest mt-1">
+                            Admin Control Panel
                         </p>
                     </div>
 
@@ -97,14 +100,14 @@ const AdminLogin = () => {
                                 Username or Email
                             </label>
                             <div className="relative group">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within:text-purple-400 transition-colors">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within:text-[#29BBA3] transition-colors">
                                     <FaUserShield className="text-sm" />
                                 </div>
                                 <input
                                     type="text"
                                     name="username"
                                     required
-                                    className="w-full pl-10 pr-4 py-3 bg-stone-950/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                                    className="w-full pl-10 pr-4 py-3 bg-[#0a1e1a]/60 border border-[#29BBA3]/20 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                                     placeholder="admin_username"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
@@ -119,14 +122,14 @@ const AdminLogin = () => {
                                 Secret Password
                             </label>
                             <div className="relative group">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within:text-purple-400 transition-colors">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-500 group-focus-within:text-[#29BBA3] transition-colors">
                                     <FaLock className="text-sm" />
                                 </div>
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
                                     required
-                                    className="w-full pl-10 pr-12 py-3 bg-stone-950/40 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                                    className="w-full pl-10 pr-12 py-3 bg-[#0a1e1a]/60 border border-[#29BBA3]/20 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                                     placeholder="••••••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -136,7 +139,7 @@ const AdminLogin = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-stone-500 hover:text-purple-400 transition-colors"
+                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-stone-500 hover:text-[#29BBA3] transition-colors"
                                     disabled={loading}
                                 >
                                     {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
@@ -150,11 +153,11 @@ const AdminLogin = () => {
                                 <input
                                     type="checkbox"
                                     name="remember"
-                                    className="w-4 h-4 rounded border-stone-800 bg-stone-950 text-purple-600 focus:ring-purple-500 focus:ring-offset-stone-900 transition-all"
+                                    className="w-4 h-4 rounded border-stone-800 bg-stone-950 text-[#29BBA3] focus:ring-[#29BBA3] focus:ring-offset-stone-900 transition-all"
                                 />
                                 <span>Remember session</span>
                             </label>
-                            <a href="#forgot" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                            <a href="#forgot" className="text-[#29BBA3] hover:text-[#1E8B7A] font-medium transition-colors">
                                 Trouble logging in?
                             </a>
                         </div>
@@ -163,7 +166,7 @@ const AdminLogin = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-lg shadow-purple-950/40 active:scale-[0.98] transition-all text-sm tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full py-3 px-4 btn-tixelo text-white font-medium rounded-xl active:scale-[0.98] transition-all text-sm tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {loading ? (
                                 <span className="flex items-center justify-center">

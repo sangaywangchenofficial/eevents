@@ -118,25 +118,25 @@ const RegisterPage = () => {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF8FF] p-4 py-12 font-inter bhutan-cloud-overlay">
+      <div className="min-h-screen flex items-center justify-center bg-[#FDFDF7] p-4 py-12">
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-lg bg-white rounded-3xl border border-[#E9D5FF] shadow-2xl shadow-purple-900/10 p-8 sm:p-10 relative overflow-hidden"
+          className="w-full max-w-lg bg-white rounded-3xl border border-[#E6E1D8] shadow-2xl shadow-teal-900/8 p-8 sm:p-10 relative overflow-hidden"
         >
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#6B21A8] to-[#8B5CF6] text-white mb-4 shadow-lg shadow-purple-600/30">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#29BBA3] to-[#1E8B7A] text-white mb-4 shadow-lg shadow-teal-600/30">
               <UserPlus className="w-7 h-7" />
             </div>
-            <h1 className="font-poppins font-extrabold text-2xl text-[#1E1B4B]">
+            <h1 className="font-extrabold text-2xl text-[#1E352F]">
               Create Your Account
             </h1>
-            <p className="text-xs font-poppins font-semibold text-[#6B21A8] uppercase tracking-wider mt-1 flex items-center justify-center gap-1">
+            <p className="text-xs font-semibold text-[#1E8B7A] uppercase tracking-wider mt-1 flex items-center justify-center gap-1">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Join eEvents Bhutan Today</span>
+              <span>Join TIXELO Today</span>
             </p>
           </div>
 
@@ -146,12 +146,12 @@ const RegisterPage = () => {
             {/* Name Inputs Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                   First Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <User className="w-4 h-4 text-[#6B21A8]" />
+                    <User className="w-4 h-4 text-[#29BBA3]" />
                   </div>
                   <input
                     type="text"
@@ -159,18 +159,18 @@ const RegisterPage = () => {
                     placeholder="John"
                     value={formData.first_name}
                     onChange={handleChange}
-                    className="w-full pl-9 pr-3 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                   Last Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <User className="w-4 h-4 text-[#6B21A8]" />
+                    <User className="w-4 h-4 text-[#29BBA3]" />
                   </div>
                   <input
                     type="text"
@@ -178,7 +178,7 @@ const RegisterPage = () => {
                     placeholder="Dorji"
                     value={formData.last_name}
                     onChange={handleChange}
-                    className="w-full pl-9 pr-3 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                   />
                 </div>
               </div>
@@ -186,12 +186,12 @@ const RegisterPage = () => {
 
             {/* Email Field */}
             <div>
-              <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                 Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <Mail className="w-4 h-4 text-[#6B21A8]" />
+                  <Mail className="w-4 h-4 text-[#29BBA3]" />
                 </div>
                 <input
                   type="email"
@@ -199,19 +199,19 @@ const RegisterPage = () => {
                   placeholder="name@domain.bt"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-4 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                  className="w-full pl-9 pr-4 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                 />
               </div>
             </div>
 
             {/* Phone Number Field */}
             <div>
-              <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                 Phone Number
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <Phone className="w-4 h-4 text-[#6B21A8]" />
+                  <Phone className="w-4 h-4 text-[#29BBA3]" />
                 </div>
                 <input
                   type="text"
@@ -220,7 +220,7 @@ const RegisterPage = () => {
                   value={formData.phone_number}
                   onChange={handleChange}
                   maxLength="20"
-                  className="w-full pl-9 pr-4 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                  className="w-full pl-9 pr-4 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                 />
               </div>
             </div>
@@ -228,12 +228,12 @@ const RegisterPage = () => {
             {/* Password Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                   Password
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <Lock className="w-4 h-4 text-[#6B21A8]" />
+                    <Lock className="w-4 h-4 text-[#29BBA3]" />
                   </div>
                   <input
                     type={showPassword ? 'text' : 'password'}
@@ -241,12 +241,12 @@ const RegisterPage = () => {
                     placeholder="••••••••••••"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full pl-9 pr-10 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                    className="w-full pl-9 pr-10 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-[#6B21A8] transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#66756F] hover:text-[#29BBA3] transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -254,12 +254,12 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-poppins font-semibold text-[#1E1B4B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#1E352F] uppercase tracking-wider mb-1.5">
                   Confirm Password
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <Lock className="w-4 h-4 text-[#6B21A8]" />
+                    <Lock className="w-4 h-4 text-[#29BBA3]" />
                   </div>
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
@@ -267,12 +267,12 @@ const RegisterPage = () => {
                     placeholder="••••••••••••"
                     value={formData.confirm_password}
                     onChange={handleChange}
-                    className="w-full pl-9 pr-10 py-2.5 bg-[#FAF8FF] border border-[#E9D5FF] rounded-xl text-[#1E1B4B] placeholder-slate-400 focus:outline-none focus:border-[#6B21A8] focus:ring-1 focus:ring-[#6B21A8] transition-all text-sm font-inter"
+                    className="w-full pl-9 pr-10 py-2.5 bg-[#FDFDF7] border border-[#E6E1D8] rounded-xl text-[#1E352F] placeholder-[#66756F] focus:outline-none focus:border-[#29BBA3] focus:ring-1 focus:ring-[#29BBA3] transition-all text-sm"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-[#6B21A8] transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#66756F] hover:text-[#29BBA3] transition-colors"
                   >
                     {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -281,12 +281,12 @@ const RegisterPage = () => {
             </div>
 
             {/* Terms Checkbox */}
-            <div className="pt-1 flex items-center justify-between text-xs font-inter">
-              <label className="flex items-center gap-2 text-[#475569] cursor-pointer select-none">
+            <div className="pt-1 flex items-center justify-between text-xs">
+              <label className="flex items-center gap-2 text-[#66756F] cursor-pointer select-none">
                 <input
                   type="checkbox"
                   required
-                  className="w-4 h-4 rounded border-[#E9D5FF] text-[#6B21A8] focus:ring-[#6B21A8]"
+                  className="w-4 h-4 rounded border-[#E6E1D8] text-[#29BBA3] focus:ring-[#29BBA3]"
                 />
                 <span>I accept terms & conditions</span>
               </label>
@@ -296,7 +296,7 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3.5 px-4 mt-2 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] hover:from-[#581C87] hover:to-[#6B21A8] text-white font-poppins font-bold rounded-xl shadow-lg shadow-purple-600/25 transition-all text-sm tracking-wide flex items-center justify-center gap-2 transform active:scale-[0.98] ${
+              className={`w-full py-3.5 px-4 mt-2 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] hover:from-[#1E8B7A] hover:to-[#175f55] text-white font-bold rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm tracking-wide flex items-center justify-center gap-2 transform active:scale-[0.98] ${
                 isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             >
@@ -313,16 +313,16 @@ const RegisterPage = () => {
           </form>
 
           {/* Login Callout */}
-          <div className="mt-6 text-center pt-5 border-t border-[#E9D5FF]">
-            <p className="text-xs text-[#475569] font-inter">
+          <div className="mt-6 text-center pt-5 border-t border-[#E6E1D8]">
+            <p className="text-xs text-[#66756F]">
               Already registered?{' '}
-              <Link to="/login" className="text-[#6B21A8] hover:text-[#581C87] font-poppins font-bold transition-colors">
+              <Link to="/login" className="text-[#1E8B7A] hover:text-[#29BBA3] font-bold transition-colors">
                 Sign in to your account
               </Link>
             </p>
 
-            <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-slate-400 font-medium">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-[#66756F] font-medium">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#29BBA3]" />
               <span>Your data is protected under Bhutan digital privacy guidelines</span>
             </div>
           </div>

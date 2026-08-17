@@ -154,7 +154,7 @@ const BookingGuide = () => {
     const renderStepImage = (image) => {
         const images = {
             discover: (
-                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8 text-center border border-purple-100">
+                <div className="bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] rounded-2xl p-8 text-center border border-[#E6F9F6]">
                     <div className="text-6xl mb-4">🔍</div>
                     <p className="text-gray-600 text-sm">Browse and discover events</p>
                 </div>
@@ -187,19 +187,19 @@ const BookingGuide = () => {
                 <div className="min-h-screen bg-white">
                     {/* Hero Section */}
                     <section className="relative py-16 md:py-20 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 via-white to-[#F4F3EC]/30"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <FaTicketAlt className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] border border-[#E6F9F6] rounded-full px-4 py-1.5 mb-5">
+                                    <FaTicketAlt className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         Booking Guide
                                     </span>
                                 </div>
 
                                 <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    How to Book <span className="text-purple-600">Tickets</span>
+                                    How to Book <span className="text-[#29BBA3]">Tickets</span>
                                 </h1>
 
                                 <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -214,19 +214,19 @@ const BookingGuide = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">4</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">4</p>
                                     <p className="text-xs text-gray-500">Simple Steps</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">5 min</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">5 min</p>
                                     <p className="text-xs text-gray-500">Average Time</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">100%</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">100%</p>
                                     <p className="text-xs text-gray-500">Secure Payment</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">24/7</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">24/7</p>
                                     <p className="text-xs text-gray-500">Support Available</p>
                                 </div>
                             </div>
@@ -238,12 +238,12 @@ const BookingGuide = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-12">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Booking in <span className="text-purple-600">4 Simple Steps</span>
+                                    Booking in <span className="text-[#29BBA3]">4 Simple Steps</span>
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Follow these steps to secure your tickets
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             {/* Step Navigation */}
@@ -253,7 +253,7 @@ const BookingGuide = () => {
                                         key={step.number}
                                         onClick={() => setActiveStep(step.number)}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeStep === step.number
-                                            ? 'bg-purple-600 text-white shadow-sm'
+                                            ? 'bg-[#1E8B7A] text-white shadow-sm'
                                             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                                             }`}
                                     >
@@ -274,7 +274,7 @@ const BookingGuide = () => {
                                     <div key={step.number} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                                         <div>
                                             <div className="flex items-center gap-3 mb-4">
-                                                <div className="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center">
+                                                <div className="w-10 h-10 rounded-lg bg-[#E6F9F6] text-[#29BBA3] flex items-center justify-center">
                                                     <step.icon className="text-xl" />
                                                 </div>
                                                 <h3 className="text-2xl font-bold text-gray-900">
@@ -291,7 +291,7 @@ const BookingGuide = () => {
                                                 <ul className="space-y-2">
                                                     {step.tips.map((tip, index) => (
                                                         <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                                                            <FaCheckCircle className="text-purple-600 text-xs mt-0.5 flex-shrink-0" />
+                                                            <FaCheckCircle className="text-[#29BBA3] text-xs mt-0.5 flex-shrink-0" />
                                                             {tip}
                                                         </li>
                                                     ))}
@@ -306,7 +306,7 @@ const BookingGuide = () => {
                                                     disabled={activeStep === 1}
                                                     className={`flex items-center gap-1 text-sm ${activeStep === 1
                                                         ? 'text-gray-300 cursor-not-allowed'
-                                                        : 'text-gray-500 hover:text-purple-600 transition-colors'
+                                                        : 'text-gray-500 hover:text-[#29BBA3] transition-colors'
                                                         }`}
                                                 >
                                                     <FaChevronLeft className="text-xs" />
@@ -317,7 +317,7 @@ const BookingGuide = () => {
                                                     disabled={activeStep === 4}
                                                     className={`flex items-center gap-1 text-sm ${activeStep === 4
                                                         ? 'text-gray-300 cursor-not-allowed'
-                                                        : 'text-gray-500 hover:text-purple-600 transition-colors'
+                                                        : 'text-gray-500 hover:text-[#29BBA3] transition-colors'
                                                         }`}
                                                 >
                                                     Next
@@ -336,20 +336,20 @@ const BookingGuide = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Secure <span className="text-purple-600">Payment</span> Options
+                                    Secure <span className="text-[#29BBA3]">Payment</span> Options
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Choose from multiple secure payment methods
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                                 {paymentMethods.map((method, index) => {
                                     const Icon = method.icon;
                                     return (
-                                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 text-center hover:border-purple-200 transition-all duration-300">
-                                            <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 text-center hover:border-[#E6E1D8] transition-all duration-300">
+                                            <div className="w-12 h-12 rounded-full bg-[#F4F3EC] text-[#29BBA3] flex items-center justify-center mx-auto mb-3">
                                                 <Icon className="text-xl" />
                                             </div>
                                             <h4 className="text-sm font-semibold text-gray-900">{method.name}</h4>
@@ -373,18 +373,18 @@ const BookingGuide = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Booking <span className="text-purple-600">Tips</span>
+                                    Booking <span className="text-[#29BBA3]">Tips</span>
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Make the most of your booking experience
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {bookingTips.map((tip, index) => (
-                                    <div key={index} className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center hover:border-purple-200 transition-all duration-300">
-                                        <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                                    <div key={index} className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center hover:border-[#E6E1D8] transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-full bg-[#F4F3EC] text-[#29BBA3] flex items-center justify-center mx-auto mb-3">
                                             <tip.icon className="text-xl" />
                                         </div>
                                         <h4 className="text-sm font-semibold text-gray-900">{tip.title}</h4>
@@ -400,17 +400,17 @@ const BookingGuide = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Frequently Asked <span className="text-purple-600">Questions</span>
+                                    Frequently Asked <span className="text-[#29BBA3]">Questions</span>
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Common questions about booking tickets
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="max-w-3xl mx-auto space-y-3">
                                 {bookingFaqs.map((faq, index) => (
-                                    <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 hover:border-purple-200 transition-all duration-300">
+                                    <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 hover:border-[#E6E1D8] transition-all duration-300">
                                         <h4 className="text-sm font-semibold text-gray-900 mb-1">{faq.question}</h4>
                                         <p className="text-xs text-gray-500 leading-relaxed">{faq.answer}</p>
                                     </div>
@@ -420,7 +420,7 @@ const BookingGuide = () => {
                             <div className="text-center mt-6">
                                 <Link
                                     to="/help-center"
-                                    className="text-sm text-purple-600 hover:text-purple-700 font-medium inline-flex items-center gap-1 transition-colors"
+                                    className="text-sm text-[#29BBA3] hover:text-[#1E352F] font-medium inline-flex items-center gap-1 transition-colors"
                                 >
                                     View all FAQs
                                     <FaArrowRight className="text-xs" />
@@ -432,9 +432,9 @@ const BookingGuide = () => {
                     {/* CTA Section */}
                     <section className="py-16 bg-white">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
+                            <div className="bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] border border-[#E6F9F6] rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                                    Ready to <span className="text-purple-600">Book</span> Your Tickets?
+                                    Ready to <span className="text-[#29BBA3]">Book</span> Your Tickets?
                                 </h3>
                                 <p className="text-sm text-gray-500 mb-6">
                                     Start exploring events and secure your spot today.
@@ -442,7 +442,7 @@ const BookingGuide = () => {
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                                     <Link
                                         to="/events"
-                                        className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
+                                        className="px-6 py-3 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
                                     >
                                         Browse Events
                                         <FaArrowRight className="text-sm" />

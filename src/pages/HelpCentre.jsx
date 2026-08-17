@@ -154,7 +154,7 @@ const HelpCenter = () => {
         {
             id: 17,
             category: 'security',
-            question: 'How does eEvents protect my data?',
+            question: 'How does TIXELO protect my data?',
             answer: 'We use industry-standard encryption (SSL/TLS) for all data transmission. Your personal information is stored securely and never shared with third parties without your consent.'
         },
         {
@@ -233,24 +233,24 @@ const HelpCenter = () => {
 
     const getColorClasses = (color) => {
         const colors = {
-            purple: 'bg-purple-50 text-purple-600 hover:bg-purple-100',
+            purple: 'bg-[#F4F3EC] text-[#29BBA3] hover:bg-[#E6F9F6]',
             blue: 'bg-blue-50 text-blue-600 hover:bg-blue-100',
             emerald: 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100',
             amber: 'bg-amber-50 text-amber-600 hover:bg-amber-100',
             rose: 'bg-rose-50 text-rose-600 hover:bg-rose-100',
-            indigo: 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
+            indigo: 'bg-[#FDFDF7] text-[#1E8B7A] hover:bg-[#E6F9F6]'
         };
         return colors[color] || colors.purple;
     };
 
     const getIconColor = (color) => {
         const colors = {
-            purple: 'text-purple-600',
+            purple: 'text-[#29BBA3]',
             blue: 'text-blue-600',
             emerald: 'text-emerald-600',
             amber: 'text-amber-600',
             rose: 'text-rose-600',
-            indigo: 'text-indigo-600'
+            indigo: 'text-[#1E8B7A]'
         };
         return colors[color] || colors.purple;
     };
@@ -261,19 +261,19 @@ const HelpCenter = () => {
                 <div className="min-h-screen bg-white">
                     {/* Hero Section */}
                     <section className="relative py-16 md:py-20 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 via-white to-[#F4F3EC]/30"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <FaQuestionCircle className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] border border-[#E6F9F6] rounded-full px-4 py-1.5 mb-5">
+                                    <FaQuestionCircle className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         Help Center
                                     </span>
                                 </div>
 
                                 <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    How Can We <span className="text-purple-600">Help?</span>
+                                    How Can We <span className="text-[#29BBA3]">Help?</span>
                                 </h1>
 
                                 <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
@@ -291,7 +291,7 @@ const HelpCenter = () => {
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             placeholder="Search for help articles..."
-                                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all duration-300 shadow-sm"
+                                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#E6F9F6] transition-all duration-300 shadow-sm"
                                         />
                                     </div>
                                 </div>
@@ -304,12 +304,12 @@ const HelpCenter = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Browse Help <span className="text-purple-600">Topics</span>
+                                    Browse Help <span className="text-[#29BBA3]">Topics</span>
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Select a category to find answers to your questions
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -321,14 +321,14 @@ const HelpCenter = () => {
                                                 category.title.toLowerCase().includes('account') ? 'account' :
                                                     category.title.toLowerCase().includes('payment') ? 'payments' :
                                                         category.title.toLowerCase().includes('security') ? 'security' : 'all')}
-                                        className="group bg-white border border-gray-100 rounded-xl p-5 text-left hover:border-purple-200 transition-all duration-300 hover:shadow-sm"
+                                        className="group bg-white border border-gray-100 rounded-xl p-5 text-left hover:border-[#E6E1D8] transition-all duration-300 hover:shadow-sm"
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className={`w-10 h-10 rounded-lg ${getColorClasses(category.color)} flex items-center justify-center flex-shrink-0 transition-colors duration-300`}>
                                                 <category.icon className="text-base" />
                                             </div>
                                             <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                                                <h4 className="text-sm font-semibold text-gray-900 group-hover:text-[#29BBA3] transition-colors duration-300">
                                                     {category.title}
                                                 </h4>
                                                 <p className="text-xs text-gray-400 mt-0.5 leading-relaxed">
@@ -347,12 +347,12 @@ const HelpCenter = () => {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    Frequently Asked <span className="text-purple-600">Questions</span>
+                                    Frequently Asked <span className="text-[#29BBA3]">Questions</span>
                                 </h2>
                                 <p className="text-sm text-gray-400 mt-1">
                                     Find quick answers to the most common questions
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             {/* Category Filters */}
@@ -365,7 +365,7 @@ const HelpCenter = () => {
                                             key={category.id}
                                             onClick={() => setActiveCategory(category.id)}
                                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${isActive
-                                                ? 'bg-purple-600 text-white shadow-sm'
+                                                ? 'bg-[#1E8B7A] text-white shadow-sm'
                                                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                                                 }`}
                                         >
@@ -384,7 +384,7 @@ const HelpCenter = () => {
                                         return (
                                             <div
                                                 key={faq.id}
-                                                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-purple-200 transition-all duration-300"
+                                                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-[#E6E1D8] transition-all duration-300"
                                             >
                                                 <button
                                                     onClick={() => toggleFaq(faq.id)}
@@ -395,7 +395,7 @@ const HelpCenter = () => {
                                                     </span>
                                                     <span className="flex-shrink-0">
                                                         {isExpanded ? (
-                                                            <FaChevronUp className="text-purple-600 text-sm" />
+                                                            <FaChevronUp className="text-[#29BBA3] text-sm" />
                                                         ) : (
                                                             <FaChevronDown className="text-gray-400 text-sm" />
                                                         )}
@@ -429,29 +429,29 @@ const HelpCenter = () => {
                             <div className="bg-white border border-gray-100 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-sm">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                                     <div>
-                                        <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-4">
-                                            <FaHeadset className="text-purple-600 text-xs" />
-                                            <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                        <div className="inline-flex items-center gap-2 bg-[#F4F3EC] border border-[#E6F9F6] rounded-full px-4 py-1.5 mb-4">
+                                            <FaHeadset className="text-[#29BBA3] text-xs" />
+                                            <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                                 Still Need Help?
                                             </span>
                                         </div>
                                         <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                                            We're Here to <span className="text-purple-600">Support</span>
+                                            We're Here to <span className="text-[#29BBA3]">Support</span>
                                         </h3>
                                         <p className="text-sm text-gray-500 leading-relaxed mb-6">
                                             Can't find what you're looking for? Our support team is ready to assist you.
                                         </p>
                                         <div className="space-y-3">
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaEnvelope className="text-purple-600" />
-                                                <span className="text-gray-600">support@eevents.bt</span>
+                                                <FaEnvelope className="text-[#29BBA3]" />
+                                                <span className="text-gray-600">support@tixelo.bt</span>
                                             </div>
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaPhone className="text-purple-600" />
+                                                <FaPhone className="text-[#29BBA3]" />
                                                 <span className="text-gray-600">+975 2 123 456</span>
                                             </div>
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaClock className="text-purple-600" />
+                                                <FaClock className="text-[#29BBA3]" />
                                                 <span className="text-gray-600">Mon-Fri: 9:00 AM - 6:00 PM</span>
                                             </div>
                                         </div>
@@ -459,7 +459,7 @@ const HelpCenter = () => {
                                     <div className="flex flex-col gap-3">
                                         <Link
                                             to="/contact"
-                                            className="w-full py-3 px-6 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm font-medium text-center shadow-sm hover:shadow-md"
+                                            className="w-full py-3 px-6 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-all duration-300 text-sm font-medium text-center shadow-sm hover:shadow-md"
                                         >
                                             Contact Support
                                         </Link>
@@ -479,23 +479,23 @@ const HelpCenter = () => {
                     <section className="py-12 bg-white">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-                                <Link to="/about" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/about" className="text-gray-500 hover:text-[#29BBA3] transition-colors duration-200">
                                     About Us
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/contact" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/contact" className="text-gray-500 hover:text-[#29BBA3] transition-colors duration-200">
                                     Contact
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/privacy" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/privacy" className="text-gray-500 hover:text-[#29BBA3] transition-colors duration-200">
                                     Privacy Policy
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/terms" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/terms" className="text-gray-500 hover:text-[#29BBA3] transition-colors duration-200">
                                     Terms of Service
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/cookies" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/cookies" className="text-gray-500 hover:text-[#29BBA3] transition-colors duration-200">
                                     Cookie Policy
                                 </Link>
                             </div>

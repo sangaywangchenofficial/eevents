@@ -104,19 +104,19 @@ const SearchPage = () => {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-[#FAF8FF] py-10 font-inter">
+      <div className="min-h-screen bg-[#FDFDF7] py-10 font-inter">
 
         {/* Sticky Search Header Box */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E9D5FF] shadow-xl shadow-purple-900/5">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6E1D8] shadow-xl shadow-teal-900/5">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
 
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#6B21A8] text-xs font-poppins font-semibold uppercase tracking-wide mb-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F9F6] text-[#29BBA3] text-xs font-poppins font-semibold uppercase tracking-wide mb-2">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Discover Events</span>
                 </div>
-                <h1 className="font-poppins font-extrabold text-2xl sm:text-3xl text-[#1E1B4B]">
+                <h1 className="font-poppins font-extrabold text-2xl sm:text-3xl text-[#1E352F]">
                   {searchQuery ? `Search Results for "${searchQuery}"` : categoryFilter ? `Category: ${categoryFilter}` : 'Explore All Events in Bhutan'}
                 </h1>
                 <p className="text-[#475569] text-sm mt-1">
@@ -126,20 +126,20 @@ const SearchPage = () => {
 
               {/* Search Bar Input */}
               <form onSubmit={handleSearchSubmit} className="w-full md:w-auto flex-1 max-w-lg">
-                <div className="glass-card p-2 rounded-2xl border border-[#E9D5FF] flex items-center gap-2">
+                <div className="glass-card p-2 rounded-2xl border border-[#E6E1D8] flex items-center gap-2">
                   <div className="relative flex-1 flex items-center pl-3">
-                    <Search className="w-5 h-5 text-[#6B21A8] mr-2 flex-shrink-0" />
+                    <Search className="w-5 h-5 text-[#29BBA3] mr-2 flex-shrink-0" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search by event, location, dzongkhag..."
-                      className="w-full py-2 bg-transparent text-[#1E1B4B] placeholder-slate-400 focus:outline-none text-sm font-inter"
+                      className="w-full py-2 bg-transparent text-[#1E352F] placeholder-slate-400 focus:outline-none text-sm font-inter"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 bg-[#6B21A8] hover:bg-[#581C87] text-white font-poppins font-semibold text-xs rounded-xl shadow-md transition-all flex items-center gap-1"
+                    className="px-6 py-2.5 bg-[#1E8B7A] hover:bg-[#1E352F] text-white font-poppins font-semibold text-xs rounded-xl shadow-md transition-all flex items-center gap-1"
                   >
                     <span>Search</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -162,12 +162,12 @@ const SearchPage = () => {
           ) : (
             <>
               {/* Filter Counter Bar */}
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E9D5FF]">
-                <p className="text-sm font-poppins font-semibold text-[#1E1B4B]">
-                  Showing <span className="text-[#6B21A8] font-bold">{events.length}</span> {events.length === 1 ? 'event' : 'events'}
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E6E1D8]">
+                <p className="text-sm font-poppins font-semibold text-[#1E352F]">
+                  Showing <span className="text-[#29BBA3] font-bold">{events.length}</span> {events.length === 1 ? 'event' : 'events'}
                 </p>
 
-                <div className="flex items-center gap-2 text-xs font-poppins font-semibold text-[#6B21A8]">
+                <div className="flex items-center gap-2 text-xs font-poppins font-semibold text-[#29BBA3]">
                   <Filter className="w-3.5 h-3.5" />
                   <span>Bhutan Dzongkhag Filter Active</span>
                 </div>
@@ -184,7 +184,7 @@ const SearchPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: idx * 0.05 }}
-                        className="group bg-white rounded-2xl border border-[#E9D5FF] shadow-md hover:shadow-2xl hover:shadow-purple-900/10 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
+                        className="group bg-white rounded-2xl border border-[#E6E1D8] shadow-md hover:shadow-2xl hover:shadow-teal-900/10 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
                       >
                         {/* Event Image */}
                         <div>
@@ -198,7 +198,7 @@ const SearchPage = () => {
 
                             {/* Category Badge */}
                             {(event.category_name || event.category) && (
-                              <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#1E1B4B] text-[11px] font-poppins font-semibold px-3 py-1 rounded-full shadow-sm">
+                              <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#1E352F] text-[11px] font-poppins font-semibold px-3 py-1 rounded-full shadow-sm">
                                 {event.category_name || event.category}
                               </span>
                             )}
@@ -214,7 +214,7 @@ const SearchPage = () => {
                             </button>
 
                             {/* Price Badge */}
-                            <span className="absolute bottom-3 right-3 bg-[#6B21A8] text-white text-xs font-poppins font-bold px-3 py-1 rounded-full shadow-md">
+                            <span className="absolute bottom-3 right-3 bg-[#1E8B7A] text-white text-xs font-poppins font-bold px-3 py-1 rounded-full shadow-md">
                               {formatPrice(event.event_price)}
                             </span>
                           </div>
@@ -222,7 +222,7 @@ const SearchPage = () => {
                           {/* Event Body Content */}
                           <div className="p-5 space-y-3">
                             <Link to={`/event/${event.id}`}>
-                              <h3 className="font-poppins font-bold text-lg text-[#1E1B4B] line-clamp-1 group-hover:text-[#6B21A8] transition-colors">
+                              <h3 className="font-poppins font-bold text-lg text-[#1E352F] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
                                 {event.event_name}
                               </h3>
                             </Link>
@@ -231,13 +231,13 @@ const SearchPage = () => {
                               {event.event_description || 'Join us for this exciting cultural event in Bhutan.'}
                             </p>
 
-                            <div className="space-y-1.5 pt-2 border-t border-purple-50 text-xs text-slate-600 font-inter">
+                            <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] text-xs text-slate-600 font-inter">
                               <div className="flex items-center gap-2">
-                                <Calendar className="w-3.5 h-3.5 text-[#6B21A8]" />
+                                <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
                                 <span>{formatDate(event.event_date)}</span>
                               </div>
                               <div className="flex items-center gap-2 truncate">
-                                <MapPin className="w-3.5 h-3.5 text-[#8B5CF6] flex-shrink-0" />
+                                <MapPin className="w-3.5 h-3.5 text-[#1E8B7A] flex-shrink-0" />
                                 <span className="truncate">{event.event_location || 'Thimphu, Bhutan'}</span>
                               </div>
                               {event.event_quantity !== undefined && (
@@ -254,13 +254,13 @@ const SearchPage = () => {
                         <div className="p-5 pt-0 flex gap-2">
                           <Link
                             to={`/event/${event.id}`}
-                            className="flex-1 py-2.5 rounded-xl border border-[#E9D5FF] text-[#1E1B4B] hover:bg-purple-50 text-center font-poppins font-semibold text-xs transition-colors"
+                            className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] text-[#1E352F] hover:bg-[#F4F3EC] text-center font-poppins font-semibold text-xs transition-colors"
                           >
                             Details
                           </Link>
                           <Link
                             to={`/event/${event.id}`}
-                            className="flex-1 py-2.5 rounded-xl bg-[#6B21A8] hover:bg-[#581C87] text-white font-poppins font-semibold text-xs shadow-md shadow-purple-900/20 text-center transition-all flex items-center justify-center gap-1"
+                            className="flex-1 py-2.5 rounded-xl bg-[#1E8B7A] hover:bg-[#1E352F] text-white font-poppins font-semibold text-xs shadow-md shadow-teal-900/20 text-center transition-all flex items-center justify-center gap-1"
                           >
                             <Ticket className="w-3.5 h-3.5" />
                             <span>Book Now</span>
@@ -273,17 +273,17 @@ const SearchPage = () => {
                 </div>
               ) : (
                 /* Empty Results State */
-                <div className="text-center py-20 bg-white rounded-3xl border border-[#E9D5FF] p-8 max-w-lg mx-auto shadow-sm">
-                  <div className="w-16 h-16 rounded-full bg-purple-100 text-[#6B21A8] flex items-center justify-center mx-auto mb-4">
+                <div className="text-center py-20 bg-white rounded-3xl border border-[#E6E1D8] p-8 max-w-lg mx-auto shadow-sm">
+                  <div className="w-16 h-16 rounded-full bg-[#E6F9F6] text-[#29BBA3] flex items-center justify-center mx-auto mb-4">
                     <Search className="w-8 h-8" />
                   </div>
-                  <h3 className="font-poppins font-bold text-xl text-[#1E1B4B] mb-2">No Events Found</h3>
+                  <h3 className="font-poppins font-bold text-xl text-[#1E352F] mb-2">No Events Found</h3>
                   <p className="text-sm text-[#475569] font-inter mb-6">
                     We couldn't find any events matching "{searchQuery}". Try searching for Paro, Thimphu, or Festivals.
                   </p>
                   <button
                     onClick={() => { setSearchQuery(''); navigate('/search'); }}
-                    className="px-6 py-3 bg-[#6B21A8] hover:bg-[#581C87] text-white font-poppins font-semibold text-sm rounded-xl shadow-md transition-all"
+                    className="px-6 py-3 bg-[#1E8B7A] hover:bg-[#1E352F] text-white font-poppins font-semibold text-sm rounded-xl shadow-md transition-all"
                   >
                     View All Bhutan Events
                   </button>

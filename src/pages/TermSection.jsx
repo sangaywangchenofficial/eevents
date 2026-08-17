@@ -52,8 +52,8 @@ const TermsOfService = () => {
             number: 1,
             icon: FaCheckCircle,
             title: 'Acceptance of Terms',
-            summary: 'By using eEvents, you agree to these Terms of Service.',
-            content: 'By using eEvents, you agree to these Terms of Service. If you do not agree, please do not use our platform. These terms apply to all users, including event organizers and attendees.',
+            summary: 'By using TIXELO, you agree to these Terms of Service.',
+            content: 'By using TIXELO, you agree to these Terms of Service. If you do not agree, please do not use our platform. These terms apply to all users, including event organizers and attendees.',
             details: [
                 'You must be at least 18 years old to use this service',
                 'You are responsible for maintaining the confidentiality of your account',
@@ -81,7 +81,7 @@ const TermsOfService = () => {
             icon: FaTicketAlt,
             title: 'Bookings & Tickets',
             summary: 'All ticket sales are final unless otherwise stated.',
-            content: 'When you book an event through eEvents, you agree to the booking terms and conditions. All ticket sales are final unless otherwise stated in our refund policy.',
+            content: 'When you book an event through TIXELO, you agree to the booking terms and conditions. All ticket sales are final unless otherwise stated in our refund policy.',
             details: [
                 'Tickets are non-transferable unless specified',
                 'You must present valid ID for event entry',
@@ -108,8 +108,8 @@ const TermsOfService = () => {
             number: 5,
             icon: FaGavel,
             title: 'User Conduct',
-            summary: 'You agree to use eEvents responsibly and in compliance with all applicable laws.',
-            content: 'You agree to use eEvents responsibly and in compliance with all applicable laws. You must not engage in any activity that disrupts or harms other users or the platform.',
+            summary: 'You agree to use TIXELO responsibly and in compliance with all applicable laws.',
+            content: 'You agree to use TIXELO responsibly and in compliance with all applicable laws. You must not engage in any activity that disrupts or harms other users or the platform.',
             details: [
                 'No fraudulent or misleading activities',
                 'No harassment or abuse of other users',
@@ -122,10 +122,10 @@ const TermsOfService = () => {
             number: 6,
             icon: FaBalanceScale,
             title: 'Intellectual Property',
-            summary: 'All content on eEvents is our intellectual property.',
-            content: 'All content on eEvents, including logos, designs, and text, is our intellectual property. You may not use our content without permission.',
+            summary: 'All content on TIXELO is our intellectual property.',
+            content: 'All content on TIXELO, including logos, designs, and text, is our intellectual property. You may not use our content without permission.',
             details: [
-                'eEvents owns all platform content and trademarks',
+                'TIXELO owns all platform content and trademarks',
                 'Users retain rights to their event content',
                 'You may not copy or reproduce our content',
                 'Unauthorized use may result in legal action'
@@ -150,8 +150,8 @@ const TermsOfService = () => {
             number: 8,
             icon: FaShieldAlt,
             title: 'Limitation of Liability',
-            summary: 'eEvents is not liable for indirect or consequential damages.',
-            content: 'eEvents is not liable for any indirect, incidental, or consequential damages arising from your use of the platform or attendance at events.',
+            summary: 'TIXELO is not liable for indirect or consequential damages.',
+            content: 'TIXELO is not liable for any indirect, incidental, or consequential damages arising from your use of the platform or attendance at events.',
             details: [
                 'We are not responsible for event cancellations',
                 'We are not liable for user-generated content',
@@ -221,24 +221,24 @@ const TermsOfService = () => {
                 <div className="min-h-screen bg-white">
                     {/* Hero Section */}
                     <section className="relative py-12 md:py-16 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 via-white to-[#F4F3EC]/30"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <FaFileContract className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] border border-[#E6F9F6] rounded-full px-4 py-1.5 mb-5">
+                                    <FaFileContract className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         Legal
                                     </span>
                                 </div>
 
                                 <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    Terms of <span className="text-purple-600">Service</span>
+                                    Terms of <span className="text-[#29BBA3]">Service</span>
                                 </h1>
 
                                 <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
                                     Please read these terms carefully before using our platform.
-                                    By using eEvents, you agree to be bound by these terms.
+                                    By using TIXELO, you agree to be bound by these terms.
                                 </p>
 
                                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm">
@@ -263,9 +263,9 @@ const TermsOfService = () => {
                             <div className="lg:w-72 flex-shrink-0">
                                 <div className="lg:sticky lg:top-24">
                                     <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
-                                        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 px-5 py-4 border-b border-gray-100">
+                                        <div className="bg-gradient-to-r from-[#FDFDF7] to-[#F4F3EC] px-5 py-4 border-b border-gray-100">
                                             <div className="flex items-center gap-2">
-                                                <FaBookOpen className="text-purple-600" />
+                                                <FaBookOpen className="text-[#29BBA3]" />
                                                 <h3 className="text-sm font-semibold text-gray-900">Table of Contents</h3>
                                             </div>
                                         </div>
@@ -279,17 +279,17 @@ const TermsOfService = () => {
                                                             <button
                                                                 onClick={() => scrollToSection(section.id)}
                                                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 flex items-center gap-2 ${isActive
-                                                                    ? 'bg-purple-50 text-purple-700 border border-purple-100'
-                                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-purple-600'
+                                                                    ? 'bg-[#F4F3EC] text-[#1E352F] border border-[#E6F9F6]'
+                                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-[#29BBA3]'
                                                                     }`}
                                                             >
-                                                                <Icon className={`text-xs flex-shrink-0 ${isActive ? 'text-purple-600' : 'text-gray-400'}`} />
+                                                                <Icon className={`text-xs flex-shrink-0 ${isActive ? 'text-[#29BBA3]' : 'text-gray-400'}`} />
                                                                 <span className="truncate">
                                                                     <span className="text-gray-400 mr-1">{section.number}.</span>
                                                                     {section.title}
                                                                 </span>
                                                                 {isActive && (
-                                                                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-600 flex-shrink-0"></span>
+                                                                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#1E8B7A] flex-shrink-0"></span>
                                                                 )}
                                                             </button>
                                                         </li>
@@ -307,21 +307,21 @@ const TermsOfService = () => {
                                         <div className="space-y-2">
                                             <Link
                                                 to="/contact"
-                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#29BBA3] transition-colors duration-200"
                                             >
                                                 <FaEnvelope className="text-xs" />
                                                 Contact Support
                                             </Link>
                                             <Link
                                                 to="/privacy"
-                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#29BBA3] transition-colors duration-200"
                                             >
                                                 <FaLock className="text-xs" />
                                                 Privacy Policy
                                             </Link>
                                             <Link
                                                 to="/help"
-                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                                                className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#29BBA3] transition-colors duration-200"
                                             >
                                                 <FaBook className="text-xs" />
                                                 Help Center
@@ -343,20 +343,20 @@ const TermsOfService = () => {
                                             id={section.id}
                                             className="mb-4 scroll-mt-24"
                                         >
-                                            <div className={`bg-white border rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md ${activeSection === section.id ? 'border-purple-300 shadow-md' : 'border-gray-100 hover:border-purple-200'
+                                            <div className={`bg-white border rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md ${activeSection === section.id ? 'border-[#E6E1D8] shadow-md' : 'border-gray-100 hover:border-[#E6E1D8]'
                                                 }`}>
                                                 <button
                                                     onClick={() => toggleSection(section.id)}
                                                     className="w-full px-6 py-4 text-left flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors duration-200"
                                                 >
                                                     <div className="flex items-start gap-4">
-                                                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${activeSection === section.id ? 'bg-purple-100 text-purple-600' : 'bg-gray-50 text-gray-400'
+                                                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${activeSection === section.id ? 'bg-[#E6F9F6] text-[#29BBA3]' : 'bg-gray-50 text-gray-400'
                                                             }`}>
                                                             <Icon className="text-base" />
                                                         </div>
                                                         <div>
                                                             <div className="flex items-center gap-2">
-                                                                <span className="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">
+                                                                <span className="text-xs font-bold text-[#29BBA3] bg-[#F4F3EC] px-2 py-0.5 rounded">
                                                                     {section.number}
                                                                 </span>
                                                                 <h3 className="text-base font-semibold text-gray-900">
@@ -370,7 +370,7 @@ const TermsOfService = () => {
                                                     </div>
                                                     <span className="flex-shrink-0 mt-1">
                                                         {isExpanded ? (
-                                                            <FaChevronUp className="text-purple-600 text-sm" />
+                                                            <FaChevronUp className="text-[#29BBA3] text-sm" />
                                                         ) : (
                                                             <FaChevronDown className="text-gray-400 text-sm" />
                                                         )}
@@ -388,7 +388,7 @@ const TermsOfService = () => {
                                                         <ul className="space-y-1.5">
                                                             {section.details.map((detail, idx) => (
                                                                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-500">
-                                                                    <FaCheckCircle className="text-purple-600 text-xs mt-0.5 flex-shrink-0" />
+                                                                    <FaCheckCircle className="text-[#29BBA3] text-xs mt-0.5 flex-shrink-0" />
                                                                     {detail}
                                                                 </li>
                                                             ))}
@@ -403,7 +403,7 @@ const TermsOfService = () => {
                                 {/* Summary Section */}
                                 <div className="mt-8 bg-gray-50 border border-gray-100 rounded-2xl p-8">
                                     <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <FaHandshake className="text-purple-600" />
+                                        <FaHandshake className="text-[#29BBA3]" />
                                         Summary of Key Terms
                                     </h2>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -439,7 +439,7 @@ const TermsOfService = () => {
                                 </div>
 
                                 {/* Contact Section */}
-                                <div className="mt-6 bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-2xl p-8 text-center">
+                                <div className="mt-6 bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] border border-[#E6F9F6] rounded-2xl p-8 text-center">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                                         Have Questions About Our Terms?
                                     </h3>
@@ -449,7 +449,7 @@ const TermsOfService = () => {
                                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                                         <Link
                                             to="/contact"
-                                            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
+                                            className="px-6 py-3 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
                                         >
                                             Contact Us
                                             <FaArrowRight className="text-sm" />
@@ -463,12 +463,12 @@ const TermsOfService = () => {
                                     </div>
                                     <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400">
                                         <span className="flex items-center gap-1">
-                                            <FaEnvelope className="text-purple-600" />
-                                            support@eevents.bt
+                                            <FaEnvelope className="text-[#29BBA3]" />
+                                            support@tixelo.bt
                                         </span>
                                         <span className="w-1 h-1 rounded-full bg-gray-300"></span>
                                         <span className="flex items-center gap-1">
-                                            <FaPhone className="text-purple-600" />
+                                            <FaPhone className="text-[#29BBA3]" />
                                             +975 2 123 456
                                         </span>
                                     </div>
@@ -481,28 +481,28 @@ const TermsOfService = () => {
                     <section className="py-8 bg-gray-50 border-t border-gray-100">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500">
-                                <Link to="/about" className="hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/about" className="hover:text-[#29BBA3] transition-colors duration-200">
                                     About Us
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/contact" className="hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/contact" className="hover:text-[#29BBA3] transition-colors duration-200">
                                     Contact
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/privacy" className="hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/privacy" className="hover:text-[#29BBA3] transition-colors duration-200">
                                     Privacy Policy
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/cookies" className="hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/cookies" className="hover:text-[#29BBA3] transition-colors duration-200">
                                     Cookie Policy
                                 </Link>
                                 <span className="text-gray-300">|</span>
-                                <Link to="/help-center" className="hover:text-purple-600 transition-colors duration-200">
+                                <Link to="/help-center" className="hover:text-[#29BBA3] transition-colors duration-200">
                                     Help Center
                                 </Link>
                             </div>
                             <p className="text-center text-xs text-gray-400 mt-4">
-                                © {new Date().getFullYear()} eEvents. All rights reserved.
+                                © {new Date().getFullYear()} TIXELO. All rights reserved.
                             </p>
                         </div>
                     </section>

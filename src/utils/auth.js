@@ -64,3 +64,42 @@ export const clearRememberedLogin = () => {
   localStorage.removeItem(STORAGE_KEYS.REMEMBER_EMAIL);
   localStorage.removeItem(STORAGE_KEYS.REMEMBER_ME);
 };
+
+// 🔐 auth.js - Authentication Utilities
+// Constants
+// API_BASE_URL = "http://127.0.0.1:8000/api/v1"
+
+// STORAGE_KEYS - Centralized localStorage key names
+
+// Storage Keys
+// TOKEN - JWT token
+
+// USER - User object (JSON)
+
+// USER_ID - User ID
+
+// EMAIL - User email
+
+// USERNAME - Username
+
+// REMEMBER_EMAIL - Remembered email for login
+
+// REMEMBER_ME - Remember me flag
+
+// Core Functions & Function	Purpose
+// getToken()	Get token from localStorage
+// getUser()	Get user object (parsed JSON)
+// getUserId()	Get user ID
+// isAuthenticated()	Check if user has token, user, and userId
+// setAuth()	Save all auth data after login
+// clearAuth()	Remove all auth data (logout)
+// clearRememberedLogin()	Clear only "Remember Me" data
+
+// Key Features
+// ✅ Centralized storage key management
+
+// ✅ JSON parsing with error handling
+
+// ✅ Custom event dispatch on auth change
+
+// ✅ Preserves "Remember Me" data on logout

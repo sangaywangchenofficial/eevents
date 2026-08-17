@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { AdminLayout } from '../../AdminLayout'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { FiSearch, FiEdit, FiTrash2, FiRefreshCw, FiDownload } from 'react-icons/fi'
+import { FiSearch, FiEdit, FiTrash2, FiDownload } from 'react-icons/fi'
 import { CSVLink } from 'react-csv';
 
 const ManageEvent = () => {
@@ -45,6 +46,33 @@ const ManageEvent = () => {
         setEvents(filteredEvents);
     };
 
+
+    const handleDelete = (id) => {
+        if (!window.confirm("Are you sure you want to delete this Event?")) {
+            return;
+        }
+
+        fetch(`http://127.0.0.1:8000/api/v1/event-detail/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                toast.success(data.message || "Event deleted successfully!");
+                fetchEvents();
+            })
+            .catch(err => {
+                console.error("Delete Error:", err);
+                toast.error(err.message || "Failed to delete event");
+            });
+    };
     // Format date for display
     const formatDate = (dateString) => {
         if (!dateString) return "N/A";
@@ -160,24 +188,19 @@ const ManageEvent = () => {
                                                 </td>
                                                 <td className="px-6 py-3">
                                                     <div className="flex items-center justify-center gap-3">
+                                                        <Link to={`/edit-event/${event.id || event.pk}`}>
+                                                            <button
+                                                                title="Edit Event"
+                                                                className="text-blue-600 hover:text-blue-700 transition-colors hover:scale-110 transform"
+                                                                onClick={() => console.log('Edit event:', event.id)}
+                                                            >
+                                                                <FiEdit className="w-4 h-4" />
+                                                            </button>
+                                                        </Link>
                                                         <button
-                                                            title="Update Event"
-                                                            className="text-amber-600 hover:text-amber-700 transition-colors hover:scale-110 transform"
-                                                            onClick={() => console.log('Update event:', event.id)}
-                                                        >
-                                                            <FiRefreshCw className="w-4 h-4" />
-                                                        </button>
-                                                        <button
-                                                            title="Edit Event"
-                                                            className="text-blue-600 hover:text-blue-700 transition-colors hover:scale-110 transform"
-                                                            onClick={() => console.log('Edit event:', event.id)}
-                                                        >
-                                                            <FiEdit className="w-4 h-4" />
-                                                        </button>
-                                                        <button
+                                                            onClick={() => handleDelete(event.id)}
                                                             title="Delete Event"
                                                             className="text-red-600 hover:text-red-700 transition-colors hover:scale-110 transform"
-                                                            onClick={() => console.log('Delete event:', event.id)}
                                                         >
                                                             <FiTrash2 className="w-4 h-4" />
                                                         </button>

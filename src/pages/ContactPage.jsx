@@ -66,15 +66,15 @@ const Contact = () => {
         {
             icon: FaEnvelope,
             title: 'Email Us',
-            details: 'support@eevents.bt',
-            subDetail: 'hello@eevents.bt',
+            details: 'support@tixelo.bt',
+            subDetail: 'hello@tixelo.bt',
             color: 'purple'
         },
         {
             icon: FaPhone,
             title: 'Call Us',
-            details: '+975 2 123 456',
-            subDetail: '+975 17 123 456',
+            details: '+975-16178615',
+            subDetail: '+975-16178615',
             color: 'blue'
         },
         {
@@ -110,21 +110,21 @@ const Contact = () => {
             <PublicLayout>
                 <div className="min-h-screen bg-white">
                     {/* Hero Section */}
-                    <section className="relative bg-gradient-to-br from-purple-50 via-white to-indigo-50 py-16 md:py-20 overflow-hidden">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/50 rounded-full blur-3xl"></div>
-                        <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100/50 rounded-full blur-3xl"></div>
+                    <section className="relative bg-gradient-to-br from-[#FDFDF7] via-white to-[#F4F3EC] py-16 md:py-20 overflow-hidden">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6F9F6]/50 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C8EDE8]/50 rounded-full blur-3xl"></div>
 
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                             <div className="text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-100 border border-purple-200 rounded-full px-4 py-1.5 mb-6">
-                                    <FaHeadset className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#E6F9F6] border border-[#E6E1D8] rounded-full px-4 py-1.5 mb-6">
+                                    <FaHeadset className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         We're Here to Help
                                     </span>
                                 </div>
 
                                 <h1 className="font-serif font-bold text-4xl md:text-5xl text-gray-900 mb-4">
-                                    Get In <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Touch</span>
+                                    Get In <span className="bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] bg-clip-text text-transparent">Touch</span>
                                 </h1>
 
                                 <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -141,7 +141,7 @@ const Contact = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {contactInfo.map((info, index) => {
                                     const colorClasses = {
-                                        purple: 'bg-purple-100 text-purple-600 group-hover:bg-purple-200',
+                                        purple: 'bg-[#E6F9F6] text-[#29BBA3] group-hover:bg-[#C8EDE8]',
                                         blue: 'bg-blue-100 text-blue-600 group-hover:bg-blue-200',
                                         emerald: 'bg-emerald-100 text-emerald-600 group-hover:bg-emerald-200',
                                         amber: 'bg-amber-100 text-amber-600 group-hover:bg-amber-200'
@@ -150,7 +150,7 @@ const Contact = () => {
                                     return (
                                         <div
                                             key={index}
-                                            className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-purple-300 transition-all duration-300 hover:shadow-lg hover:shadow-purple-100/50 transform hover:-translate-y-1 text-center"
+                                            className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#E6E1D8] transition-all duration-300 hover:shadow-lg hover:shadow-teal-900/10 transform hover:-translate-y-1 text-center"
                                         >
                                             <div className={`w-14 h-14 rounded-full ${colorClasses[info.color]} flex items-center justify-center mx-auto mb-4 transition-all duration-300`}>
                                                 <info.icon className="text-2xl" />
@@ -175,12 +175,12 @@ const Contact = () => {
                                 <div>
                                     <div className="mb-8">
                                         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                                            Send Us a <span className="text-purple-600">Message</span>
+                                            Send Us a <span className="text-[#29BBA3]">Message</span>
                                         </h2>
                                         <p className="text-gray-600 text-sm">
                                             Fill out the form below and we'll get back to you within 24 hours.
                                         </p>
-                                        <div className="mt-2 h-1 w-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full"></div>
+                                        <div className="mt-2 h-1 w-16 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] rounded-full"></div>
                                     </div>
 
                                     <form onSubmit={handleSubmit} className="space-y-5">
@@ -199,7 +199,7 @@ const Contact = () => {
                                                     onChange={handleChange}
                                                     required
                                                     placeholder="John Doe"
-                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300"
+                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#C8EDE8] transition-all duration-300"
                                                 />
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@ const Contact = () => {
                                                     onChange={handleChange}
                                                     required
                                                     placeholder="john@example.com"
-                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300"
+                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#C8EDE8] transition-all duration-300"
                                                 />
                                             </div>
                                         </div>
@@ -239,7 +239,7 @@ const Contact = () => {
                                                     onChange={handleChange}
                                                     required
                                                     placeholder="How can we help you?"
-                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300"
+                                                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#C8EDE8] transition-all duration-300"
                                                 />
                                             </div>
                                         </div>
@@ -255,14 +255,14 @@ const Contact = () => {
                                                 required
                                                 rows="5"
                                                 placeholder="Write your message here..."
-                                                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300 resize-none"
+                                                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#C8EDE8] transition-all duration-300 resize-none"
                                             ></textarea>
                                         </div>
 
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="w-full py-3.5 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 font-medium flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="w-full py-3.5 px-6 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl hover:from-[#29BBA3] hover:to-[#1E8B7A] transition-all duration-300 shadow-lg shadow-teal-900/30 hover:shadow-teal-900/50 font-medium flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
                                             {isSubmitting ? (
                                                 <>
@@ -299,7 +299,7 @@ const Contact = () => {
                                     {/* Google Map */}
                                     <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                                         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                                            <FaMapMarkerAlt className="text-purple-600" />
+                                            <FaMapMarkerAlt className="text-[#29BBA3]" />
                                             Find Us Here
                                         </h3>
                                         <div className="rounded-xl overflow-hidden h-64">
@@ -311,7 +311,7 @@ const Contact = () => {
                                                 allowFullScreen=""
                                                 loading="lazy"
                                                 referrerPolicy="no-referrer-when-downgrade"
-                                                title="eEvents Office Location - Norzin Lam, Thimphu, Bhutan"
+                                                title="TIXELO Office Location - Norzin Lam, Thimphu, Bhutan"
                                                 className="w-full h-full"
                                             ></iframe>
                                         </div>
@@ -324,7 +324,7 @@ const Contact = () => {
                                                 href="https://www.google.com/maps/dir//Norzin+Lam,+Thimphu,+Bhutan"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-purple-600 hover:text-purple-700 font-medium transition-colors flex items-center gap-1"
+                                                className="text-[#29BBA3] hover:text-[#1E352F] font-medium transition-colors flex items-center gap-1"
                                             >
                                                 Get Directions
                                                 <FaArrowRight className="text-xs" />
@@ -358,24 +358,24 @@ const Contact = () => {
                                     </div>
 
                                     {/* Quick Response */}
-                                    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl p-6">
+                                    <div className="bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] border border-[#E6E1D8] rounded-2xl p-6">
                                         <div className="flex items-start gap-4">
-                                            <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                                                <FaHeadset className="text-2xl text-purple-600" />
+                                            <div className="w-12 h-12 rounded-full bg-[#E6F9F6] flex items-center justify-center flex-shrink-0">
+                                                <FaHeadset className="text-2xl text-[#29BBA3]" />
                                             </div>
                                             <div>
                                                 <h4 className="text-base font-semibold text-gray-900">Quick Response</h4>
                                                 <p className="text-gray-600 text-sm leading-relaxed">
-                                                    We typically respond within <span className="font-medium text-purple-600">24 hours</span>.
+                                                    We typically respond within <span className="font-medium text-[#29BBA3]">24 hours</span>.
                                                     For urgent matters, please call us directly.
                                                 </p>
                                                 <div className="mt-3 flex items-center gap-2 text-sm">
-                                                    <FaPhone className="text-purple-600" />
-                                                    <span className="text-gray-700">+975 2 123 456</span>
+                                                    <FaPhone className="text-[#29BBA3]" />
+                                                    <span className="text-gray-700">+975-16178615</span>
                                                 </div>
                                                 <div className="mt-1 flex items-center gap-2 text-sm">
-                                                    <FaEnvelope className="text-purple-600" />
-                                                    <span className="text-gray-700">support@eevents.bt</span>
+                                                    <FaEnvelope className="text-[#29BBA3]" />
+                                                    <span className="text-gray-700">support@tixelo.bt</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,7 +384,7 @@ const Contact = () => {
                                     {/* Location Details */}
                                     <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                                         <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                            <FaMapMarkerAlt className="text-purple-600" />
+                                            <FaMapMarkerAlt className="text-[#29BBA3]" />
                                             Office Location
                                         </h4>
                                         <div className="space-y-2 text-sm text-gray-600">
@@ -397,7 +397,7 @@ const Contact = () => {
                                                         href="https://www.google.com/maps/place/Norzin+Lam,+Thimphu,+Bhutan"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-purple-600 hover:text-purple-700 hover:underline"
+                                                        className="text-[#29BBA3] hover:text-[#1E352F] hover:underline"
                                                     >
                                                         View on Google Maps
                                                     </a>
@@ -416,29 +416,29 @@ const Contact = () => {
                             <div className="text-center mb-10">
                                 <div className="flex items-center justify-center gap-3 mb-3">
                                     <h2 className="text-3xl font-bold text-gray-900">
-                                        Frequently Asked <span className="text-purple-600">Questions</span>
+                                        Frequently Asked <span className="text-[#29BBA3]">Questions</span>
                                     </h2>
                                 </div>
                                 <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                                     Find quick answers to the most common questions.
                                 </p>
-                                <div className="mt-3 h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full"></div>
+                                <div className="mt-3 h-1 w-20 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] mx-auto rounded-full"></div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-purple-300 transition-all duration-300">
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-[#E6E1D8] transition-all duration-300">
                                     <h4 className="font-semibold text-gray-900 mb-1">How do I book an event?</h4>
                                     <p className="text-gray-600 text-sm">Simply browse our events, select your tickets, and complete the booking process. You'll receive a confirmation email instantly.</p>
                                 </div>
-                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-purple-300 transition-all duration-300">
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-[#E6E1D8] transition-all duration-300">
                                     <h4 className="font-semibold text-gray-900 mb-1">Can I cancel my booking?</h4>
                                     <p className="text-gray-600 text-sm">Yes, you can cancel your booking up to 48 hours before the event. Check our cancellation policy for details.</p>
                                 </div>
-                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-purple-300 transition-all duration-300">
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-[#E6E1D8] transition-all duration-300">
                                     <h4 className="font-semibold text-gray-900 mb-1">How do I get my ticket?</h4>
                                     <p className="text-gray-600 text-sm">After booking, you'll receive an e-ticket via email. You can also find it in your dashboard under "My Bookings".</p>
                                 </div>
-                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-purple-300 transition-all duration-300">
+                                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-[#E6E1D8] transition-all duration-300">
                                     <h4 className="font-semibold text-gray-900 mb-1">Is my payment secure?</h4>
                                     <p className="text-gray-600 text-sm">Yes, we use industry-standard encryption and secure payment gateways to protect your transactions.</p>
                                 </div>
@@ -447,7 +447,7 @@ const Contact = () => {
                             <div className="text-center mt-8">
                                 <Link
                                     to="/help"
-                                    className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                                    className="inline-flex items-center gap-2 text-[#29BBA3] hover:text-[#1E352F] font-medium transition-colors"
                                 >
                                     View All FAQs
                                     <FaArrowRight className="text-sm" />
@@ -459,20 +459,20 @@ const Contact = () => {
                     {/* CTA Section */}
                     <section className="py-16 bg-gray-50 border-y border-gray-200">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-50 border border-purple-200 rounded-3xl p-8 md:p-12 text-center shadow-xl shadow-purple-100/50 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200/30 rounded-full blur-3xl"></div>
-                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-200/30 rounded-full blur-3xl"></div>
+                            <div className="bg-gradient-to-br from-[#FDFDF7] via-[#FDFDF7] to-purple-50 border border-[#E6E1D8] rounded-3xl p-8 md:p-12 text-center shadow-xl shadow-teal-900/10 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-[#E6F9F6]/30 rounded-full blur-3xl"></div>
+                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#C8EDE8]/30 rounded-full blur-3xl"></div>
 
                                 <div className="relative">
-                                    <div className="inline-flex items-center gap-2 bg-purple-100 border border-purple-200 rounded-full px-4 py-1.5 mb-6">
-                                        <FaPaperPlane className="text-purple-600 text-xs" />
-                                        <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                    <div className="inline-flex items-center gap-2 bg-[#E6F9F6] border border-[#E6E1D8] rounded-full px-4 py-1.5 mb-6">
+                                        <FaPaperPlane className="text-[#29BBA3] text-xs" />
+                                        <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                             Stay Connected
                                         </span>
                                     </div>
 
                                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                                        Join Our <span className="text-purple-600">Community</span>
+                                        Join Our <span className="text-[#29BBA3]">Community</span>
                                     </h2>
                                     <p className="text-gray-600 text-base max-w-2xl mx-auto mb-6">
                                         Subscribe to our newsletter and be the first to know about new events,
@@ -483,9 +483,9 @@ const Contact = () => {
                                         <input
                                             type="email"
                                             placeholder="Enter your email"
-                                            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300"
+                                            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#C8EDE8] transition-all duration-300"
                                         />
-                                        <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 font-medium whitespace-nowrap">
+                                        <button className="px-6 py-3 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl hover:from-[#29BBA3] hover:to-[#1E8B7A] transition-all duration-300 shadow-lg shadow-teal-900/30 hover:shadow-teal-900/50 font-medium whitespace-nowrap">
                                             Subscribe
                                         </button>
                                     </div>

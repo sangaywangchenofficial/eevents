@@ -1,6 +1,9 @@
+// This is a centralized API communication system that handles all HTTP requests to your backend. It automatically manages authentication tokens, headers, error handling, and session management.
+
 import { API_BASE_URL, getToken, clearAuth } from "./auth";
 
 const buildUrl = (endpoint) => {
+  // Builds complete URLs for API requests & Handles both internal and external URLs
   if (endpoint.startsWith("http://") || endpoint.startsWith("https://")) {
     return endpoint;
   }
@@ -9,7 +12,7 @@ const buildUrl = (endpoint) => {
 };
 
 const handle401 = () => {
-  clearAuth();
+  clearAuth(); //Clears all authentication data & Notifies app about session expiry
   if (!window.location.pathname.includes("/login")) {
     window.dispatchEvent(new CustomEvent("auth:session-expired"));
     const currentPath = window.location.pathname + window.location.search;
@@ -20,6 +23,7 @@ const handle401 = () => {
 };
 
 export const apiRequest = async (endpoint, options = {}) => {
+  //This is the main function that handles every API request.
   const url = buildUrl(endpoint);
   const token = getToken();
 
@@ -29,6 +33,13 @@ export const apiRequest = async (endpoint, options = {}) => {
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
+    // ✅ Auto-adds Bearer token if it exists
+    // ✅ Merges custom headers from options
+    // Bearer token is like a digital ID card that proves who you are to the server.
+    // You: "I want to see my account"
+    // Bank: "Show me your ID"  (You show your token)
+    // Bank: "✅ Verified! Here's your account"
+    // When you login, the server gives you a token (like a key). Every time you make a request, you show this key to prove you're logged in.
   }
 
   if (
@@ -49,6 +60,11 @@ export const apiRequest = async (endpoint, options = {}) => {
         : options.body && typeof options.body !== "string"
           ? JSON.stringify(options.body)
           : options.body,
+
+    // ✅ For objects → JSON
+
+    // ✅ For FormData → No Content-Type (browser handles it)
+    // ✅ For strings → No Content-Type
   };
 
   try {
@@ -69,6 +85,10 @@ export const apiRequest = async (endpoint, options = {}) => {
     } catch {
       data = { message: text, raw: text };
     }
+
+    // ✅ Handles both JSON and non-JSON responses
+    // ✅ Gracefully handles empty responses
+    // ✅ Returns raw text if JSON parsing fails
 
     if (!response.ok) {
       throw { status: response.status, ...data, response };

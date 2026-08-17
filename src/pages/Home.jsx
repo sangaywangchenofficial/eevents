@@ -22,7 +22,7 @@ export default function Home() {
       {/* 3. Featured Events */}
       <FeaturedEvent />
 
-      {/* 4. Why Choose eEvents */}
+      {/* 4. Why Choose TIXELO */}
       <WhyChooseUs />
 
       {/* 5. Popular Events Across Bhutan */}

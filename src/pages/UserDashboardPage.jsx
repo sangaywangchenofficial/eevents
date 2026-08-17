@@ -51,7 +51,7 @@ const Dashboard = () => {
         upcomingEvents: 0,
         pastEvents: 0,
         totalSpent: 0,
-        favouriteEvents: 0,
+        favouritTIXELO: 0,
         cartItems: 0
     });
     const [bookings, setBookings] = useState([]);
@@ -129,7 +129,7 @@ const Dashboard = () => {
                 upcomingEvents: upcoming.length,
                 pastEvents: past.length,
                 totalSpent,
-                favouriteEvents: favData.length,
+                favouritTIXELO: favData.length,
                 cartItems: cartData.length
             });
         } catch (err) {
@@ -272,16 +272,16 @@ const Dashboard = () => {
     if (loading) {
         return (
             <PublicLayout>
-                <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 sm:px-6 lg:px-8">
+                <div className="min-h-screen bg-[#FDFDF7] py-8 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-7xl mx-auto">
                         <div className="flex flex-col justify-center items-center py-20">
                             <div className="relative">
-                                <div className="animate-spin rounded-full h-20 w-20 border-b-4 border-blue-600"></div>
+                                <div className="animate-spin rounded-full h-20 w-20 border-b-4 border-[#29BBA3]"></div>
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="h-8 w-8 bg-blue-600 rounded-full animate-pulse"></div>
+                                    <div className="h-8 w-8 bg-[#29BBA3] rounded-full animate-pulse"></div>
                                 </div>
                             </div>
-                            <p className="mt-6 text-gray-600 font-medium">Loading your dashboard...</p>
+                            <p className="mt-6 text-[#4A5C57] font-medium">Loading your dashboard...</p>
                         </div>
                     </div>
                 </div>
@@ -292,19 +292,19 @@ const Dashboard = () => {
     return (
         <PublicLayout>
             <ToastContainer position="top-right" autoClose={2000} theme="dark" />
-            <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-white to-purple-50/50 py-8 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen bg-[#FDFDF7] py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
                     
                     {/* Left Sidebar */}
                     <div className="lg:w-1/4 flex-shrink-0">
-                        <div className="bg-white rounded-3xl shadow-sm border border-purple-100 p-6 sticky top-24">
+                        <div className="bg-white rounded-3xl shadow-sm border border-[#E6E1D8] p-6 sticky top-24">
                             {/* User Info */}
                             <div className="flex flex-col items-center text-center mb-8">
-                                <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#6B21A8] to-[#8B5CF6] flex items-center justify-center text-4xl font-bold text-white shadow-lg shadow-purple-200 mb-4 ring-4 ring-purple-50">
+                                <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#29BBA3] to-[#1E8B7A] flex items-center justify-center text-4xl font-bold text-white shadow-lg shadow-teal-900/10 mb-4 ring-4 ring-[#E6F9F6]">
                                     {getInitials()}
                                 </div>
-                                <h2 className="text-xl font-bold text-gray-900">{user?.first_name || 'User'} {user?.last_name || ''}</h2>
-                                <p className="text-sm text-gray-500 mt-1 flex items-center justify-center gap-1">
+                                <h2 className="text-xl font-bold text-[#1E352F]">{user?.first_name || 'User'} {user?.last_name || ''}</h2>
+                                <p className="text-sm text-[#66756F] mt-1 flex items-center justify-center gap-1">
                                     <CalendarIcon className="h-4 w-4" /> Member since {formatDate(user?.register_date)}
                                 </p>
                             </div>
@@ -319,18 +319,18 @@ const Dashboard = () => {
                                             key={tab.id}
                                             onClick={() => setActiveTab(tab.id)}
                                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all ${isActive
-                                                ? 'bg-[#6B21A8] text-white shadow-md shadow-purple-200 translate-x-1'
-                                                : 'text-gray-600 hover:bg-purple-50 hover:text-[#6B21A8]'
+                                                ? 'bg-[#E6F9F6] text-[#1E8B7A] translate-x-1'
+                                                : 'text-[#66756F] hover:bg-[#F4F3EC] hover:text-[#1E8B7A]'
                                                 }`}
                                         >
-                                            <Icon className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                                            <Icon className={`h-5 w-5 ${isActive ? 'text-[#1E8B7A]' : 'text-gray-400'}`} />
                                             {tab.label}
                                         </button>
                                     );
                                 })}
                             </nav>
 
-                            <div className="mt-8 pt-8 border-t border-gray-100">
+                            <div className="mt-8 pt-8 border-t border-[#E6E1D8]">
                                 <button
                                     onClick={handleLogout}
                                     className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-red-600 hover:bg-red-50 transition-all"
@@ -347,11 +347,11 @@ const Dashboard = () => {
                         {/* Show Stats only on Overview */}
                         {activeTab === 'overview' && (
                             <>
-                                <div className="bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] rounded-3xl p-8 text-white shadow-xl shadow-purple-200 relative overflow-hidden mb-8">
+                                <div className="bg-gradient-to-r from-[#1E352F] via-[#1E8B7A] to-[#29BBA3] rounded-3xl p-8 text-white shadow-xl shadow-teal-900/30 relative overflow-hidden mb-8">
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
                                     <div className="relative z-10">
-                                        <h1 className="text-3xl font-bold mb-2">Welcome back to your Dashboard! 🚀</h1>
-                                        <p className="text-purple-100">Here is what's happening with your events and bookings.</p>
+                                        <h1 className="text-3xl font-bold mb-2 text-white">Welcome back to your Dashboard! 🚀</h1>
+                                        <p className="text-white/80">Here is what's happening with your events and bookings.</p>
                                     </div>
                                 </div>
                                 <motion.div
@@ -365,7 +365,7 @@ const Dashboard = () => {
                             </>
                         )}
 
-                        <div className="bg-white rounded-3xl shadow-sm border border-purple-100 p-6 sm:p-8">
+                        <div className="bg-white rounded-3xl shadow-sm border border-[#E6E1D8] p-6 sm:p-8">
                             {activeTab === 'overview' && (
                                 <OverviewTab
                                     bookings={bookings}
@@ -443,7 +443,7 @@ const StatCard = ({ label, value, icon: Icon, color }) => {
         blue: { bg: 'bg-blue-50', text: 'text-blue-600' },
         green: { bg: 'bg-green-50', text: 'text-green-600' },
         gray: { bg: 'bg-gray-50', text: 'text-gray-600' },
-        purple: { bg: 'bg-purple-50', text: 'text-purple-600' },
+        purple: { bg: 'bg-[#E6F9F6]', text: 'text-[#1E8B7A]' },
         pink: { bg: 'bg-pink-50', text: 'text-pink-600' },
         orange: { bg: 'bg-orange-50', text: 'text-orange-600' },
     };
@@ -476,11 +476,11 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
             <div className="lg:col-span-2 space-y-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                        <TicketIcon className="h-5 w-5 text-[#6B21A8]" /> Recent Bookings
+                        <TicketIcon className="h-5 w-5 text-[#29BBA3]" /> Recent Bookings
                     </h2>
                     <button
                         onClick={() => setActiveTab('bookings')}
-                        className="text-sm text-[#6B21A8] hover:text-[#581C87] font-medium flex items-center gap-1"
+                        className="text-sm text-[#1E8B7A] hover:text-[#29BBA3] font-medium flex items-center gap-1"
                     >
                         View All <ChevronRightIcon className="h-4 w-4" />
                     </button>
@@ -491,11 +491,11 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
                             key={b.id}
                             initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.05 }}
-                            className="p-4 rounded-xl border border-gray-100 hover:bg-purple-50/40 cursor-pointer transition-all flex items-start justify-between gap-4"
+                            className="p-4 rounded-xl border border-gray-100 hover:bg-[#F4F3EC] cursor-pointer transition-all flex items-start justify-between gap-4"
                             onClick={() => navigate(`/my-booking-details/${b.id}`)}
                         >
                             <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-gray-800 truncate">{b.event?.event_name}</h3>
+                                <h3 className="font-semibold text-[#1E352F] truncate">{b.event?.event_name}</h3>
                                 <div className="flex flex-wrap items-center gap-3 mt-1 text-xs text-gray-500">
                                     <span className="flex items-center gap-1">
                                         <CalendarIcon className="h-3 w-3" /> {formatDate(b.event?.event_date)}
@@ -506,7 +506,7 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
                                 </div>
                             </div>
                             <div className="text-right flex-shrink-0">
-                                <span className="text-sm font-bold text-[#6B21A8]">${formatPrice(b.total_price)}</span>
+                                <span className="text-sm font-bold text-[#F0A71E]">${formatPrice(b.total_price)}</span>
                                 <div className="text-xs text-gray-400 mt-1">{b.quantity} ticket{b.quantity > 1 ? 's' : ''}</div>
                                 <span className={`inline-flex mt-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${b.is_booked ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
                                     }`}>
@@ -522,8 +522,8 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
             </div>
 
             <div className="space-y-4">
-                <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-5 border border-purple-100">
-                    <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <div className="bg-[#F4F3EC] rounded-2xl p-5 border border-[#E6E1D8]">
+                    <h3 className="font-bold text-[#1E352F] mb-3 flex items-center gap-2">
                         <CalendarIcon className="h-5 w-5 text-green-600" /> Upcoming Events
                     </h3>
                     <div className="space-y-2">
@@ -531,7 +531,7 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
                             <motion.div
                                 key={e.id}
                                 initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                                className="p-3 bg-white rounded-xl border border-green-100 cursor-pointer hover:shadow transition-all"
+                                className="p-3 bg-white rounded-xl border border-[#E6E1D8] cursor-pointer hover:shadow transition-all"
                                 onClick={() => navigate(`/event/${e.event?.id}`)}
                             >
                                 <p className="font-medium text-sm text-gray-800 truncate">{e.event?.event_name}</p>
@@ -550,7 +550,7 @@ const OverviewTab = ({ bookings, user, navigate, formatDate, formatPrice, stats,
                     <div className="space-y-2">
                         <QuickAction onClick={() => setActiveTab('bookings')} label="View All Bookings" icon={TicketIcon} primary />
                         <QuickAction onClick={() => setActiveTab('cart')} label={`My Cart (${stats.cartItems})`} icon={ShoppingCartIcon} />
-                        <QuickAction onClick={() => setActiveTab('favourites')} label={`Favourites (${stats.favouriteEvents})`} icon={HeartIcon} />
+                        <QuickAction onClick={() => setActiveTab('favourites')} label={`Favourites (${stats.favouritTIXELO})`} icon={HeartIcon} />
                         <QuickAction onClick={() => setActiveTab('profile')} label="Edit Profile" icon={UserCircleIcon} />
                         <QuickAction onClick={() => navigate('/events')} label="Browse Events" icon={CalendarIcon} />
                     </div>
@@ -564,8 +564,8 @@ const QuickAction = ({ onClick, label, icon: Icon, primary }) => (
     <button
         onClick={onClick}
         className={`w-full px-4 py-2.5 rounded-xl text-sm font-medium flex items-center justify-between transition-all ${primary
-            ? 'bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white shadow-md hover:shadow-lg'
-            : 'border-2 border-gray-200 text-gray-700 hover:border-[#6B21A8] hover:text-[#6B21A8] hover:bg-purple-50'
+            ? 'bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white shadow-md hover:shadow-lg'
+            : 'border-2 border-gray-200 text-gray-700 hover:border-[#29BBA3] hover:text-[#1E8B7A] hover:bg-[#E6F9F6]'
             }`}
     >
         <span className="flex items-center gap-2"><Icon className="h-4 w-4" /> {label}</span>
@@ -590,7 +590,7 @@ const BookingsTab = ({ bookings, navigate, formatDate, formatPrice, loadAll }) =
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-bold text-gray-800">All Bookings ({bookings.length})</h2>
                 <button onClick={() => navigate('/events')}
-                    className="text-sm font-medium text-[#6B21A8] hover:text-[#581C87] flex items-center gap-1">
+                    className="text-sm font-medium text-[#1E8B7A] hover:text-[#29BBA3] flex items-center gap-1">
                     Browse Events <ArrowRightIcon className="h-4 w-4" />
                 </button>
             </div>
@@ -602,7 +602,7 @@ const BookingsTab = ({ bookings, navigate, formatDate, formatPrice, loadAll }) =
                 <div className="space-y-4">
                     {bookings.map((b) => (
                         <div key={b.id} className="md:flex bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md transition-all">
-                            <div className="md:w-44 h-44 md:h-auto bg-gradient-to-br from-[#6B21A8] to-indigo-500 relative flex-shrink-0">
+                            <div className="md:w-44 h-44 md:h-auto bg-gradient-to-br from-[#1E352F] to-[#1E8B7A] relative flex-shrink-0">
                                 {b.event?.event_image && (
                                     <img src={b.event.event_image} alt="" className="w-full h-full object-cover opacity-95" />
                                 )}
@@ -615,22 +615,22 @@ const BookingsTab = ({ bookings, navigate, formatDate, formatPrice, loadAll }) =
                             </div>
                             <div className="flex-1 p-5 flex flex-col">
                                 <div className="flex-1">
-                                    <h3 className="font-bold text-gray-800 text-lg">{b.event?.event_name}</h3>
-                                    <p className="text-sm text-gray-500 mt-1 line-clamp-2">{b.event?.event_description}</p>
+                                    <h3 className="font-bold text-[#1E352F] text-lg">{b.event?.event_name}</h3>
+                                    <p className="text-sm text-[#66756F] mt-1 line-clamp-2">{b.event?.event_description}</p>
                                     <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-gray-600">
                                         <span className="flex items-center gap-1">
-                                            <CalendarIcon className="h-3.5 w-3.5 text-[#6B21A8]" />
+                                            <CalendarIcon className="h-3.5 w-3.5 text-[#29BBA3]" />
                                             {formatDate(b.event?.event_date)} {b.event?.event_time || ''}
                                         </span>
                                         <span className="flex items-center gap-1">
-                                            <MapPinIcon className="h-3.5 w-3.5 text-[#6B21A8]" />
+                                            <MapPinIcon className="h-3.5 w-3.5 text-[#29BBA3]" />
                                             {b.event?.event_location || 'Online'}
                                         </span>
                                         <span className="flex items-center gap-1">
-                                            <TicketIcon className="h-3.5 w-3.5 text-[#6B21A8]" />
+                                            <TicketIcon className="h-3.5 w-3.5 text-[#29BBA3]" />
                                             {b.quantity} ticket{b.quantity > 1 ? 's' : ''}
                                         </span>
-                                        <span className="flex items-center gap-1 font-bold text-[#6B21A8]">
+                                        <span className="flex items-center gap-1 font-bold text-[#F0A71E]">
                                             <CurrencyDollarIcon className="h-3.5 w-3.5" />
                                             ${formatPrice(b.total_price)}
                                         </span>
@@ -638,7 +638,7 @@ const BookingsTab = ({ bookings, navigate, formatDate, formatPrice, loadAll }) =
                                 </div>
                                 <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
                                     <button onClick={() => navigate(`/my-booking-details/${b.id}`)}
-                                        className="px-4 py-2 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-lg text-sm font-medium hover:shadow-md transition-all">
+                                        className="px-4 py-2 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-lg text-sm font-medium hover:shadow-md transition-all">
                                         View Details
                                     </button>
                                     <button onClick={() => handleCancel(b.id)}
@@ -684,7 +684,7 @@ const CartTab = ({ cartItems, cartTotal, updateCartQty, removeCartItem, updating
                             return (
                                 <div key={it.id} className={`flex gap-4 p-4 rounded-xl border border-gray-100 hover:shadow-sm transition-all ${updatingItemId === it.id ? 'opacity-60' : ''
                                     }`}>
-                                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-gradient-to-br from-purple-100 to-indigo-100 overflow-hidden flex-shrink-0">
+                                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-gradient-to-br from-[#E6F9F6] to-[#C8EDE8] overflow-hidden flex-shrink-0">
                                         {it.event?.event_image && (
                                             <img src={it.event.event_image} alt="" className="w-full h-full object-cover" />
                                         )}
@@ -695,22 +695,22 @@ const CartTab = ({ cartItems, cartTotal, updateCartQty, removeCartItem, updating
                                             <p className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
                                                 <CalendarIcon className="h-3 w-3" /> {formatDate(it.event?.event_date)}
                                             </p>
-                                            <p className="text-sm font-bold text-[#6B21A8] mt-1">${formatPrice(price)} each</p>
+                                            <p className="text-sm font-bold text-[#F0A71E] mt-1">${formatPrice(price)} each</p>
                                         </div>
                                         <div className="flex items-center justify-between mt-2">
-                                            <div className="flex items-center gap-2 bg-purple-50 rounded-lg p-1">
+                                            <div className="flex items-center gap-2 bg-[#F4F3EC] rounded-lg p-1">
                                                 <button
                                                     onClick={() => updateCartQty(it.id, qty - 1, it)}
                                                     disabled={updatingItemId === it.id || qty <= 1}
-                                                    className="w-7 h-7 rounded-md bg-white flex items-center justify-center hover:bg-purple-100 text-[#6B21A8] disabled:opacity-40"
+                                                    className="w-7 h-7 rounded-md bg-white flex items-center justify-center hover:bg-[#E6E1D8] text-[#1E8B7A] disabled:opacity-40"
                                                 >
                                                     <MinusIcon className="h-3.5 w-3.5" />
                                                 </button>
-                                                <span className="w-8 text-center text-sm font-semibold text-gray-800">{qty}</span>
+                                                <span className="w-8 text-center text-sm font-semibold text-[#1E352F]">{qty}</span>
                                                 <button
                                                     onClick={() => updateCartQty(it.id, qty + 1, it)}
                                                     disabled={updatingItemId === it.id}
-                                                    className="w-7 h-7 rounded-md bg-white flex items-center justify-center hover:bg-purple-100 text-[#6B21A8] disabled:opacity-40"
+                                                    className="w-7 h-7 rounded-md bg-white flex items-center justify-center hover:bg-[#E6E1D8] text-[#1E8B7A] disabled:opacity-40"
                                                 >
                                                     <PlusIcon className="h-3.5 w-3.5" />
                                                 </button>
@@ -732,25 +732,25 @@ const CartTab = ({ cartItems, cartTotal, updateCartQty, removeCartItem, updating
                         })}
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-6 border border-purple-100 h-fit sticky top-24">
+                    <div className="bg-gradient-to-br from-[#F4F3EC] to-[#FDFDF7] rounded-2xl p-6 border border-[#E6E1D8] h-fit sticky top-24">
                         <h3 className="font-bold text-gray-800 mb-4">Order Summary</h3>
                         <div className="space-y-2 text-sm">
-                            <div className="flex justify-between text-gray-600">
+                            <div className="flex justify-between text-[#66756F]">
                                 <span>Items ({cartItems.length})</span>
                                 <span>${formatPrice(cartTotal)}</span>
                             </div>
-                            <div className="flex justify-between text-gray-600">
+                            <div className="flex justify-between text-[#66756F]">
                                 <span>Service Fee</span>
                                 <span>$0.00</span>
                             </div>
                         </div>
-                        <div className="border-t border-purple-200 mt-4 pt-4 flex justify-between font-bold text-lg text-gray-800">
+                        <div className="border-t border-[#E6E1D8] mt-4 pt-4 flex justify-between font-bold text-lg text-gray-800">
                             <span>Total</span>
-                            <span className="text-[#6B21A8]">${formatPrice(cartTotal)}</span>
+                            <span className="text-[#F0A71E]">${formatPrice(cartTotal)}</span>
                         </div>
                         <button onClick={handleCheckout}
                             disabled={cartTotal <= 0}
-                            className="w-full mt-5 py-3 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50">
+                            className="w-full mt-5 py-3 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50">
                             Proceed to Checkout
                         </button>
                     </div>
@@ -772,7 +772,7 @@ const FavouritesTab = ({ favourites, navigate, formatDate, removeFavourite, form
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {favourites.map((f) => (
                         <div key={f.id} className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all group">
-                            <div className="h-40 bg-gradient-to-br from-purple-100 to-pink-100 relative cursor-pointer"
+                            <div className="h-40 bg-gradient-to-br from-[#E6F9F6] to-[#C8EDE8] relative cursor-pointer"
                                 onClick={() => navigate(`/event/${f.event?.id}`)}>
                                 {f.event?.event_image && (
                                     <img src={f.event.event_image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -790,9 +790,9 @@ const FavouritesTab = ({ favourites, navigate, formatDate, removeFavourite, form
                                     <CalendarIcon className="h-3 w-3" /> {formatDate(f.event?.event_date)}
                                 </p>
                                 <div className="flex items-center justify-between mt-3">
-                                    <span className="font-bold text-[#6B21A8]">${formatPrice(f.event?.event_price)}</span>
+                                    <span className="font-bold text-[#F0A71E]">${formatPrice(f.event?.event_price)}</span>
                                     <button onClick={() => navigate(`/event/${f.event?.id}`)}
-                                        className="px-3 py-1.5 text-xs font-semibold bg-purple-50 text-[#6B21A8] rounded-lg hover:bg-purple-100 transition-all">
+                                        className="px-3 py-1.5 text-xs font-semibold bg-[#E6F9F6] text-[#1E8B7A] rounded-lg hover:bg-[#C8EDE8] transition-all">
                                         View
                                     </button>
                                 </div>
@@ -814,7 +814,7 @@ const ProfileTab = ({
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 space-y-6">
             <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100">
-                <div className="bg-gradient-to-r from-[#6B21A8] via-indigo-600 to-[#8B5CF6] px-6 py-5">
+                <div className="bg-gradient-to-r from-[#1E352F] via-[#1E8B7A] to-[#29BBA3] px-6 py-5">
                     <div className="flex items-center gap-5">
                         <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur border-2 border-white/30 flex items-center justify-center text-4xl font-bold text-white">
                             {getInitials()}
@@ -823,10 +823,10 @@ const ProfileTab = ({
                             <h2 className="text-xl font-bold text-white">
                                 {user?.first_name} {user?.last_name}
                             </h2>
-                            <p className="text-indigo-200 flex items-center gap-2 text-sm mt-1">
+                            <p className="text-teal-100 flex items-center gap-2 text-sm mt-1">
                                 <EnvelopeIcon className="h-4 w-4" /> {user?.email}
                             </p>
-                            <p className="text-indigo-200 flex items-center gap-2 text-sm">
+                            <p className="text-teal-100 flex items-center gap-2 text-sm">
                                 <PhoneIcon className="h-4 w-4" /> {user?.phone_number}
                             </p>
                         </div>
@@ -844,7 +844,7 @@ const ProfileTab = ({
                             </div>
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="mt-6 px-6 py-2.5 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+                                className="mt-6 px-6 py-2.5 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
                             >
                                 <PencilIcon className="h-4 w-4" /> Edit Profile
                             </button>
@@ -855,17 +855,17 @@ const ProfileTab = ({
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">First Name</label>
                                     <input name="first_name" value={editData.first_name} onChange={handleEditChange} required
-                                        className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#6B21A8] focus:ring-2 focus:ring-purple-200 outline-none" />
+                                        className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#29BBA3] focus:ring-2 focus:ring-[#C8EDE8] outline-none" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">Last Name</label>
                                     <input name="last_name" value={editData.last_name} onChange={handleEditChange} required
-                                        className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#6B21A8] focus:ring-2 focus:ring-purple-200 outline-none" />
+                                        className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#29BBA3] focus:ring-2 focus:ring-[#C8EDE8] outline-none" />
                                 </div>
                             </div>
                             <div className="flex flex-wrap gap-3 mt-6">
                                 <button type="submit"
-                                    className="px-6 py-2.5 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2">
+                                    className="px-6 py-2.5 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2">
                                     <CheckCircleIcon className="h-4 w-4" /> Save Changes
                                 </button>
                                 <button type="button" onClick={() => setIsEditing(false)}
@@ -882,7 +882,7 @@ const ProfileTab = ({
         <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100">
                 <div className="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <LockClosedIcon className="h-5 w-5 text-[#6B21A8]" />
+                    <LockClosedIcon className="h-5 w-5 text-[#29BBA3]" />
                     <h3 className="font-bold text-gray-800">Change Password</h3>
                 </div>
                 <form onSubmit={submitPassword} className="p-6 space-y-4">
@@ -893,7 +893,7 @@ const ProfileTab = ({
                     <PwdField label="Confirm New Password" name="confirm_password" value={pwdData.confirm_password}
                         onChange={handlePwdChange} show={showConfirmPwd} onToggle={() => setShowConfirmPwd(!showConfirmPwd)} />
                     <button type="submit" disabled={pwdLoading}
-                        className="w-full py-2.5 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-60">
+                        className="w-full py-2.5 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-60">
                         {pwdLoading ? 'Updating...' : 'Update Password'}
                     </button>
                 </form>
@@ -905,11 +905,11 @@ const ProfileTab = ({
 const ProfileField = ({ label, value, icon: Icon, color, full }) => {
     const c = {
         blue: 'bg-blue-100 text-blue-600',
-        purple: 'bg-purple-100 text-purple-600',
+        purple: 'bg-[#E6F9F6] text-[#1E8B7A]',
         green: 'bg-green-100 text-green-600',
     }[color] || 'bg-gray-100 text-gray-600';
     return (
-        <div className={`bg-gradient-to-br from-gray-50 to-purple-50/40 rounded-xl p-4 border border-gray-100 ${full ? 'sm:col-span-2' : ''}`}>
+        <div className={`bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] rounded-xl p-4 border border-gray-100 ${full ? 'sm:col-span-2' : ''}`}>
             <div className="flex items-center gap-2 mb-1.5">
                 <div className={`p-1.5 rounded-lg ${c}`}>
                     <Icon className="h-3.5 w-3.5" />
@@ -928,11 +928,11 @@ const PwdField = ({ label, name, value, onChange, show, onToggle }) => (
             <input
                 type={show ? 'text' : 'password'}
                 name={name} value={value} onChange={onChange} required
-                className="w-full pl-4 pr-11 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#6B21A8] focus:ring-2 focus:ring-purple-200 outline-none"
+                className="w-full pl-4 pr-11 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#29BBA3] focus:ring-2 focus:ring-[#C8EDE8] outline-none"
                 placeholder="••••••••"
             />
             <button type="button" onClick={onToggle}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-[#6B21A8]">
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-[#1E8B7A]">
                 {show ? <EyeSlashIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
             </button>
         </div>
@@ -940,7 +940,7 @@ const PwdField = ({ label, name, value, onChange, show, onToggle }) => (
 );
 
 const EmptyState = ({ icon: Icon, title, desc, actionLabel, onAction }) => (
-    <div className="text-center py-12 px-4 bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-2xl">
+    <div className="text-center py-12 px-4 bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC] rounded-2xl">
         <div className="inline-block p-4 bg-white rounded-2xl shadow-sm mb-4">
             <Icon className="h-10 w-10 text-gray-300" />
         </div>
@@ -948,7 +948,7 @@ const EmptyState = ({ icon: Icon, title, desc, actionLabel, onAction }) => (
         <p className="text-gray-400 mt-1">{desc}</p>
         {actionLabel && (
             <button onClick={onAction}
-                className="mt-4 px-5 py-2 bg-gradient-to-r from-[#6B21A8] to-[#8B5CF6] text-white rounded-lg font-medium hover:shadow-md transition-all">
+                className="mt-4 px-5 py-2 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-lg font-medium hover:shadow-md transition-all">
                 {actionLabel}
             </button>
         )}

@@ -60,18 +60,11 @@ const Categories = () => {
 
     // Color palette for categories
     const colorPalette = [
-        { bg: 'bg-purple-100', text: 'text-purple-700', border: 'border-purple-300', hover: 'hover:bg-purple-200', gradient: 'from-purple-50 to-purple-100' },
-        { bg: 'bg-rose-100', text: 'text-rose-700', border: 'border-rose-300', hover: 'hover:bg-rose-200', gradient: 'from-rose-50 to-rose-100' },
-        { bg: 'bg-amber-100', text: 'text-amber-700', border: 'border-amber-300', hover: 'hover:bg-amber-200', gradient: 'from-amber-50 to-amber-100' },
-        { bg: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-300', hover: 'hover:bg-emerald-200', gradient: 'from-emerald-50 to-emerald-100' },
-        { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300', hover: 'hover:bg-blue-200', gradient: 'from-blue-50 to-blue-100' },
-        { bg: 'bg-indigo-100', text: 'text-indigo-700', border: 'border-indigo-300', hover: 'hover:bg-indigo-200', gradient: 'from-indigo-50 to-indigo-100' },
-        { bg: 'bg-cyan-100', text: 'text-cyan-700', border: 'border-cyan-300', hover: 'hover:bg-cyan-200', gradient: 'from-cyan-50 to-cyan-100' },
-        { bg: 'bg-red-100', text: 'text-red-700', border: 'border-red-300', hover: 'hover:bg-red-200', gradient: 'from-red-50 to-red-100' },
-        { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-300', hover: 'hover:bg-green-200', gradient: 'from-green-50 to-green-100' },
-        { bg: 'bg-pink-100', text: 'text-pink-700', border: 'border-pink-300', hover: 'hover:bg-pink-200', gradient: 'from-pink-50 to-pink-100' },
-        { bg: 'bg-teal-100', text: 'text-teal-700', border: 'border-teal-300', hover: 'hover:bg-teal-200', gradient: 'from-teal-50 to-teal-100' },
-        { bg: 'bg-orange-100', text: 'text-orange-700', border: 'border-orange-300', hover: 'hover:bg-orange-200', gradient: 'from-orange-50 to-orange-100' },
+        { bg: 'bg-[#E6F9F6]', text: 'text-[#1E352F]', border: 'border-[#E6E1D8]', hover: 'hover:bg-[#C8EDE8]', gradient: 'from-[#FDFDF7] to-[#E6F9F6]' },
+        { bg: 'bg-[#FDF3E1]', text: 'text-[#1E352F]', border: 'border-[#F8DFB4]', hover: 'hover:bg-[#F8DFB4]', gradient: 'from-[#FDFDF7] to-[#FDF3E1]' },
+        { bg: 'bg-[#FEF0E4]', text: 'text-[#1E352F]', border: 'border-[#FCD3B3]', hover: 'hover:bg-[#FCD3B3]', gradient: 'from-[#FDFDF7] to-[#FEF0E4]' },
+        { bg: 'bg-[#E4F0EE]', text: 'text-[#1E352F]', border: 'border-[#C4DDD8]', hover: 'hover:bg-[#C4DDD8]', gradient: 'from-[#FDFDF7] to-[#E4F0EE]' },
+        { bg: 'bg-[#F4F3EC]', text: 'text-[#1E352F]', border: 'border-[#E6E1D8]', hover: 'hover:bg-[#EAE8DE]', gradient: 'from-[#FDFDF7] to-[#F4F3EC]' },
     ];
 
     // Icon mapping for categories
@@ -203,7 +196,7 @@ const Categories = () => {
         if (navigator.share) {
             navigator.share({
                 title: category.name,
-                text: `Check out ${category.name} on eEvents!`,
+                text: `Check out ${category.name} on TIXELO!`,
                 url: window.location.href,
             }).catch(() => { });
         } else {
@@ -228,12 +221,12 @@ const Categories = () => {
             <PublicLayout>
                 <div className="min-h-screen bg-white flex items-center justify-center">
                     <div className="text-center">
-                        <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                        <div className="w-16 h-16 border-4 border-[#29BBA3] border-t-transparent rounded-full animate-spin mx-auto"></div>
                         <p className="mt-6 text-gray-500 font-medium">Loading categories...</p>
                         <div className="mt-2 flex justify-center gap-1">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                            <div className="w-2 h-2 bg-[#F4F3EC]0 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-2 h-2 bg-[#F4F3EC]0 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-2 h-2 bg-[#F4F3EC]0 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                         </div>
                     </div>
                 </div>
@@ -247,21 +240,21 @@ const Categories = () => {
                 <div className="min-h-screen bg-white">
                     {/* Hero Section */}
                     <section className="relative py-12 md:py-16 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
-                        <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl"></div>
-                        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-100/20 rounded-full blur-3xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 via-white to-[#F4F3EC]/30"></div>
+                        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#E6F9F6]/20 rounded-full blur-3xl"></div>
+                        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#C8EDE8]/20 rounded-full blur-3xl"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <MdCategory className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] border border-[#E6F9F6] rounded-full px-4 py-1.5 mb-5">
+                                    <MdCategory className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         Categories
                                     </span>
                                 </div>
 
                                 <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    Explore Event <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Categories</span>
+                                    Explore Event <span className="bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] bg-clip-text text-transparent">Categories</span>
                                 </h1>
 
                                 <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -281,7 +274,7 @@ const Categories = () => {
                                     </span>
                                     <span className="w-px h-6 bg-gray-300"></span>
                                     <span className="inline-flex items-center gap-2 text-gray-500">
-                                        <FaAward className="text-purple-500" />
+                                        <FaAward className="text-[#29BBA3]" />
                                         <span className="font-medium text-gray-700">{stats.featured}</span> Featured
                                     </span>
                                     <span className="w-px h-6 bg-gray-300"></span>
@@ -307,7 +300,7 @@ const Categories = () => {
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                         placeholder="Search categories..."
-                                        className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all duration-300"
+                                        className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#E6F9F6] transition-all duration-300"
                                     />
                                     {searchTerm && (
                                         <button
@@ -323,7 +316,7 @@ const Categories = () => {
                                         <button
                                             onClick={() => setViewMode('grid')}
                                             className={`px-3 py-1.5 rounded-md text-sm transition-all duration-200 ${viewMode === 'grid'
-                                                ? 'bg-purple-600 text-white shadow-sm'
+                                                ? 'bg-[#1E8B7A] text-white shadow-sm'
                                                 : 'text-gray-500 hover:text-gray-700'
                                                 }`}
                                             aria-label="Grid view"
@@ -333,7 +326,7 @@ const Categories = () => {
                                         <button
                                             onClick={() => setViewMode('list')}
                                             className={`px-3 py-1.5 rounded-md text-sm transition-all duration-200 ${viewMode === 'list'
-                                                ? 'bg-purple-600 text-white shadow-sm'
+                                                ? 'bg-[#1E8B7A] text-white shadow-sm'
                                                 : 'text-gray-500 hover:text-gray-700'
                                                 }`}
                                             aria-label="List view"
@@ -345,7 +338,7 @@ const Categories = () => {
                                     <select
                                         value={sortBy}
                                         onChange={(e) => setSortBy(e.target.value)}
-                                        className="px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100"
+                                        className="px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#E6F9F6]"
                                     >
                                         <option value="name">Sort by Name</option>
                                         <option value="eventCount">Sort by Events</option>
@@ -361,7 +354,7 @@ const Categories = () => {
 
                                     <button
                                         onClick={() => setShowFilters(!showFilters)}
-                                        className={`px-3 py-2.5 border rounded-lg transition-colors duration-200 flex items-center gap-2 ${showFilters ? 'bg-purple-50 border-purple-300 text-purple-600' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
+                                        className={`px-3 py-2.5 border rounded-lg transition-colors duration-200 flex items-center gap-2 ${showFilters ? 'bg-[#F4F3EC] border-[#E6E1D8] text-[#29BBA3]' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
                                             }`}
                                     >
                                         <FaSlidersH className="text-sm" />
@@ -374,7 +367,7 @@ const Categories = () => {
                                 <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div>
                                         <label className="block text-xs font-medium text-gray-600 mb-1.5">Category Type</label>
-                                        <select className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-purple-400">
+                                        <select className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-[#1E8B7A]">
                                             <option value="all">All Types</option>
                                             <option value="popular">Popular</option>
                                             <option value="featured">Featured</option>
@@ -387,7 +380,7 @@ const Categories = () => {
                                         <input
                                             type="number"
                                             placeholder="0"
-                                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-purple-400"
+                                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-[#1E8B7A]"
                                         />
                                     </div>
                                     <div>
@@ -395,11 +388,11 @@ const Categories = () => {
                                         <input
                                             type="number"
                                             placeholder="100"
-                                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-purple-400"
+                                            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:border-[#1E8B7A]"
                                         />
                                     </div>
                                     <div className="flex items-end">
-                                        <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm font-medium">
+                                        <button className="w-full px-4 py-2 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-colors duration-200 text-sm font-medium">
                                             Apply Filters
                                         </button>
                                     </div>
@@ -421,7 +414,7 @@ const Categories = () => {
                                             setSearchTerm('');
                                             setShowFilters(false);
                                         }}
-                                        className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm font-medium"
+                                        className="mt-4 px-6 py-2 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-colors duration-200 text-sm font-medium"
                                     >
                                         Clear Filters
                                     </button>
@@ -444,7 +437,7 @@ const Categories = () => {
                                                 return (
                                                     <div
                                                         key={category.id}
-                                                        className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-purple-300 hover:shadow-purple-100/50 transform hover:-translate-y-1"
+                                                        className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-[#E6E1D8] hover:shadow-teal-900/10 transform hover:-translate-y-1"
                                                     >
                                                         <Link to={`/events?category=${category.id}`} className="block">
                                                             {/* Full Width Image */}
@@ -456,8 +449,8 @@ const Categories = () => {
                                                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                                     />
                                                                 ) : (
-                                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-indigo-50">
-                                                                        <Icon className="text-6xl text-purple-300" />
+                                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC]">
+                                                                        <Icon className="text-6xl text-teal-200" />
                                                                     </div>
                                                                 )}
                                                                 {/* Gradient Overlay */}
@@ -466,7 +459,7 @@ const Categories = () => {
                                                                 {/* Badges on Image */}
                                                                 <div className="absolute top-3 right-3 flex gap-1.5 flex-wrap justify-end">
                                                                     {category.featured && (
-                                                                        <span className="text-[10px] font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-2.5 py-1 rounded-full shadow-sm">
+                                                                        <span className="text-[10px] font-semibold text-white bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] px-2.5 py-1 rounded-full shadow-sm">
                                                                             <FaStar className="inline text-yellow-300 mr-1 text-[8px]" />
                                                                             Featured
                                                                         </span>
@@ -500,10 +493,10 @@ const Categories = () => {
                                                                 </p>
                                                                 <div className="flex items-center justify-between">
                                                                     <span className="text-sm font-medium text-gray-600">
-                                                                        <FaTicketAlt className="inline mr-1.5 text-purple-500 text-xs" />
+                                                                        <FaTicketAlt className="inline mr-1.5 text-[#29BBA3] text-xs" />
                                                                         {category.eventCount} events
                                                                     </span>
-                                                                    <span className="text-purple-600 group-hover:translate-x-1 transition-transform duration-200 flex items-center gap-1 text-sm font-medium">
+                                                                    <span className="text-[#29BBA3] group-hover:translate-x-1 transition-transform duration-200 flex items-center gap-1 text-sm font-medium">
                                                                         Explore
                                                                         <FaArrowRight className="text-xs" />
                                                                     </span>
@@ -516,7 +509,7 @@ const Categories = () => {
                                                                             </span>
                                                                         ))}
                                                                         {category.subCategories.length > 3 && (
-                                                                            <span className="text-[10px] text-purple-700 bg-purple-100 px-2.5 py-1 rounded-full border border-purple-200">
+                                                                            <span className="text-[10px] text-[#1E352F] bg-[#E6F9F6] px-2.5 py-1 rounded-full border border-[#E6E1D8]">
                                                                                 +{category.subCategories.length - 3}
                                                                             </span>
                                                                         )}
@@ -538,13 +531,13 @@ const Categories = () => {
                                                             </button>
                                                             <button
                                                                 onClick={(e) => shareCategory(category, e)}
-                                                                className="text-gray-400 hover:text-purple-600 transition-colors duration-200"
+                                                                className="text-gray-400 hover:text-[#29BBA3] transition-colors duration-200"
                                                             >
                                                                 <FaShareAlt />
                                                             </button>
                                                             <Link
                                                                 to={`/events?category=${category.id}`}
-                                                                className="text-xs font-medium text-purple-600 hover:text-purple-700 transition-colors duration-200 flex items-center gap-1"
+                                                                className="text-xs font-medium text-[#29BBA3] hover:text-[#1E352F] transition-colors duration-200 flex items-center gap-1"
                                                             >
                                                                 <FaEye className="text-xs" />
                                                                 View Events
@@ -557,7 +550,7 @@ const Categories = () => {
                                                 return (
                                                     <div
                                                         key={category.id}
-                                                        className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-purple-300 hover:shadow-purple-100/50 transform hover:-translate-y-1"
+                                                        className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-[#E6E1D8] hover:shadow-teal-900/10 transform hover:-translate-y-1"
                                                     >
                                                         <Link to={`/events?category=${category.id}`} className="block">
                                                             <div className="flex flex-col sm:flex-row">
@@ -570,8 +563,8 @@ const Categories = () => {
                                                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                                         />
                                                                     ) : (
-                                                                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-indigo-50">
-                                                                            <Icon className="text-5xl text-purple-300" />
+                                                                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC]">
+                                                                            <Icon className="text-5xl text-teal-200" />
                                                                         </div>
                                                                     )}
                                                                     {/* Gradient Overlay */}
@@ -580,7 +573,7 @@ const Categories = () => {
                                                                     {/* Badges on Image */}
                                                                     <div className="absolute top-3 right-3 flex gap-1.5 flex-wrap justify-end">
                                                                         {category.featured && (
-                                                                            <span className="text-[10px] font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-2.5 py-1 rounded-full shadow-sm">
+                                                                            <span className="text-[10px] font-semibold text-white bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] px-2.5 py-1 rounded-full shadow-sm">
                                                                                 <FaStar className="inline text-yellow-300 mr-1 text-[8px]" />
                                                                                 Featured
                                                                             </span>
@@ -602,7 +595,7 @@ const Categories = () => {
 
                                                                 {/* Content */}
                                                                 <div className="flex-1 p-5">
-                                                                    <h3 className="text-base font-serif font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-200 mb-1">
+                                                                    <h3 className="text-base font-serif font-bold text-gray-900 group-hover:text-[#29BBA3] transition-colors duration-200 mb-1">
                                                                         {category.name}
                                                                     </h3>
                                                                     <p className="text-sm text-gray-600 leading-relaxed mb-3">
@@ -610,7 +603,7 @@ const Categories = () => {
                                                                     </p>
                                                                     <div className="flex flex-wrap items-center gap-3">
                                                                         <span className="text-sm font-medium text-gray-600">
-                                                                            <FaTicketAlt className="inline mr-1.5 text-purple-500 text-xs" />
+                                                                            <FaTicketAlt className="inline mr-1.5 text-[#29BBA3] text-xs" />
                                                                             {category.eventCount} events
                                                                         </span>
                                                                         <div className="flex flex-wrap gap-1.5">
@@ -620,7 +613,7 @@ const Categories = () => {
                                                                                 </span>
                                                                             ))}
                                                                             {category.subCategories.length > 3 && (
-                                                                                <span className="text-[10px] text-purple-700 bg-purple-100 px-2.5 py-1 rounded-full border border-purple-200">
+                                                                                <span className="text-[10px] text-[#1E352F] bg-[#E6F9F6] px-2.5 py-1 rounded-full border border-[#E6E1D8]">
                                                                                     +{category.subCategories.length - 3}
                                                                                 </span>
                                                                             )}
@@ -639,13 +632,13 @@ const Categories = () => {
                                                                         </button>
                                                                         <button
                                                                             onClick={(e) => shareCategory(category, e)}
-                                                                            className="text-gray-400 hover:text-purple-600 transition-colors duration-200"
+                                                                            className="text-gray-400 hover:text-[#29BBA3] transition-colors duration-200"
                                                                         >
                                                                             <FaShareAlt />
                                                                         </button>
                                                                         <Link
                                                                             to={`/events?category=${category.id}`}
-                                                                            className="text-xs font-medium text-purple-600 hover:text-purple-700 transition-colors duration-200 flex items-center gap-1"
+                                                                            className="text-xs font-medium text-[#29BBA3] hover:text-[#1E352F] transition-colors duration-200 flex items-center gap-1"
                                                                         >
                                                                             <FaEye className="text-xs" />
                                                                             View Events
@@ -691,7 +684,7 @@ const Categories = () => {
                                         <Link
                                             key={category.id}
                                             to={`/events?category=${category.id}`}
-                                            className="group bg-white border border-gray-200 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:border-purple-300 hover:shadow-purple-100/50 transform hover:-translate-y-1"
+                                            className="group bg-white border border-gray-200 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:border-[#E6E1D8] hover:shadow-teal-900/10 transform hover:-translate-y-1"
                                         >
                                             <div className="relative w-full h-24 rounded-lg overflow-hidden mb-2 bg-gray-100">
                                                 {category.image ? (
@@ -701,12 +694,12 @@ const Categories = () => {
                                                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                     />
                                                 ) : (
-                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-indigo-50">
-                                                        <Icon className="text-3xl text-purple-300" />
+                                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FDFDF7] to-[#F4F3EC]">
+                                                        <Icon className="text-3xl text-teal-200" />
                                                     </div>
                                                 )}
                                             </div>
-                                            <p className="text-xs font-serif font-semibold text-gray-800 group-hover:text-purple-600 transition-colors duration-200">
+                                            <p className="text-xs font-serif font-semibold text-gray-800 group-hover:text-[#29BBA3] transition-colors duration-200">
                                                 {category.name}
                                             </p>
                                             <p className="text-[10px] text-gray-500">
@@ -722,15 +715,15 @@ const Categories = () => {
                     {/* CTA Section */}
                     <section className="py-12 bg-white">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-gradient-to-br from-purple-50/80 via-white to-indigo-50/80 border border-purple-100 rounded-3xl p-8 md:p-10 text-center max-w-4xl mx-auto shadow-sm hover:shadow-xl transition-all duration-300">
-                                <div className="inline-flex items-center gap-2 bg-purple-100/80 border border-purple-200 rounded-full px-4 py-1.5 mb-4">
-                                    <FaRocket className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                            <div className="bg-gradient-to-br from-[#FDFDF7]/80 via-white to-[#F4F3EC]/80 border border-[#E6F9F6] rounded-3xl p-8 md:p-10 text-center max-w-4xl mx-auto shadow-sm hover:shadow-xl transition-all duration-300">
+                                <div className="inline-flex items-center gap-2 bg-[#E6F9F6]/80 border border-[#E6E1D8] rounded-full px-4 py-1.5 mb-4">
+                                    <FaRocket className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] tracking-wider uppercase">
                                         Can't Find What You're Looking For?
                                     </span>
                                 </div>
                                 <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2">
-                                    Suggest a New <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Category</span>
+                                    Suggest a New <span className="bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] bg-clip-text text-transparent">Category</span>
                                 </h3>
                                 <p className="text-sm text-gray-600 mb-6 max-w-lg mx-auto">
                                     Don't see your favorite event type? Contact us to suggest a new category.
@@ -738,14 +731,14 @@ const Categories = () => {
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                                     <Link
                                         to="/events"
-                                        className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 text-sm font-medium shadow-md shadow-purple-950/30 hover:shadow-purple-950/50 inline-flex items-center gap-2"
+                                        className="px-6 py-3 bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white rounded-xl hover:from-[#29BBA3] hover:to-[#1E8B7A] transition-all duration-300 text-sm font-medium shadow-md shadow-purple-950/30 hover:shadow-purple-950/50 inline-flex items-center gap-2"
                                     >
                                         Browse All Events
                                         <FaArrowRight className="text-sm" />
                                     </Link>
                                     <Link
                                         to="/contact"
-                                        className="px-6 py-3 bg-white text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-300 text-sm font-medium border border-gray-200 hover:border-purple-300 inline-flex items-center gap-2"
+                                        className="px-6 py-3 bg-white text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-300 text-sm font-medium border border-gray-200 hover:border-[#E6E1D8] inline-flex items-center gap-2"
                                     >
                                         Suggest a Category
                                     </Link>

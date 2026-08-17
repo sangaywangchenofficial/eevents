@@ -10,7 +10,7 @@ const reviewsData = [
     location: 'Thimphu, Bhutan',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
     rating: 5,
-    quote: 'Booking Paro Tshechu tickets through eEvents was so smooth! I received my instant digital QR pass on my phone right away without waiting in long queues at the dzong gate.',
+    quote: 'Booking Paro Tshechu tickets through TIXELO was so smooth! I received my instant digital QR pass on my phone right away without waiting in long queues at the dzong gate.',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const reviewsData = [
     location: 'Paro, Bhutan',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     rating: 5,
-    quote: 'eEvents Bhutan is a game-changer! Finding local music concerts and religious prayer gatherings across Bumthang has never been easier. Highly recommended for locals and tourists.',
+    quote: 'TIXELO is a game-changer! Finding local music concerts and religious prayer gatherings across Bumthang has never been easier. Highly recommended for locals and tourists.',
   },
   {
     id: 3,
@@ -53,20 +53,20 @@ const Testimonials = () => {
   const current = reviewsData[currentIndex];
 
   return (
-    <section className="py-20 bg-[#FAF8FF] relative overflow-hidden">
+    <section className="py-20 bg-[#F4F3EC] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-100 text-[#6B21A8] text-xs font-poppins font-semibold uppercase tracking-wide mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] text-[#1E8B7A] text-xs font-semibold uppercase tracking-wide mb-3 border border-[#C8EDE8]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Community Feedback</span>
           </div>
-          <h2 className="font-poppins font-extrabold text-3xl sm:text-4xl text-[#1E1B4B]">
+          <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F]">
             Loved by Eventgoers Across Bhutan
           </h2>
-          <p className="text-[#475569] text-base mt-2 font-inter">
-            Read authentic reviews from attendees who discovered unforgettable experiences with eEvents.
+          <p className="text-[#4A5C57] text-base mt-2">
+            Read authentic reviews from attendees who discovered unforgettable experiences with TIXELO.
           </p>
         </div>
 
@@ -80,9 +80,9 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="glass-card rounded-3xl p-8 sm:p-12 border border-purple-200/80 shadow-xl shadow-purple-900/10 relative overflow-hidden"
+              className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E6E1D8] shadow-xl shadow-teal-900/8 relative overflow-hidden"
             >
-              <Quote className="absolute top-6 right-8 w-16 h-16 text-purple-200/40 pointer-events-none" />
+              <Quote className="absolute top-6 right-8 w-16 h-16 text-[#29BBA3]/15 pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
                 {/* User Avatar */}
@@ -90,9 +90,9 @@ const Testimonials = () => {
                   <img
                     src={current.avatar}
                     alt={current.name}
-                    className="w-20 h-20 rounded-2xl object-cover border-2 border-purple-300 shadow-md"
+                    className="w-20 h-20 rounded-2xl object-cover border-2 border-[#29BBA3] shadow-md"
                   />
-                  <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-white p-1 rounded-full shadow-sm">
+                  <div className="absolute -bottom-2 -right-2 bg-[#29BBA3] text-white p-1 rounded-full shadow-sm">
                     <CheckCircle className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -102,17 +102,17 @@ const Testimonials = () => {
                   {/* Rating Stars */}
                   <div className="flex items-center justify-center sm:justify-start gap-1">
                     {[...Array(current.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-5 h-5 fill-[#F0A71E] text-[#F0A71E]" />
                     ))}
                   </div>
 
-                  <p className="font-inter text-base sm:text-lg text-[#1E1B4B] italic leading-relaxed">
+                  <p className="text-base sm:text-lg text-[#1E352F] italic leading-relaxed">
                     "{current.quote}"
                   </p>
 
                   <div>
-                    <h4 className="font-poppins font-bold text-lg text-[#1E1B4B]">{current.name}</h4>
-                    <p className="text-xs text-purple-600 font-semibold">{current.role} • {current.location}</p>
+                    <h4 className="font-bold text-lg text-[#1E352F]">{current.name}</h4>
+                    <p className="text-xs text-[#1E8B7A] font-semibold">{current.role} • {current.location}</p>
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@ const Testimonials = () => {
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={handlePrev}
-              className="p-3 rounded-full bg-white border border-purple-200 text-[#1E1B4B] hover:bg-purple-600 hover:text-white shadow-md transition-all"
+              className="p-3 rounded-full bg-white border border-[#E6E1D8] text-[#1E352F] hover:bg-gradient-to-r hover:from-[#29BBA3] hover:to-[#1E8B7A] hover:text-white hover:border-transparent shadow-md transition-all"
               aria-label="Previous review"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -134,8 +134,8 @@ const Testimonials = () => {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    idx === currentIndex ? 'bg-[#6B21A8] w-8' : 'bg-purple-200'
+                  className={`h-3 rounded-full transition-all ${
+                    idx === currentIndex ? 'bg-[#29BBA3] w-8' : 'bg-[#E6E1D8] w-3'
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -143,7 +143,7 @@ const Testimonials = () => {
             </div>
             <button
               onClick={handleNext}
-              className="p-3 rounded-full bg-white border border-purple-200 text-[#1E1B4B] hover:bg-purple-600 hover:text-white shadow-md transition-all"
+              className="p-3 rounded-full bg-white border border-[#E6E1D8] text-[#1E352F] hover:bg-gradient-to-r hover:from-[#29BBA3] hover:to-[#1E8B7A] hover:text-white hover:border-transparent shadow-md transition-all"
               aria-label="Next review"
             >
               <ChevronRight className="w-5 h-5" />
