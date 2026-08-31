@@ -3,16 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/tixelologo.jpeg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/tixelologo_32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/tixelologo_16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/tixelologo.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIXELO | Discover, Book & Experience Events</title>
-    <meta name="description" content="Bhutan's premier event management & ticket booking platform. Find cultural festivals, workshops, sports, concerts and more across Bhutan." />
-    <!-- Google Fonts: Poppins & Inter -->
+
+    <!-- Primary SEO meta tags (overridden per-page by SEO.jsx) -->
+    <title>%VITE_APP_NAME% | Discover, Book &amp; Experience Events</title>
+    <meta name="description" content="Bhutan's premier event management &amp; ticket booking platform. Find cultural festivals, workshops, sports, concerts and more across Bhutan." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#1E8B7A" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Open Graph base tags (overridden per-page by SEO.jsx) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="%VITE_APP_NAME%" />
+    <meta property="og:title" content="%VITE_APP_NAME% | Discover, Book &amp; Experience Events" />
+    <meta property="og:description" content="Bhutan's premier event management &amp; ticket booking platform. Find cultural festivals, workshops, sports, concerts and more across Bhutan." />
+    <meta property="og:image" content="%VITE_APP_URL%/tixelologo.jpeg" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card base tags (overridden per-page by SEO.jsx) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%VITE_APP_NAME% | Discover, Book &amp; Experience Events" />
+    <meta name="twitter:description" content="Bhutan's premier event management &amp; ticket booking platform." />
+    <meta name="twitter:image" content="%VITE_APP_URL%/tixelologo.jpeg" />
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- No-flash theme initializer: must run before React renders -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('tixelo-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="font-sans antialiased" style="background-color:#FDFDF7;color:#4A5C57;">
+  <body class="font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

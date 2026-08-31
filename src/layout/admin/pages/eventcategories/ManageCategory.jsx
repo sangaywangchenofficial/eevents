@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FiSearch, FiEdit, FiTrash2, FiDownload } from 'react-icons/fi'
 import { CSVLink } from 'react-csv';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const ManageCategory = () => {
     const [categories, setCategories] = useState([]);
@@ -20,7 +21,7 @@ const ManageCategory = () => {
 
     const fetchCategories = () => {
         setIsLoading(true);
-        fetch('http://127.0.0.1:8000/api/v1/view-categories/')
+        fetch(`${API_BASE_URL}/view-categories/`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -67,7 +68,7 @@ const ManageCategory = () => {
         }
 
         setIsLoading(true);
-        fetch(`http://127.0.0.1:8000/api/v1/category-details/${id}/`, {
+        fetch(`${API_BASE_URL}/category-details/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +127,7 @@ const ManageCategory = () => {
                                 <input
                                     type="text"
                                     placeholder="Search by category name..."
-                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
+                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
                                     onChange={(e) => handleSearch(e.target.value)}
                                 />
                             </div>
@@ -146,7 +147,7 @@ const ManageCategory = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
                         {isLoading ? (
                             <div className="flex justify-center items-center py-12">
                                 <div className="text-gray-500 dark:text-stone-400">Loading...</div>

@@ -4,6 +4,7 @@ import { MdOutlineFastfood } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { AdminLayout } from '../../AdminLayout';
 import { ToastContainer } from 'react-toastify';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const AddCategory = () => {
     const [categoryName, setCategoryName] = useState('');
@@ -23,7 +24,7 @@ const AddCategory = () => {
         try {
             // Updated API endpoint for event category
             const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
-            const response = await fetch('http://127.0.0.1:8000/api/v1/add-category/', {
+            const response = await fetch(`${API_BASE_URL}/add-category/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ const AddCategory = () => {
                     </div>
 
                     {/* Main Form Interactive Card */}
-                    <div className="bg-white dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
                         <div className="border-b border-gray-200 dark:border-stone-800/60 bg-gray-50 dark:bg-stone-950/40 px-6 py-4 flex items-center gap-2.5">
                             <BiPlusCircle className="text-purple-600 dark:text-purple-400 text-lg" />
                             <h2 className="text-xs font-semibold text-gray-700 dark:text-stone-300 uppercase tracking-wider">
@@ -94,7 +95,7 @@ const AddCategory = () => {
                                         value={categoryName}
                                         onChange={(e) => setCategoryName(e.target.value)}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 placeholder-gray-400 dark:placeholder-stone-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 shadow-inner transition-all duration-300 hover:border-gray-400 dark:hover:border-stone-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                                         placeholder="e.g., Conference, Workshop, Seminar, Gala"
                                         maxLength={50}
                                     />

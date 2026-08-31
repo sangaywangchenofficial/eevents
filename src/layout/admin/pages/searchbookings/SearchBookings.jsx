@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminLayout } from '../../AdminLayout';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const SearchBookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -44,7 +45,7 @@ const SearchBookings = () => {
             const token = getAuthToken();
             if (!token) { navigate('/admin-login'); return; }
 
-            const response = await fetch('http://localhost:8000/api/v1/booking/list/', {
+            const response = await fetch(`${API_BASE_URL}/booking/list/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -238,7 +239,7 @@ const SearchBookings = () => {
                 )}
 
                 {/* Search Form - Fixed Alignment */}
-                <div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-6 mb-6">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 shadow-lg rounded-lg p-6 mb-6">
                     <form onSubmit={handleSearch}>
                         <div className="flex flex-col md:flex-row gap-4 items-center">
                             {/* Input Field - Takes remaining space */}
@@ -405,7 +406,7 @@ const SearchBookings = () => {
                             </div>
                         ) : (
                             <div className="overflow-x-auto shadow-md rounded-lg">
-                                <table className="min-w-full bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
+                                <table className="min-w-full bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
                                     <thead className="bg-gray-100 dark:bg-zinc-700">
                                         <tr>
                                             {['ID', 'Reference', 'User', 'Event', 'Qty', 'Total', 'Date', 'Status', 'Payment', 'Actions'].map(h => (

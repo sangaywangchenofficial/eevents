@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Calendar, Ticket, ArrowRight, Flame } from 'lucide-react';
+import { API_BASE_URL } from '../utils/auth';
 
 // Removed fallback mock events as per user request
 
@@ -16,7 +17,7 @@ const PopularEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/view-events/');
+      const response = await fetch(`${API_BASE_URL}/view-events/`);
       if (!response.ok) {
         throw new Error(`HTTP status ${response.status}`);
       }
@@ -56,20 +57,20 @@ const PopularEvents = () => {
   };
 
   return (
-    <section className="py-16 bg-[#FDFDF7] border-t border-[#E6E1D8]">
+    <section className="py-16 bg-[#FDFDF7] dark:bg-[#0F1A17] border-t border-[#E6E1D8] dark:border-[#2A3D38]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF3E0] text-[#F47F1D] text-xs font-semibold uppercase tracking-wide mb-3 border border-[#F47F1D]/20">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF3E0] dark:bg-[#2D1B05] text-[#F47F1D] text-xs font-semibold uppercase tracking-wide mb-3 border border-[#F47F1D]/20">
               <Flame className="w-3.5 h-3.5 text-[#F47F1D]" />
               <span>Trending Across Dzongkhags</span>
             </div>
-            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F]">
+            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F] dark:text-[#E8F5F2]">
               Popular Upcoming Events
             </h2>
-            <p className="text-[#4A5C57] text-base mt-2 max-w-xl">
+            <p className="text-[#4A5C57] dark:text-[#A8C4BE] text-base mt-2 max-w-xl">
               Don't miss out on Bhutan's most anticipated cultural gatherings and seasonal celebrations.
             </p>
           </div>
@@ -87,7 +88,7 @@ const PopularEvents = () => {
         {loading ? (
           <div className="flex flex-col justify-center items-center py-10">
             <div className="w-10 h-10 border-4 border-[#29BBA3] border-t-transparent rounded-full animate-spin"></div>
-            <p className="mt-4 text-sm font-medium text-[#66756F]">Loading trending events...</p>
+            <p className="mt-4 text-sm font-medium text-[#66756F] dark:text-[#7AA49D]">Loading trending events...</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -99,16 +100,16 @@ const PopularEvents = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 onClick={() => navigate(`/event/${event.id}`)}
-                className="group cursor-pointer bg-white rounded-2xl border border-[#E6E1D8] shadow-md hover:shadow-xl hover:shadow-teal-900/10 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
+                className="group cursor-pointer bg-white dark:bg-[#1C2B27] rounded-2xl border border-[#E6E1D8] dark:border-[#2A3D38] shadow-md hover:shadow-xl hover:shadow-teal-900/10 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="relative h-48 overflow-hidden bg-slate-100">
+                  <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-[#0F1A17]">
                     <img
                       src={event.event_image || event.image || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop'}
                       alt={event.event_name || event.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E352F]/70 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E352F]/70 dark:from-[#0F1A17]/90 via-transparent to-transparent"></div>
 
                     {/* Category badge — saffron orange */}
                     <span className="absolute top-3 left-3 bg-[#F47F1D]/90 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full">
@@ -116,7 +117,7 @@ const PopularEvents = () => {
                     </span>
 
                     {/* Price badge — golden yellow */}
-                    <span className="absolute bottom-3 right-3 bg-[#F0A71E] text-[#1E352F] text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                    <span className="absolute bottom-3 right-3 bg-[#F0A71E] text-[#1E352F] dark:text-[#E8F5F2] text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       {formatPrice(event.event_price || event.price)}
                     </span>
                   </div>
@@ -127,11 +128,11 @@ const PopularEvents = () => {
                       {event.organizer || 'Local Organizer'}
                     </span>
 
-                    <h3 className="font-bold text-base text-[#1E352F] line-clamp-1 group-hover:text-[#1E8B7A] transition-colors">
+                    <h3 className="font-bold text-base text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#1E8B7A] transition-colors">
                       {event.event_name || event.title}
                     </h3>
 
-                    <div className="space-y-1 text-xs text-[#66756F] pt-1">
+                    <div className="space-y-1 text-xs text-[#66756F] dark:text-[#7AA49D] pt-1">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
                         <span>{formatDate(event.event_date || event.date)}</span>
@@ -145,7 +146,7 @@ const PopularEvents = () => {
                 </div>
 
                 <div className="p-5 pt-0">
-                  <button className="w-full py-2.5 rounded-xl bg-[#E6F9F6] hover:bg-gradient-to-r hover:from-[#29BBA3] hover:to-[#1E8B7A] text-[#1E8B7A] hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 border border-[#C8EDE8]">
+                  <button className="w-full py-2.5 rounded-xl bg-[#E6F9F6] dark:bg-[#162019] hover:bg-gradient-to-r hover:from-[#29BBA3] hover:to-[#1E8B7A] text-[#1E8B7A] hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 border border-[#C8EDE8] dark:border-[#2A3D38]">
                     <Ticket className="w-3.5 h-3.5" />
                     <span>Reserve Seat</span>
                   </button>

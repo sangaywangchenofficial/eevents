@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AdminLayout } from '../../AdminLayout'
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const BookingNotConfirm = () => {
     const [bookings, setBookings] = useState([]);
@@ -73,7 +74,7 @@ const BookingNotConfirm = () => {
 
             console.log('Fetching bookings with token:', token ? 'Token present' : 'No token');
 
-            const response = await fetch('http://localhost:8000/api/v1/booking-not-confirmed/', {
+            const response = await fetch(`${API_BASE_URL}/booking-not-confirmed/`, {
                 method: 'GET',
                 headers: headers,
             });
@@ -171,7 +172,7 @@ const BookingNotConfirm = () => {
                 'Authorization': `Bearer ${token}`
             };
 
-            const response = await fetch(`http://localhost:8000/api/v1/confirm-booking/${bookingId}/`, {
+            const response = await fetch(`${API_BASE_URL}/confirm-booking/${bookingId}/`, {
                 method: 'POST',
                 headers: headers,
             });
@@ -224,7 +225,7 @@ const BookingNotConfirm = () => {
                 'Authorization': `Bearer ${token}`
             };
 
-            const response = await fetch(`http://localhost:8000/api/v1/cancel-booking/${bookingId}/`, {
+            const response = await fetch(`${API_BASE_URL}/cancel-booking/${bookingId}/`, {
                 method: 'POST',
                 headers: headers,
             });
@@ -353,7 +354,7 @@ const BookingNotConfirm = () => {
                             Total: {bookings.length} booking{bookings.length > 1 ? 's' : ''} found
                         </p>
                         <div className="overflow-x-auto shadow-md rounded-lg">
-                            <table className="min-w-full bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
+                            <table className="min-w-full bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
                                 <thead className="bg-gray-100 dark:bg-zinc-700">
                                     <tr>
                                         {['ID', 'Event', 'Quantity', 'Total Price', 'Booking Date', 'Booking Time', 'Status', 'Actions'].map(h => (

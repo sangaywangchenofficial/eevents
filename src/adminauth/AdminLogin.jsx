@@ -4,6 +4,8 @@ import { MdAdminPanelSettings } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PublicLayout from '../publiclayout/PublicLayout';
+import SEO from '../components/SEO';
+import { API_BASE_URL, APP_NAME_UPPER, APP_NAME_CAPITALIZED } from '../utils/auth';
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -24,7 +26,7 @@ const AdminLogin = () => {
 
         try {
             // Sends credential payload to backend service
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin-login/', {
+            const response = await fetch(`${API_BASE_URL}/admin-login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,6 +74,11 @@ const AdminLogin = () => {
 
     return (
         <PublicLayout>
+            <SEO
+                title={`Admin Login | ${APP_NAME_CAPITALIZED}`}
+                noindex={true}
+                nofollow={true}
+            />
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f1f1c] via-[#1E352F] to-[#0a2820] p-4">
                 <div className="w-full max-w-md bg-[#0f1f1c]/90 backdrop-blur-md border border-[#29BBA3]/20 rounded-2xl shadow-2xl p-8 shadow-[#29BBA3]/10">
 
@@ -84,7 +91,7 @@ const AdminLogin = () => {
                             </svg>
                         </div>
                         <h1 className="text-2xl font-black text-white tracking-widest uppercase">
-                            TIX<span className="text-teal-400">ELO</span>
+                            {APP_NAME_UPPER}
                         </h1>
                         <p className="text-xs text-teal-400/80 font-medium uppercase tracking-widest mt-1">
                             Admin Control Panel

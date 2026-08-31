@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Calendar, Heart, Ticket, ArrowRight, Sparkles } from 'lucide-react';
+import { MapPin, Calendar, Heart, Ticket, ArrowRight, Sparkles, Star } from 'lucide-react';
 import { getUserId } from '../utils/auth';
+import RatingBadge from '../components/RatingBadge';
 
 /** Fisher-Yates shuffle — returns a new shuffled array */
 const shuffleArray = (arr) => {
@@ -27,7 +28,7 @@ const FeaturedEvents = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/v1/view-events/');
+        const res = await fetch(`${API_BASE_URL}/view-events/`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         const list =
@@ -65,20 +66,20 @@ const FeaturedEvents = () => {
   };
 
   return (
-    <section className="py-16 bg-white relative">
+    <section className="py-16 bg-white dark:bg-[#0F1A17] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] text-[#29BBA3] text-xs font-semibold uppercase tracking-wide mb-3">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#29BBA3] text-xs font-semibold uppercase tracking-wide mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#A855F7]" />
               <span>Handpicked For You</span>
             </div>
-            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F]">
+            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F] dark:text-[#E8F5F2]">
               Upcoming Events in Bhutan
             </h2>
-            <p className="text-[#475569] text-base mt-2 max-w-xl">
+            <p className="text-[#475569] dark:text-[#A8C4BE] text-base mt-2 max-w-xl">
               Explore authentic cultural celebrations, workshops, and community events with instant digital ticketing.
             </p>
           </div>
@@ -86,7 +87,7 @@ const FeaturedEvents = () => {
           <div className="mt-4 md:mt-0 flex items-center gap-3">
             <Link
               to="/events"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#E6E1D8] text-[#29BBA3] hover:bg-[#F4F3EC] font-semibold text-sm transition-all group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#E6E1D8] dark:border-[#2A3D38] text-[#29BBA3] hover:bg-[#F4F3EC] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] font-semibold text-sm transition-all group"
             >
               <span>View All ({allEvents.length})</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -98,7 +99,7 @@ const FeaturedEvents = () => {
         {loading ? (
           <div className="flex flex-col justify-center items-center py-20">
             <div className="w-12 h-12 border-4 border-[#1E8B7A] border-t-transparent rounded-full animate-spin" />
-            <p className="mt-4 text-sm font-medium text-slate-500">Loading events in Bhutan...</p>
+            <p className="mt-4 text-sm font-medium text-slate-500 dark:text-[#7AA49D]">Loading events in Bhutan...</p>
           </div>
 
         ) : displayed.length === 0 ? (
@@ -126,13 +127,14 @@ const FeaturedEvents = () => {
                 return (
                   <motion.div
                     key={event.id}
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: idx * 0.06 }}
-                    className="group bg-white rounded-2xl border border-[#E6F9F6] shadow-md hover:shadow-2xl hover:shadow-teal-900/10 transition-all duration-300 flex flex-col overflow-hidden transform hover:-translate-y-1.5"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="group bg-white dark:bg-[#1C2B27] rounded-2xl border border-[#E6E1D8] dark:border-[#2A3D38] shadow-sm hover:shadow-2xl hover:shadow-[#29BBA3]/10 transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1.5"
                   >
-                    {/* Card Image */}
-                    <div className="relative h-52 overflow-hidden bg-slate-100">
+                    {/* Event Image */}
+                    <div className="relative h-48 w-full overflow-hidden rounded-t-2xl bg-slate-100 dark:bg-[#162019]">
                       <img
                         src={
                           event.event_image ||
@@ -144,7 +146,7 @@ const FeaturedEvents = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
                       {event.category_name && (
-                        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#1E352F] text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">
+                        <span className="absolute top-3 left-3 bg-white dark:bg-[#1C2B27]/90 backdrop-blur-md text-[#1E352F] dark:text-[#E8F5F2] text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">
                           {event.category_name}
                         </span>
                       )}
@@ -153,7 +155,7 @@ const FeaturedEvents = () => {
                         onClick={(e) => toggleFavorite(event.id, e)}
                         className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${isFav
                           ? 'bg-rose-500 text-white shadow-md'
-                          : 'bg-white/80 text-slate-700 hover:bg-white hover:text-rose-500'
+                          : 'bg-white dark:bg-[#1C2B27]/80 text-slate-700 dark:text-[#A8C4BE] hover:bg-white dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] dark:hover:bg-[#162019] hover:text-rose-500 dark:hover:text-rose-400'
                           }`}
                         aria-label="Toggle favourite"
                       >
@@ -168,15 +170,20 @@ const FeaturedEvents = () => {
                     {/* Card Body */}
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                       <div>
-                        <h3 className="font-bold text-lg text-[#1E352F] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
+                        <h3 className="font-bold text-lg text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
                           {event.event_name}
                         </h3>
-                        <p className="text-xs text-[#475569] mt-1 line-clamp-2 leading-relaxed">
+                        <RatingBadge 
+                          averageRating={event.average_rating} 
+                          totalReviews={event.total_reviews} 
+                          distribution={event.rating_distribution} 
+                        />
+                        <p className="text-xs text-[#475569] dark:text-[#7AA49D] mt-1 line-clamp-2 leading-relaxed">
                           {event.event_description || 'Join us for this exciting event in Bhutan!'}
                         </p>
                       </div>
 
-                      <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] text-xs text-slate-600">
+                      <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] dark:border-[#2A3D38] text-xs text-slate-600 dark:text-[#A8C4BE]">
                         {event.event_date && (
                           <div className="flex items-center gap-2">
                             <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
@@ -201,7 +208,7 @@ const FeaturedEvents = () => {
                       <div className="pt-2 flex gap-2">
                         <Link
                           to={`/event/${event.id}`}
-                          className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] text-[#1E352F] hover:bg-[#F4F3EC] text-center font-semibold text-xs transition-colors"
+                          className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] text-[#1E352F] dark:text-[#E8F5F2] hover:bg-[#F4F3EC] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] text-center font-semibold text-xs transition-colors"
                         >
                           Details
                         </Link>

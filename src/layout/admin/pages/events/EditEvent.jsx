@@ -6,6 +6,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { AdminLayout } from '../../AdminLayout';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL, getMediaUrl } from '../../../../utils/auth';
 
 const EditEvent = () => {
     const { id } = useParams();
@@ -35,7 +36,7 @@ const EditEvent = () => {
     const fetchCategories = async () => {
         try {
             const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
-            const response = await fetch('http://127.0.0.1:8000/api/v1/view-categories/', {
+            const response = await fetch(`${API_BASE_URL}/view-categories/`, {
                 headers: adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {},
             });
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -53,7 +54,7 @@ const EditEvent = () => {
     // Fetch Event Details
     const fetchEventDetails = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/event-detail/${id}/`);
+            const response = await fetch(`${API_BASE_URL}/event-detail/${id}/`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
             const event = data.data;
@@ -71,7 +72,7 @@ const EditEvent = () => {
 
             setSelectedCategory(event.category || event.category_id || '');
             if (event.event_image) {
-                setCurrentImage(`http://127.0.0.1:8000${event.event_image}`);
+                setCurrentImage(getMediaUrl(event.event_image));
             }
         } catch (error) {
             console.error('Error fetching event details:', error);
@@ -162,7 +163,7 @@ const EditEvent = () => {
             }
 
             const adminToken = localStorage.getItem('adminToken') || localStorage.getItem('token') || '';
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/event-detail/${id}/`, {
+            const response = await fetch(`${API_BASE_URL}/event-detail/${id}/`, {
                 method: 'PUT',
                 body: formData,
                 headers: adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {},
@@ -228,7 +229,7 @@ const EditEvent = () => {
                     </Link>
                 </div>
 
-                <div className="bg-white dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-950 border border-gray-200 dark:border-stone-800/80 rounded-2xl shadow-xl overflow-hidden group/card hover:border-purple-300 dark:hover:border-purple-500/20 transition-all duration-300">
                     <form onSubmit={handleSubmit} className="p-6 space-y-6">
                         
                         {/* Event Category Dropdown Select */}
@@ -244,7 +245,7 @@ const EditEvent = () => {
                                     value={selectedCategory}
                                     onChange={(e) => setSelectedCategory(e.target.value)}
                                     disabled={isSubmitting || categories.length === 0}
-                                    className="w-full pl-10 pr-10 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm appearance-none"
+                                    className="w-full pl-10 pr-10 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm appearance-none"
                                     required
                                 >
                                     <option value="" className="text-gray-400">Select Event Category</option>
@@ -273,7 +274,7 @@ const EditEvent = () => {
                                     value={eventData.event_name}
                                     onChange={handleInputChange}
                                     disabled={isSubmitting}
-                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                     placeholder="Enter event name"
                                     maxLength={50}
                                 />
@@ -292,7 +293,7 @@ const EditEvent = () => {
                                 onChange={handleInputChange}
                                 disabled={isSubmitting}
                                 rows="4"
-                                className="w-full px-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm resize-y"
+                                className="w-full px-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm resize-y"
                                 placeholder="Enter event description"
                                 maxLength={200}
                             />
@@ -311,7 +312,7 @@ const EditEvent = () => {
                                     value={eventData.event_date}
                                     onChange={handleInputChange}
                                     disabled={isSubmitting}
-                                    className="w-full px-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                    className="w-full px-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                 />
                             </div>
                             <div>
@@ -329,7 +330,7 @@ const EditEvent = () => {
                                         value={eventData.event_time}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                     />
                                 </div>
                             </div>
@@ -352,7 +353,7 @@ const EditEvent = () => {
                                         value={eventData.event_location}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                     />
                                 </div>
                             </div>
@@ -373,7 +374,7 @@ const EditEvent = () => {
                                         value={eventData.event_price}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                     />
                                 </div>
                             </div>
@@ -397,7 +398,7 @@ const EditEvent = () => {
                                         value={eventData.event_quantity}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
+                                        className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm"
                                     />
                                 </div>
                             </div>
@@ -409,7 +410,7 @@ const EditEvent = () => {
                                         checked={eventData.is_event_available}
                                         onChange={handleInputChange}
                                         disabled={isSubmitting}
-                                        className="w-5 h-5 rounded border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-900/40 text-purple-600 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-stone-950"
+                                        className="w-5 h-5 rounded border-gray-300 dark:border-stone-700 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 text-purple-600 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-stone-950"
                                     />
                                     Event is Available
                                 </label>
@@ -437,7 +438,7 @@ const EditEvent = () => {
                                     accept="image/*"
                                     onChange={handleInputChange}
                                     disabled={isSubmitting}
-                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
+                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-[#1C2B27] dark:bg-stone-900/40 border border-gray-300 dark:border-stone-800 rounded-xl text-gray-900 dark:text-stone-100 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
                                 />
                             </div>
                         </div>

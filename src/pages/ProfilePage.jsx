@@ -124,7 +124,7 @@ const ProfilePage = () => {
     if (loading) {
         return (
             <PublicLayout>
-                <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 sm:px-6 lg:px-8">
+                <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:to-[#0F1A17] py-8 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-col justify-center items-center py-20">
                             <div className="relative">
@@ -133,7 +133,7 @@ const ProfilePage = () => {
                                     <div className="h-8 w-8 bg-blue-600 rounded-full animate-pulse"></div>
                                 </div>
                             </div>
-                            <p className="mt-6 text-gray-600 font-medium">Loading profile...</p>
+                            <p className="mt-6 text-gray-600 dark:text-[#7AA49D] font-medium">Loading profile...</p>
                         </div>
                     </div>
                 </div>
@@ -144,19 +144,19 @@ const ProfilePage = () => {
     return (
         <PublicLayout>
             <ToastContainer position="top-right" autoClose={2000} theme="dark" />
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:to-[#0F1A17] py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     <div className="relative mb-10">
                         <div className="text-center">
                             <div className="inline-block p-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-lg mb-4">
                                 <UserCircleIcon className="h-10 w-10 text-white" />
                             </div>
-                            <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-[#E8F5F2] sm:text-5xl">
                                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                                     My Profile
                                 </span>
                             </h1>
-                            <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+                            <p className="mt-3 text-lg text-gray-600 dark:text-[#7AA49D] max-w-2xl mx-auto">
                                 Manage your personal information and account settings
                             </p>
                             <div className="mt-4 flex justify-center">
@@ -165,13 +165,13 @@ const ProfilePage = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                    <div className="bg-white dark:bg-[#1C2B27] rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-[#2A3D38]">
                         <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 py-8 sm:px-8">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-[#1C2B27]/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white dark:bg-[#1C2B27]/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
 
                             <div className="relative flex flex-col sm:flex-row items-center gap-6">
-                                <div className="w-28 h-28 rounded-2xl bg-white/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center shadow-xl">
+                                <div className="w-28 h-28 rounded-2xl bg-white dark:bg-[#1C2B27]/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center shadow-xl">
                                     <span className="text-5xl font-bold text-white">{getInitials()}</span>
                                 </div>
 
@@ -201,58 +201,58 @@ const ProfilePage = () => {
                             {!isEditing ? (
                                 <>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-xl p-5 border border-gray-100">
+                                        <div className="bg-gradient-to-br from-gray-50 dark:from-[#1C2B27] to-blue-50/30 dark:to-[#162019] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <div className="p-2 bg-blue-100 rounded-lg">
+                                                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                                                     <UserIcon className="h-4 w-4 text-blue-600" />
                                                 </div>
-                                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">First Name</span>
+                                                <span className="text-xs font-semibold text-gray-400 dark:text-[#66756F] uppercase tracking-wider">First Name</span>
                                             </div>
-                                            <p className="text-lg font-semibold text-gray-900">{formData.first_name || 'N/A'}</p>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-[#E8F5F2]">{formData.first_name || 'N/A'}</p>
                                         </div>
 
-                                        <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-xl p-5 border border-gray-100">
+                                        <div className="bg-gradient-to-br from-gray-50 dark:from-[#1C2B27] to-blue-50/30 dark:to-[#162019] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <div className="p-2 bg-blue-100 rounded-lg">
+                                                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                                                     <UserIcon className="h-4 w-4 text-blue-600" />
                                                 </div>
-                                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Last Name</span>
+                                                <span className="text-xs font-semibold text-gray-400 dark:text-[#66756F] uppercase tracking-wider">Last Name</span>
                                             </div>
-                                            <p className="text-lg font-semibold text-gray-900">{formData.last_name || 'N/A'}</p>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-[#E8F5F2]">{formData.last_name || 'N/A'}</p>
                                         </div>
 
-                                        <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-xl p-5 border border-gray-100">
+                                        <div className="bg-gradient-to-br from-gray-50 dark:from-[#1C2B27] to-purple-50/30 dark:to-[#162019] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <div className="p-2 bg-purple-100 rounded-lg">
+                                                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                                                     <EnvelopeIcon className="h-4 w-4 text-purple-600" />
                                                 </div>
-                                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Email Address</span>
+                                                <span className="text-xs font-semibold text-gray-400 dark:text-[#66756F] uppercase tracking-wider">Email Address</span>
                                             </div>
-                                            <p className="text-lg font-semibold text-gray-900 break-all">{formData.email || 'N/A'}</p>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-[#E8F5F2] break-all">{formData.email || 'N/A'}</p>
                                         </div>
 
-                                        <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-xl p-5 border border-gray-100">
+                                        <div className="bg-gradient-to-br from-gray-50 dark:from-[#1C2B27] to-purple-50/30 dark:to-[#162019] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <div className="p-2 bg-purple-100 rounded-lg">
+                                                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                                                     <PhoneIcon className="h-4 w-4 text-purple-600" />
                                                 </div>
-                                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Phone Number</span>
+                                                <span className="text-xs font-semibold text-gray-400 dark:text-[#66756F] uppercase tracking-wider">Phone Number</span>
                                             </div>
-                                            <p className="text-lg font-semibold text-gray-900">{formData.phone_number || 'N/A'}</p>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-[#E8F5F2]">{formData.phone_number || 'N/A'}</p>
                                         </div>
 
-                                        <div className="md:col-span-2 bg-gradient-to-br from-gray-50 to-green-50/30 rounded-xl p-5 border border-gray-100">
+                                        <div className="md:col-span-2 bg-gradient-to-br from-gray-50 dark:from-[#1C2B27] to-green-50/30 dark:to-[#162019] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <div className="p-2 bg-green-100 rounded-lg">
+                                                <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                                                     <CalendarIcon className="h-4 w-4 text-green-600" />
                                                 </div>
-                                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Member Since</span>
+                                                <span className="text-xs font-semibold text-gray-400 dark:text-[#66756F] uppercase tracking-wider">Member Since</span>
                                             </div>
-                                            <p className="text-lg font-semibold text-gray-900">{formatDate(formData.register_date)}</p>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-[#E8F5F2]">{formatDate(formData.register_date)}</p>
                                         </div>
                                     </div>
 
-                                    <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <div className="mt-8 pt-6 border-t border-gray-200 dark:border-[#2A3D38]">
                                         <button
                                             onClick={() => setIsEditing(true)}
                                             className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-medium transform hover:-translate-y-0.5"
@@ -266,7 +266,7 @@ const ProfilePage = () => {
                                 <form onSubmit={handleSubmit}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-700 dark:text-[#A8C4BE] mb-2">
                                                 First Name
                                             </label>
                                             <input
@@ -274,14 +274,14 @@ const ProfilePage = () => {
                                                 name="first_name"
                                                 value={editData.first_name}
                                                 onChange={handleEditChange}
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none"
+                                                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-[#2A3D38] rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none"
                                                 placeholder="Enter your first name"
                                                 required
                                             />
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-700 dark:text-[#A8C4BE] mb-2">
                                                 Last Name
                                             </label>
                                             <input
@@ -289,14 +289,14 @@ const ProfilePage = () => {
                                                 name="last_name"
                                                 value={editData.last_name}
                                                 onChange={handleEditChange}
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none"
+                                                className="w-full px-4 py-3 border-2 border-gray-200 dark:border-[#2A3D38] rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none"
                                                 placeholder="Enter your last name"
                                                 required
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
+                                    <div className="mt-8 pt-6 border-t border-gray-200 dark:border-[#2A3D38] flex flex-col sm:flex-row gap-4">
                                         <button
                                             type="submit"
                                             className="flex-1 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-medium transform hover:-translate-y-0.5"
@@ -307,7 +307,7 @@ const ProfilePage = () => {
                                         <button
                                             type="button"
                                             onClick={handleCancel}
-                                            className="flex-1 px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 flex items-center justify-center gap-2 font-medium"
+                                            className="flex-1 px-8 py-3 border-2 border-gray-300 dark:border-[#3D5550] text-gray-700 dark:text-[#A8C4BE] rounded-xl hover:bg-gray-50 dark:bg-[#0F1A17] hover:border-gray-400 transition-all duration-200 flex items-center justify-center gap-2 font-medium"
                                         >
                                             <XMarkIcon className="h-5 w-5" />
                                             Cancel
@@ -321,51 +321,51 @@ const ProfilePage = () => {
                     <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <button
                             onClick={() => navigate('/my-bookings')}
-                            className="bg-white rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group"
+                            className="bg-white dark:bg-[#1C2B27] rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-[#2A3D38] group"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="p-3 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors">
+                                <div className="p-3 bg-blue-50 dark:bg-blue-900/10 rounded-xl group-hover:bg-blue-100 dark:bg-blue-900/30 transition-colors">
                                     <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5z" />
                                     </svg>
                                 </div>
                                 <div className="text-left">
-                                    <h3 className="font-semibold text-gray-800">My Bookings</h3>
-                                    <p className="text-xs text-gray-500">View all your bookings</p>
+                                    <h3 className="font-semibold text-gray-800 dark:text-[#E8F5F2]">My Bookings</h3>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">View all your bookings</p>
                                 </div>
                             </div>
                         </button>
 
                         <button
                             onClick={() => navigate('/events')}
-                            className="bg-white rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group"
+                            className="bg-white dark:bg-[#1C2B27] rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-[#2A3D38] group"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition-colors">
+                                <div className="p-3 bg-purple-50 dark:bg-purple-900/10 rounded-xl group-hover:bg-purple-100 dark:bg-purple-900/30 transition-colors">
                                     <svg className="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                     </svg>
                                 </div>
                                 <div className="text-left">
-                                    <h3 className="font-semibold text-gray-800">Browse Events</h3>
-                                    <p className="text-xs text-gray-500">Discover new events</p>
+                                    <h3 className="font-semibold text-gray-800 dark:text-[#E8F5F2]">Browse Events</h3>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Discover new events</p>
                                 </div>
                             </div>
                         </button>
 
                         <button
                             onClick={handleLogout}
-                            className="bg-white rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group"
+                            className="bg-white dark:bg-[#1C2B27] rounded-2xl shadow-lg p-5 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-[#2A3D38] group"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="p-3 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors">
+                                <div className="p-3 bg-red-50 dark:bg-red-900/10 rounded-xl group-hover:bg-red-100 dark:bg-red-900/30 transition-colors">
                                     <svg className="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
                                 </div>
                                 <div className="text-left">
-                                    <h3 className="font-semibold text-gray-800">Logout</h3>
-                                    <p className="text-xs text-gray-500">Sign out of your account</p>
+                                    <h3 className="font-semibold text-gray-800 dark:text-[#E8F5F2]">Logout</h3>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Sign out of your account</p>
                                 </div>
                             </div>
                         </button>

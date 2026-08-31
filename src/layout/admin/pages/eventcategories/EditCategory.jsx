@@ -4,6 +4,7 @@ import { AdminLayout } from '../../AdminLayout';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FiArrowLeft, FiSave, FiX, FiLoader } from 'react-icons/fi';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const EditCategory = () => {
     const { id } = useParams();
@@ -33,7 +34,7 @@ const EditCategory = () => {
     // Fetch category details
     const fetchCategoryDetails = () => {
         setLoading(true);
-        fetch(`http://127.0.0.1:8000/api/v1/category-details/${id}/`)
+        fetch(`${API_BASE_URL}/category-details/${id}/`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -59,7 +60,7 @@ const EditCategory = () => {
 
     // Fetch parent categories
     const fetchParentCategories = () => {
-        fetch('http://127.0.0.1:8000/api/v1/view-categories/')
+        fetch(`${API_BASE_URL}/view-categories/`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -118,7 +119,7 @@ const EditCategory = () => {
             parent_category: parentCategory || null,
         };
 
-        fetch(`http://127.0.0.1:8000/api/v1/category-details/${id}/`, {
+        fetch(`${API_BASE_URL}/category-details/${id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -193,7 +194,7 @@ const EditCategory = () => {
                 </div>
 
                 {/* Form */}
-                <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm">
                     <form onSubmit={handleUpdate} className="p-6 space-y-6">
                         {/* Category Name */}
                         <div>
@@ -214,7 +215,7 @@ const EditCategory = () => {
                                         ? 'border-red-500 focus:ring-red-500 dark:border-red-500'
                                         : 'border-gray-300 dark:border-stone-700 focus:ring-blue-500 dark:focus:ring-blue-400'
                                     }
-                                    bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100
+                                    bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100
                                 `}
                                 placeholder="Enter category name"
                             />
@@ -242,7 +243,7 @@ const EditCategory = () => {
                                         ? 'border-red-500 focus:ring-red-500 dark:border-red-500'
                                         : 'border-gray-300 dark:border-stone-700 focus:ring-blue-500 dark:focus:ring-blue-400'
                                     }
-                                    bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100
+                                    bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100
                                 `}
                                 placeholder="Enter category description (optional)"
                             />
@@ -291,7 +292,7 @@ const EditCategory = () => {
                             <select
                                 value={parentCategory}
                                 onChange={(e) => setParentCategory(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-stone-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100"
                             >
                                 <option value="">None (Top Level)</option>
                                 {parentCategories.map(category => (

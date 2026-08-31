@@ -1,0 +1,51 @@
+User-agent: *
+Allow: /
+Allow: /events
+Allow: /event/
+Allow: /categories
+Allow: /about
+Allow: /contact
+Allow: /help-center
+Allow: /booking-guide
+Allow: /terms-conditions
+Allow: /privacy-policy
+
+# Disallow private and administrative areas
+Disallow: /admin-login
+Disallow: /admin-dashboard
+Disallow: /admin/
+Disallow: /add-category
+Disallow: /manage-category
+Disallow: /edit-category/
+Disallow: /add-event
+Disallow: /manage-event
+Disallow: /edit-event/
+Disallow: /manage-users
+Disallow: /manage-reviews
+Disallow: /manage-messages
+Disallow: /search-bookings
+Disallow: /booking-list
+Disallow: /booking-cancel
+Disallow: /booking-confirm
+Disallow: /booking-confirmed
+Disallow: /booking-status
+Disallow: /booking-report
+Disallow: /booking-not-confirm
+Disallow: /userdashboard/
+Disallow: /user-dashboard/
+Disallow: /cart
+Disallow: /payment
+Disallow: /my-bookings
+Disallow: /my-booking-details/
+Disallow: /profile
+Disallow: /change-password
+Disallow: /favourites
+Disallow: /login
+Disallow: /register
+Disallow: /verify
+Disallow: /verify-email-sent
+Disallow: /search
+
+# Dynamic sitemaps
+Sitemap: http://localhost:5173/sitemap.xml
+Sitemap: http://localhost:8000/api/v1/sitemap.xml

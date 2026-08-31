@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaBars, FaBell, FaSignOutAlt, FaUserCircle, FaChevronDown, FaChevronLeft, FaChevronRight, FaMoon, FaSun, FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { APP_NAME } from '../utils/auth';
 
 const AdminHeader = ({
     onSidebarToggle,
@@ -24,6 +25,15 @@ const AdminHeader = ({
     const [localUnreadCount, setLocalUnreadCount] = useState(0);
     const navigate = useNavigate();
     const notificationRef = useRef(null);
+
+    const adminUserData = (() => {
+        try {
+            return JSON.parse(localStorage.getItem('adminUser') || '{}');
+        } catch {
+            return {};
+        }
+    })();
+    const adminEmail = adminUserData.email || `admin@${APP_NAME}.com`;
 
     // Update local unread count when prop changes
     useEffect(() => {
@@ -115,7 +125,7 @@ const AdminHeader = ({
     };
 
     return (
-        <header className="w-full bg-[#FDFDF7] dark:bg-zinc-950 border-b border-[#E6E1D8] dark:border-stone-800/80 px-6 py-4 flex items-center justify-between sticky top-0 z-30 select-none transition-colors duration-300">
+        <header className="w-full bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-zinc-950 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/80 px-6 py-4 flex items-center justify-between sticky top-0 z-30 select-none transition-colors duration-300">
 
             {/* Toggle Sidebar Button */}
             <button
@@ -131,7 +141,7 @@ const AdminHeader = ({
                 <button
                     type="button"
                     onClick={handleSidebarToggle}
-                    className="lg:hidden text-[#4A5C57] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] p-2 rounded-lg bg-[#E6F9F6] dark:bg-stone-900/50 hover:bg-[#C8EDE8] dark:hover:bg-stone-900 border border-[#C8EDE8] dark:border-stone-800/60 transition-all duration-200 active:scale-95"
+                    className="lg:hidden text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] p-2 rounded-lg bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/50 hover:bg-[#C8EDE8] dark:bg-[#2A3D38] dark:hover:bg-stone-900 border border-[#C8EDE8] dark:border-[#2A3D38] dark:border-stone-800/60 transition-all duration-200 active:scale-95"
                     aria-label="Toggle Sidebar"
                 >
                     <FaBars className="text-lg" />
@@ -146,10 +156,10 @@ const AdminHeader = ({
                         </svg>
                     </div>
                     <div className="leading-none">
-                        <span className="font-black text-[#1E352F] dark:text-white text-xl tracking-widest uppercase">
+                        <span className="font-black text-[#1E352F] dark:text-[#E8F5F2] dark:text-white text-xl tracking-widest uppercase">
                             TIX<span className="text-[#29BBA3] dark:text-[#29BBA3]">ELO</span>
                         </span>
-                        <p className="text-[9px] text-[#66756F] dark:text-stone-500 tracking-wide font-medium leading-none mt-0.5">Admin Panel</p>
+                        <p className="text-[9px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 tracking-wide font-medium leading-none mt-0.5">Admin Panel</p>
                     </div>
                 </div>
             </div>
@@ -161,7 +171,7 @@ const AdminHeader = ({
                 <button
                     type="button"
                     onClick={toggleDarkMode}
-                    className="p-2.5 rounded-xl border border-[#E6E1D8] dark:border-stone-800 bg-[#F4F3EC] dark:bg-stone-950 text-[#66756F] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] hover:border-[#C8EDE8] dark:hover:border-stone-700 transition-all duration-200"
+                    className="p-2.5 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 bg-[#F4F3EC] dark:bg-[#162019] dark:bg-stone-950 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] hover:border-[#C8EDE8] dark:border-[#2A3D38] dark:hover:border-stone-700 transition-all duration-200"
                     aria-label="Toggle Dark Mode"
                 >
                     {isDarkMode ? <FaSun className="text-base" /> : <FaMoon className="text-base" />}
@@ -177,14 +187,14 @@ const AdminHeader = ({
                         }}
                         className={`p-2.5 rounded-xl border transition-all duration-200 relative ${isNotificationsOpen
                             ? 'bg-[#E6F9F6] dark:bg-[#1E8B7A]/10 border-[#C8EDE8] dark:border-[#1E8B7A]/30 text-[#1E8B7A] dark:text-[#29BBA3]'
-                            : 'bg-[#F4F3EC] dark:bg-stone-950 border-[#E6E1D8] dark:border-stone-800 text-[#66756F] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] hover:border-[#C8EDE8] dark:hover:border-stone-700'
+                            : 'bg-[#F4F3EC] dark:bg-[#162019] dark:bg-stone-950 border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] hover:border-[#C8EDE8] dark:border-[#2A3D38] dark:hover:border-stone-700'
                             }`}
                     >
                         <FaBell className="text-base" />
 
                         {/* Notification Badge - Shows count */}
                         {bellCount > 0 && (
-                            <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-[#F0A71E] text-[#1E352F] text-[10px] font-bold rounded-full ring-2 ring-white dark:ring-zinc-950 animate-pulse">
+                            <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-[#F0A71E] text-[#1E352F] dark:text-[#E8F5F2] text-[10px] font-bold rounded-full ring-2 ring-white dark:ring-zinc-950 animate-pulse">
                                 {bellCount > 99 ? '99+' : bellCount}
                             </span>
                         )}
@@ -192,11 +202,11 @@ const AdminHeader = ({
 
                     {/* NOTIFICATIONS DROPDOWN */}
                     {isNotificationsOpen && (
-                        <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-zinc-900 border border-[#E6E1D8] dark:border-stone-800 rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+                        <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#1C2B27] dark:bg-zinc-900 border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
 
                             {/* Header */}
-                            <div className="flex items-center justify-between px-4 py-3 border-b border-[#E6E1D8] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-stone-950/40">
-                                <h3 className="text-xs font-bold text-[#1E352F] dark:text-stone-300 uppercase tracking-wider">
+                            <div className="flex items-center justify-between px-4 py-3 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-950/40">
+                                <h3 className="text-xs font-bold text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-300 uppercase tracking-wider">
                                     Notifications
                                     {bellCount > 0 && (
                                         <span className="ml-2 text-[10px] bg-[#E6F9F6] dark:bg-[#1E8B7A]/20 text-[#1E8B7A] dark:text-[#29BBA3] px-2 py-0.5 rounded-full">
@@ -217,7 +227,7 @@ const AdminHeader = ({
                                     {notifications.length > 0 && clearAllNotifications && (
                                         <button
                                             onClick={handleClearAll}
-                                            className="text-[11px] text-[#66756F] dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 hover:underline flex items-center gap-1"
+                                            className="text-[11px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 hover:underline flex items-center gap-1"
                                         >
                                             <FaTrash className="w-2.5 h-2.5" />
                                             Clear all
@@ -232,18 +242,18 @@ const AdminHeader = ({
                                     notifications.map((n) => (
                                         <div
                                             key={n.id}
-                                            className={`p-3 border-b border-[#E6E1D8] dark:border-stone-800/40 transition-all duration-200 ${n.unread
-                                                ? 'bg-white dark:bg-zinc-900 hover:bg-[#FDFDF7] dark:hover:bg-stone-800/50 cursor-pointer'
-                                                : 'bg-[#FDFDF7]/50 dark:bg-stone-900/30 opacity-60'
+                                            className={`p-3 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/40 transition-all duration-200 ${n.unread
+                                                ? 'bg-white dark:bg-[#1C2B27] dark:bg-zinc-900 hover:bg-[#FDFDF7] dark:bg-[#0F1A17] dark:hover:bg-stone-800/50 cursor-pointer'
+                                                : 'bg-[#FDFDF7] dark:bg-[#0F1A17]/50 dark:bg-stone-900/30 opacity-60'
                                                 }`}
                                             onClick={() => n.unread && handleMarkAsRead(n.id)}
                                         >
                                             <div className="flex items-start justify-between gap-2">
                                                 <div className="flex-1">
-                                                    <p className={`text-sm ${n.unread ? 'text-[#1E352F] dark:text-stone-200 font-bold' : 'text-[#66756F] dark:text-stone-400'}`}>
+                                                    <p className={`text-sm ${n.unread ? 'text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-200 font-bold' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400'}`}>
                                                         {n.text}
                                                     </p>
-                                                    <span className="text-[11px] text-[#66756F] dark:text-stone-500 block mt-1">
+                                                    <span className="text-[11px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 block mt-1">
                                                         {n.timestamp ? formatTime(n.timestamp) : n.time || 'Just now'}
                                                     </span>
                                                 </div>
@@ -270,18 +280,18 @@ const AdminHeader = ({
                                         </div>
                                     ))
                                 ) : (
-                                    <div className="text-center py-8 bg-[#FDFDF7]">
+                                    <div className="text-center py-8 bg-[#FDFDF7] dark:bg-[#0F1A17]">
                                         <FaBell className="text-4xl text-[#C8EDE8] dark:text-stone-700 mx-auto mb-3" />
-                                        <p className="text-sm text-[#4A5C57] dark:text-stone-400">No notifications</p>
-                                        <p className="text-xs text-[#66756F] dark:text-stone-500 mt-1">You're all caught up!</p>
+                                        <p className="text-sm text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-400">No notifications</p>
+                                        <p className="text-xs text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 mt-1">You're all caught up!</p>
                                     </div>
                                 )}
                             </div>
 
                             {/* Footer */}
                             {notifications.length > 0 && (
-                                <div className="px-4 py-2 border-t border-[#E6E1D8] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-stone-950/40 text-center">
-                                    <span className="text-[10px] text-[#66756F] dark:text-stone-500">
+                                <div className="px-4 py-2 border-t border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-950/40 text-center">
+                                    <span className="text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500">
                                         {notifications.filter(n => n.unread).length} unread · {notifications.length} total
                                     </span>
                                 </div>
@@ -303,32 +313,32 @@ const AdminHeader = ({
                         }}
                         className={`flex items-center space-x-2.5 pl-2 pr-3 py-1.5 rounded-xl border transition-all duration-200 ${isProfileOpen
                             ? 'bg-[#E6F9F6] dark:bg-[#1E8B7A]/10 border-[#C8EDE8] dark:border-[#1E8B7A]/30 text-[#1E8B7A] dark:text-[#29BBA3]'
-                            : 'bg-[#F4F3EC] dark:bg-stone-950 border-[#E6E1D8] dark:border-stone-800 text-[#66756F] dark:text-stone-400 hover:text-[#1E352F] dark:hover:text-stone-200 hover:border-[#C8EDE8] dark:hover:border-stone-700'
+                            : 'bg-[#F4F3EC] dark:bg-[#162019] dark:bg-stone-950 border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E352F] dark:text-[#E8F5F2] dark:hover:text-stone-200 hover:border-[#C8EDE8] dark:border-[#2A3D38] dark:hover:border-stone-700'
                             }`}
                     >
-                        <FaUserCircle className="text-2xl text-[#66756F] dark:text-stone-400" />
+                        <FaUserCircle className="text-2xl text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400" />
                         <div className="hidden md:block text-left leading-tight">
-                            <p className="text-xs font-bold text-[#1E352F] dark:text-stone-300">Admin</p>
-                            <span className="text-[10px] text-[#66756F] dark:text-stone-500 block">Root Access</span>
+                            <p className="text-xs font-bold text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-300">Admin</p>
+                            <span className="text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 block">Root Access</span>
                         </div>
-                        <FaChevronDown className={`text-[10px] text-[#66756F] dark:text-stone-500 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-[#1E8B7A] dark:text-[#29BBA3]' : ''}`} />
+                        <FaChevronDown className={`text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-[#1E8B7A] dark:text-[#29BBA3]' : ''}`} />
                     </button>
 
                     {/* PROFILE DROPDOWN */}
                     {isProfileOpen && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-[#E6E1D8] dark:border-stone-800 rounded-2xl shadow-2xl overflow-hidden py-1">
-                            <div className="px-4 py-2.5 border-b border-[#E6E1D8] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-stone-950/40">
-                                <p className="text-[10px] text-[#66756F] dark:text-stone-500 font-bold uppercase tracking-wider">Logged in as</p>
-                                <p className="text-xs text-[#1E352F] dark:text-stone-300 truncate">admin@tixelo.com</p>
+                        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#1C2B27] dark:bg-zinc-900 border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 rounded-2xl shadow-2xl overflow-hidden py-1">
+                            <div className="px-4 py-2.5 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-950/40">
+                                <p className="text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 font-bold uppercase tracking-wider">Logged in as</p>
+                                <p className="text-xs text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-300 truncate">{adminEmail}</p>
                             </div>
-                            <a href="#profile" className="flex items-center space-x-2.5 px-4 py-3 text-xs text-[#4A5C57] dark:text-stone-400 hover:bg-[#FDFDF7] dark:hover:bg-stone-950 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-colors">
+                            <a href="#profile" className="flex items-center space-x-2.5 px-4 py-3 text-xs text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-400 hover:bg-[#FDFDF7] dark:bg-[#0F1A17] dark:hover:bg-stone-950 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-colors">
                                 <FaUserCircle className="text-sm" />
                                 <span>My Account</span>
                             </a>
                             <button
                                 type="button"
                                 onClick={handleLogout}
-                                className="w-full flex items-center space-x-2.5 px-4 py-3 text-xs text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors border-t border-[#E6E1D8] dark:border-stone-800/40 text-left font-bold"
+                                className="w-full flex items-center space-x-2.5 px-4 py-3 text-xs text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors border-t border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/40 text-left font-bold"
                             >
                                 <FaSignOutAlt className="text-sm" />
                                 <span>Logout Session</span>
@@ -340,14 +350,14 @@ const AdminHeader = ({
 
             {/* MOBILE MENU OVERLAY */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-zinc-950 border-b border-[#E6E1D8] dark:border-stone-800/80 shadow-2xl p-4 animate-slide-down max-h-[80vh] overflow-y-auto">
+                <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-[#1C2B27] dark:bg-zinc-950 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/80 shadow-2xl p-4 animate-slide-down max-h-[80vh] overflow-y-auto">
                     <div className="flex flex-col space-y-3">
 
                         {/* THEME TOGGLE MOBILE */}
                         <button
                             type="button"
                             onClick={toggleDarkMode}
-                            className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-[#E6E1D8] dark:border-stone-800 bg-[#F4F3EC] dark:bg-stone-900/50 text-[#66756F] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-all duration-200"
+                            className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 bg-[#F4F3EC] dark:bg-[#162019] dark:bg-stone-900/50 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-all duration-200"
                         >
                             <div className="flex items-center space-x-3">
                                 {isDarkMode ? <FaSun className="text-base" /> : <FaMoon className="text-base" />}
@@ -365,7 +375,7 @@ const AdminHeader = ({
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-200 ${isNotificationsOpen
                                     ? 'bg-[#E6F9F6] dark:bg-[#1E8B7A]/10 border-[#C8EDE8] dark:border-[#1E8B7A]/30 text-[#1E8B7A] dark:text-[#29BBA3]'
-                                    : 'bg-[#FDFDF7] dark:bg-stone-900/50 border-[#E6E1D8] dark:border-stone-800 text-[#66756F] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'
+                                    : 'bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-900/50 border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'
                                     }`}
                             >
                                 <div className="flex items-center space-x-3">
@@ -373,7 +383,7 @@ const AdminHeader = ({
                                     <span className="text-sm font-medium">Notifications</span>
                                 </div>
                                 {bellCount > 0 && (
-                                    <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-[#F0A71E] text-[#1E352F] text-[10px] font-bold rounded-full">
+                                    <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-[#F0A71E] text-[#1E352F] dark:text-[#E8F5F2] text-[10px] font-bold rounded-full">
                                         {bellCount}
                                     </span>
                                 )}
@@ -381,9 +391,9 @@ const AdminHeader = ({
 
                             {/* Mobile notifications dropdown */}
                             {isNotificationsOpen && (
-                                <div className="mt-2 bg-white dark:bg-zinc-900 border border-[#E6E1D8] dark:border-stone-800 rounded-xl p-3 max-h-60 overflow-y-auto">
-                                    <div className="flex items-center justify-between pb-2 border-b border-[#E6E1D8] dark:border-stone-800/60 mb-2">
-                                        <h3 className="text-xs font-bold text-[#1E352F] dark:text-stone-300 uppercase tracking-wider">
+                                <div className="mt-2 bg-white dark:bg-[#1C2B27] dark:bg-zinc-900 border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 rounded-xl p-3 max-h-60 overflow-y-auto">
+                                    <div className="flex items-center justify-between pb-2 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 mb-2">
+                                        <h3 className="text-xs font-bold text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-300 uppercase tracking-wider">
                                             Notifications
                                             {bellCount > 0 && (
                                                 <span className="ml-2 text-[10px] bg-[#E6F9F6] dark:bg-[#1E8B7A]/20 text-[#1E8B7A] dark:text-[#29BBA3] px-2 py-0.5 rounded-full">
@@ -403,7 +413,7 @@ const AdminHeader = ({
                                             {notifications.length > 0 && clearAllNotifications && (
                                                 <button
                                                     onClick={handleClearAll}
-                                                    className="text-[11px] text-[#66756F] dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 hover:underline"
+                                                    className="text-[11px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-red-500 dark:hover:text-red-400 hover:underline"
                                                 >
                                                     Clear all
                                                 </button>
@@ -416,21 +426,21 @@ const AdminHeader = ({
                                             notifications.slice(0, 5).map((n) => (
                                                 <div
                                                     key={n.id}
-                                                    className={`p-2 rounded-lg text-left ${n.unread ? 'bg-[#FDFDF7] dark:bg-stone-950/60' : ''
+                                                    className={`p-2 rounded-lg text-left ${n.unread ? 'bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-950/60' : ''
                                                         }`}
                                                     onClick={() => n.unread && handleMarkAsRead(n.id)}
                                                 >
-                                                    <p className={`text-xs ${n.unread ? 'text-[#1E352F] dark:text-stone-200 font-bold' : 'text-[#66756F] dark:text-stone-400'}`}>
+                                                    <p className={`text-xs ${n.unread ? 'text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-200 font-bold' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400'}`}>
                                                         {n.text}
                                                     </p>
-                                                    <span className="text-[10px] text-[#66756F] dark:text-stone-500 block mt-1">
+                                                    <span className="text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 block mt-1">
                                                         {n.timestamp ? formatTime(n.timestamp) : n.time || 'Just now'}
                                                     </span>
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="text-center py-4 bg-[#FDFDF7]">
-                                                <p className="text-xs text-[#66756F] dark:text-stone-400">No notifications</p>
+                                            <div className="text-center py-4 bg-[#FDFDF7] dark:bg-[#0F1A17]">
+                                                <p className="text-xs text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400">No notifications</p>
                                             </div>
                                         )}
                                     </div>
@@ -448,31 +458,31 @@ const AdminHeader = ({
                                 }}
                                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-200 ${isProfileOpen
                                     ? 'bg-[#E6F9F6] dark:bg-[#1E8B7A]/10 border-[#C8EDE8] dark:border-[#1E8B7A]/30 text-[#1E8B7A] dark:text-[#29BBA3]'
-                                    : 'bg-[#FDFDF7] dark:bg-stone-900/50 border-[#E6E1D8] dark:border-stone-800 text-[#66756F] dark:text-stone-400 hover:text-[#1E352F] dark:hover:text-stone-200'
+                                    : 'bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-900/50 border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:text-[#1E352F] dark:text-[#E8F5F2] dark:hover:text-stone-200'
                                     }`}
                             >
                                 <div className="flex items-center space-x-3">
                                     <FaUserCircle className="text-xl" />
                                     <span className="text-sm font-medium">Profile</span>
                                 </div>
-                                <FaChevronDown className={`text-[10px] text-[#66756F] dark:text-stone-500 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-[#1E8B7A] dark:text-[#29BBA3]' : ''}`} />
+                                <FaChevronDown className={`text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 transition-transform duration-300 ${isProfileOpen ? 'rotate-180 text-[#1E8B7A] dark:text-[#29BBA3]' : ''}`} />
                             </button>
 
                             {/* Mobile profile dropdown */}
                             {isProfileOpen && (
-                                <div className="mt-2 bg-white dark:bg-zinc-900 border border-[#E6E1D8] dark:border-stone-800 rounded-xl overflow-hidden">
-                                    <div className="px-4 py-2.5 border-b border-[#E6E1D8] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-stone-950/40">
-                                        <p className="text-[10px] text-[#66756F] dark:text-stone-500 font-bold uppercase tracking-wider">Logged in as</p>
-                                        <p className="text-xs text-[#1E352F] dark:text-stone-300 truncate">admin@tixelo.com</p>
+                                <div className="mt-2 bg-white dark:bg-[#1C2B27] dark:bg-zinc-900 border border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 rounded-xl overflow-hidden">
+                                    <div className="px-4 py-2.5 border-b border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 bg-[#FDFDF7] dark:bg-[#0F1A17] dark:bg-stone-950/40">
+                                        <p className="text-[10px] text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500 font-bold uppercase tracking-wider">Logged in as</p>
+                                        <p className="text-xs text-[#1E352F] dark:text-[#E8F5F2] dark:text-stone-300 truncate">{adminEmail}</p>
                                     </div>
-                                    <a href="#profile" className="flex items-center space-x-2.5 px-4 py-3 text-xs text-[#4A5C57] dark:text-stone-400 hover:bg-[#FDFDF7] dark:hover:bg-stone-950 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-colors">
+                                    <a href="#profile" className="flex items-center space-x-2.5 px-4 py-3 text-xs text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-400 hover:bg-[#FDFDF7] dark:bg-[#0F1A17] dark:hover:bg-stone-950 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-colors">
                                         <FaUserCircle className="text-sm" />
                                         <span>My Account</span>
                                     </a>
                                     <button
                                         type="button"
                                         onClick={handleLogout}
-                                        className="w-full flex items-center space-x-2.5 px-4 py-3 text-xs text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors border-t border-[#E6E1D8] dark:border-stone-800/40 text-left font-bold"
+                                        className="w-full flex items-center space-x-2.5 px-4 py-3 text-xs text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors border-t border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/40 text-left font-bold"
                                     >
                                         <FaSignOutAlt className="text-sm" />
                                         <span>Logout Session</span>

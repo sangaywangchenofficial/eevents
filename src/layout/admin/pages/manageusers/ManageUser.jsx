@@ -18,6 +18,7 @@ import {
     FiXCircle
 } from 'react-icons/fi';
 import { CSVLink } from 'react-csv';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const ManageUser = () => {
     const [users, setUsers] = useState([]);
@@ -43,7 +44,7 @@ const ManageUser = () => {
     // Fetch users
     const fetchUsers = () => {
         setIsLoading(true);
-        fetch('http://127.0.0.1:8000/api/v1/view-users/')
+        fetch(`${API_BASE_URL}/view-users/`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -96,7 +97,7 @@ const ManageUser = () => {
         }
 
         setIsLoading(true);
-        fetch(`http://127.0.0.1:8000/api/v1/user-details/${id}/`, {
+        fetch(`${API_BASE_URL}/user-details/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,7 +135,7 @@ const ManageUser = () => {
 
         setIsLoading(true);
         const deletePromises = selectedUsers.map(id =>
-            fetch(`http://127.0.0.1:8000/api/v1/user-details/${id}/`, {
+            fetch(`${API_BASE_URL}/user-details/${id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -239,7 +240,7 @@ const ManageUser = () => {
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-stone-400">Total Users</p>
@@ -253,7 +254,7 @@ const ManageUser = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-stone-400">Active Users</p>
@@ -267,7 +268,7 @@ const ManageUser = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-stone-400">Inactive Users</p>
@@ -281,7 +282,7 @@ const ManageUser = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-stone-400">Recent Users</p>
@@ -310,7 +311,7 @@ const ManageUser = () => {
                             <input
                                 type="text"
                                 placeholder="Search by name, email, or username..."
-                                className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
+                                className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
                                 value={searchTerm}
                                 onChange={(e) => handleSearch(e.target.value)}
                             />
@@ -347,7 +348,7 @@ const ManageUser = () => {
                     </div>
 
                     {/* Users Table */}
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
                         {isLoading ? (
                             <div className="flex justify-center items-center py-12">
                                 <div className="text-center">

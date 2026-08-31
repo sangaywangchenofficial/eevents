@@ -6,13 +6,14 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FiSearch, FiEdit, FiTrash2, FiDownload } from 'react-icons/fi'
 import { CSVLink } from 'react-csv';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const ManageEvent = () => {
     const [events, setEvents] = useState([]); // Adds all events in tables 
     const [allEvents, setAllEvents] = useState([]); // to store all events during search
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/v1/view-events/')
+        fetch(`${API_BASE_URL}/view-events/`)
             .then(res => res.json())
             .then(data => {
                 console.log("Django API Response Data:", data);
@@ -52,7 +53,7 @@ const ManageEvent = () => {
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/api/v1/event-detail/${id}/`, {
+        fetch(`${API_BASE_URL}/event-detail/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -137,7 +138,7 @@ const ManageEvent = () => {
                                 <input
                                     type="text"
                                     placeholder="Search by name, description, or location..."
-                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
+                                    className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-stone-700 bg-white dark:bg-[#1C2B27] dark:bg-stone-800 text-gray-900 dark:text-stone-100 rounded-lg text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
                                     onChange={(e) => handleSearch(e.target.value)}
                                 />
                             </div>
@@ -154,7 +155,7 @@ const ManageEvent = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg overflow-hidden shadow-sm transition-colors">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>

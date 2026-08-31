@@ -12,7 +12,7 @@
     --font-heading: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
 
-    /* Brand Colors */
+    /* Brand Colors — unchanged in both modes */
     --color-brand-teal:      #29BBA3;
     --color-brand-teal-dark: #1E8B7A;
     --color-brand-green:     #1E352F;
@@ -21,17 +21,17 @@
     --color-accent-yellow:   #F0A71E;
     --color-accent-orange:   #F47F1D;
 
-    /* Background */
+    /* Background — Light Mode */
     --color-bg-canvas:       #FDFDF7;
     --color-bg-section:      #F4F3EC;
     --color-bg-card:         #FFFFFF;
 
-    /* Text */
+    /* Text — Light Mode */
     --color-text-primary:    #1E352F;
     --color-text-body:       #4A5C57;
     --color-text-muted:      #66756F;
 
-    /* UI */
+    /* UI — Light Mode */
     --color-border:          #E6E1D8;
     --color-border-strong:   #C8C2B8;
 
@@ -44,22 +44,65 @@
     --color-text-dark:       #1E352F;
   }
 
+  /* ── Dark Mode Token Overrides ── */
+  .dark {
+    --color-bg-canvas:       #0F1A17;
+    --color-bg-section:      #162019;
+    --color-bg-card:         #1C2B27;
+
+    --color-text-primary:    #E8F5F2;
+    --color-text-body:       #A8C4BE;
+    --color-text-muted:      #7AA49D;
+
+    --color-border:          #2A3D38;
+    --color-border-strong:   #3D5550;
+
+    --color-bg-main:         #0F1A17;
+    --color-text-dark:       #E8F5F2;
+  }
+
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   body {
-    background-color: #FDFDF7;
-    color: #4A5C57;
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-body);
     overflow-x: hidden;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #1E352F;
+    color: var(--color-text-primary);
   }
+}
+
+/* ============================================================
+   GLOBAL SMOOTH THEME TRANSITION
+   ============================================================ */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+body * {
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude animation-heavy elements from colour transitions to keep motion smooth */
+img,
+video,
+svg,
+canvas,
+[class*="animate-"],
+[class*="motion-"],
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 /* ============================================================
@@ -113,12 +156,17 @@
   border-radius: 9999px;
 }
 
-/* Glassmorphism — TIXELO teal tint */
+/* Glassmorphism — TIXELO teal tint — Light */
 .glass-panel {
   background: rgba(253, 253, 247, 0.80);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(230, 225, 216, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 26, 23, 0.88);
+  border: 1px solid rgba(41, 187, 163, 0.18);
 }
 
 .glass-panel-dark {
@@ -135,6 +183,12 @@
   box-shadow: 0 10px 30px -10px rgba(30, 53, 47, 0.08);
 }
 
+.dark .glass-card {
+  background: rgba(28, 43, 39, 0.90);
+  border: 1px solid rgba(41, 187, 163, 0.15);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
 /* Bhutanese motif dot pattern — teal */
 .bhutan-pattern-bg {
   background-color: #F4F3EC;
@@ -144,6 +198,13 @@
   background-size: 26px 26px;
   background-position: 0 0, 13px 13px;
   opacity: 0.95;
+}
+
+.dark .bhutan-pattern-bg {
+  background-color: #162019;
+  background-image:
+    radial-gradient(#29BBA3 0.65px, transparent 0.65px),
+    radial-gradient(#29BBA3 0.65px, #162019 0.65px);
 }
 
 /* Glow effects — teal */

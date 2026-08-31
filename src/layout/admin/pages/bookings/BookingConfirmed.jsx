@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AdminLayout } from '../../AdminLayout'
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const BookingConfirmed = () => {
     const [bookings, setBookings] = useState([]);
@@ -33,7 +34,7 @@ const BookingConfirmed = () => {
             const token = getAuthToken();
             if (!token) { navigate('/admin-login'); return; }
 
-            const response = await fetch('http://localhost:8000/api/v1/booking/confirmed/', {
+            const response = await fetch(`${API_BASE_URL}/booking/confirmed/`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             });
@@ -110,7 +111,7 @@ const BookingConfirmed = () => {
                             Total: {bookings.length} confirmed booking{bookings.length > 1 ? 's' : ''}
                         </p>
                         <div className="overflow-x-auto shadow-md rounded-lg">
-                            <table className="min-w-full bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
+                            <table className="min-w-full bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
                                 <thead className="bg-gray-100 dark:bg-zinc-700">
                                     <tr>
                                         {['ID', 'User', 'Event', 'Quantity', 'Total Price', 'Date', 'Time', 'Status'].map(h => (

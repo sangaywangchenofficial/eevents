@@ -37,6 +37,7 @@ import {
     Area,
     ComposedChart
 } from 'recharts';
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const AdminDashboard = () => {
     // Parse admin user from localStorage
@@ -123,7 +124,7 @@ const AdminDashboard = () => {
 
     const fetchMetrics = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/dashboard-metrics/', {
+            const response = await fetch(`${API_BASE_URL}/admin/dashboard-metrics/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -159,7 +160,7 @@ const AdminDashboard = () => {
 
     const fetchRecentActivities = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/recent-activities/', {
+            const response = await fetch(`${API_BASE_URL}/admin/recent-activities/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -178,7 +179,7 @@ const AdminDashboard = () => {
 
     const fetchSalesData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/sales-data/', {
+            const response = await fetch(`${API_BASE_URL}/admin/sales-data/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -196,7 +197,7 @@ const AdminDashboard = () => {
 
     const fetchNewUsersData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/new-users-weekly/', {
+            const response = await fetch(`${API_BASE_URL}/admin/new-users-weekly/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -214,7 +215,7 @@ const AdminDashboard = () => {
 
     const fetchBookingStats = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/booking-stats/', {
+            const response = await fetch(`${API_BASE_URL}/admin/booking-stats/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -232,7 +233,7 @@ const AdminDashboard = () => {
 
     const fetchCategoryData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/category-performance/', {
+            const response = await fetch(`${API_BASE_URL}/admin/category-performance/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -257,7 +258,7 @@ const AdminDashboard = () => {
 
     const fetchTopEvents = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/admin/top-events/', {
+            const response = await fetch(`${API_BASE_URL}/admin/top-events/`, {
                 headers: {
                     'Authorization': `Bearer ${adminUser?.token || ''}`,
                     'Content-Type': 'application/json',
@@ -379,7 +380,7 @@ const AdminDashboard = () => {
 
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-500 dark:text-stone-400">Total Bookings</p>
@@ -400,7 +401,7 @@ const AdminDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-500 dark:text-stone-400">Total Users</p>
@@ -421,7 +422,7 @@ const AdminDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-500 dark:text-stone-400">Monthly Sales</p>
@@ -442,7 +443,7 @@ const AdminDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-500 dark:text-stone-400">Average Rating</p>
@@ -467,34 +468,34 @@ const AdminDashboard = () => {
 
                 {/* Additional Stats */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">New Bookings</p>
                         <p className="text-lg font-bold text-blue-600 dark:text-blue-400">{metrics.new_bookings}</p>
                     </div>
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">Confirmed</p>
                         <p className="text-lg font-bold text-green-600 dark:text-green-400">{metrics.confirmed_bookings}</p>
                     </div>
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">Pending</p>
                         <p className="text-lg font-bold text-yellow-600 dark:text-yellow-400">{metrics.pending_bookings}</p>
                     </div>
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">Completed</p>
                         <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{metrics.completed_bookings}</p>
                     </div>
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">Cancelled</p>
                         <p className="text-lg font-bold text-red-600 dark:text-red-400">{metrics.cancelled_bookings}</p>
                     </div>
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-3 text-center">
                         <p className="text-xs text-gray-500 dark:text-stone-400">Services</p>
                         <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{metrics.total_services}</p>
                     </div>
                 </div>
 
                 {/* Weekly Sales Bar Chart */}
-                <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
                         <div>
                             <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
@@ -579,7 +580,7 @@ const AdminDashboard = () => {
                 {/* Charts Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Sales Trend Chart */}
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
                                 <FiTrendingUp className="inline mr-2" />
@@ -610,7 +611,7 @@ const AdminDashboard = () => {
                     </div>
 
                     {/* New Registered Users Weekly Line Chart */}
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <div>
                                 <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
@@ -672,7 +673,7 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* Top Bookings Events Table */}
-                <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg shadow-sm overflow-hidden">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg shadow-sm overflow-hidden">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-b border-gray-200 dark:border-stone-700">
                         <div>
                             <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
@@ -768,7 +769,7 @@ const AdminDashboard = () => {
                 {/* Category Performance & Recent Activity */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Category Performance */}
-                    <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                    <div className="lg:col-span-2 bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
                                 <FiGrid className="inline mr-2" />
@@ -792,7 +793,7 @@ const AdminDashboard = () => {
                     </div>
 
                     {/* Recent Activities */}
-                    <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300">
                                 <FiClock className="inline mr-2" />
@@ -830,7 +831,7 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="bg-white dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-stone-900 border border-gray-200 dark:border-stone-700 rounded-lg p-4 shadow-sm">
                     <h3 className="text-sm font-semibold text-gray-700 dark:text-stone-300 mb-4">
                         <FiActivity className="inline mr-2" />
                         Quick Actions

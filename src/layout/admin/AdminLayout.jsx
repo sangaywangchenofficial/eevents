@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import AdminHeader from '../../components/AdminHeader';
 import AdminSidebar from '../../components/AdminSidebar';
+import { API_BASE_URL } from '../../utils/auth';
 
 // Layout is used to get sidebar bar and header components tobe used in AdminDashboard.jsx
 
@@ -56,7 +57,7 @@ export const AdminLayout = ({ children }) => {
     }, []);
 
     const fetchNewBookingsCount = () => {
-        fetch('http://127.0.0.1:8000/api/v1/admin/dashboard-metrics/')
+        fetch(`${API_BASE_URL}/admin/dashboard-metrics/`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
@@ -204,7 +205,7 @@ export const AdminLayout = ({ children }) => {
     };
 
     return (
-        <div className={`flex min-h-screen ${isDarkMode ? 'dark bg-zinc-950 text-stone-100' : 'bg-[#FDFDF7] text-[#1E352F]'} overflow-x-hidden transition-colors duration-300`}>
+        <div className={`flex min-h-screen ${isDarkMode ? 'dark bg-zinc-950 text-stone-100' : 'bg-[#FDFDF7] dark:bg-[#0F1A17] text-[#1E352F] dark:text-[#E8F5F2]'} overflow-x-hidden transition-colors duration-300`}>
             {/* Sidebar remains fixed/sticky on the left side */}
             {sideBarShow &&
                 <AdminSidebar toggleSidebar={toggleSidebar} setSideBarShow={setSideBarShow} isDarkMode={isDarkMode} />
@@ -232,7 +233,7 @@ export const AdminLayout = ({ children }) => {
                 </div>
 
                 {/* Main viewport area where child sub-routes will render */}
-                <main className="flex-1 p-6 md:p-8 bg-[#F4F3EC] dark:bg-zinc-900 overflow-y-auto transition-colors duration-300">
+                <main className="flex-1 p-6 md:p-8 bg-[#F4F3EC] dark:bg-[#162019] dark:bg-zinc-900 overflow-y-auto transition-colors duration-300">
                     <Outlet />
                 </main>
             </div>

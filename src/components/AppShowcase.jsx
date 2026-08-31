@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, QrCode, Bell, Zap, Shield, Sparkles, Check } from 'lucide-react';
+import { APP_NAME_UPPER } from '../utils/auth';
 
 const AppShowcase = () => {
   return (
-    <section className="py-20 bg-[#FDFDF7] border-t border-[#E6E1D8] overflow-hidden">
+    <section className="py-20 bg-[#FDFDF7] dark:bg-[#0F1A17] border-t border-[#E6E1D8] dark:border-[#2A3D38] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -29,20 +30,20 @@ const AppShowcase = () => {
               {/* Mobile Screen Header */}
               <div className="p-3 space-y-3">
                 <div className="flex justify-between items-center text-xs text-[#29BBA3] font-bold">
-                  <span>TIXELO App</span>
+                  <span>{APP_NAME_UPPER} App</span>
                   <span className="text-emerald-400 text-[10px] bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
                     Live Verified
                   </span>
                 </div>
 
                 {/* QR Code Digital Ticket Preview */}
-                <div className="bg-white text-slate-900 p-4 rounded-2xl text-center space-y-3 shadow-lg">
-                  <div className="w-10 h-10 rounded-full bg-[#E6F9F6] text-[#1E8B7A] flex items-center justify-center mx-auto">
+                <div className="bg-white dark:bg-[#1C2B27] text-slate-900 p-4 rounded-2xl text-center space-y-3 shadow-lg">
+                  <div className="w-10 h-10 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#1E8B7A] flex items-center justify-center mx-auto">
                     <QrCode className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="font-bold text-sm">Paro Tshechu Pass</p>
-                    <p className="text-[10px] text-slate-500 font-medium">Ticket #BHU-8849-2026</p>
+                    <p className="text-[10px] text-slate-500 dark:text-[#7AA49D] font-medium">Ticket #BHU-8849-2026</p>
                   </div>
 
                   {/* Simulated QR Code SVG Graphic */}
@@ -53,7 +54,7 @@ const AppShowcase = () => {
                     </div>
                   </div>
                   
-                  <div className="pt-1 flex items-center justify-center gap-1 text-[10px] text-slate-600">
+                  <div className="pt-1 flex items-center justify-center gap-1 text-[10px] text-slate-600 dark:text-[#7AA49D]">
                     <Check className="w-3 h-3 text-[#29BBA3]" />
                     <span>Valid Entry for 1 Person</span>
                   </div>
@@ -85,16 +86,16 @@ const AppShowcase = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-6 space-y-6"
           >
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] text-[#1E8B7A] text-xs font-semibold uppercase tracking-wide border border-[#C8EDE8]">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#1E8B7A] text-xs font-semibold uppercase tracking-wide border border-[#C8EDE8] dark:border-[#2A3D38]">
               <Smartphone className="w-3.5 h-3.5" />
               <span>Mobile Experience</span>
             </div>
 
-            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F]">
+            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F] dark:text-[#E8F5F2]">
               Your Tickets Always in Your Pocket
             </h2>
 
-            <p className="text-[#4A5C57] text-base leading-relaxed">
+            <p className="text-[#4A5C57] dark:text-[#A8C4BE] text-base leading-relaxed">
               Experience fast, paperless event entry. Access all your booked tickets, seat reservations, and dzongkhag event notifications anywhere in Bhutan—even offline!
             </p>
 
@@ -105,13 +106,13 @@ const AppShowcase = () => {
                 { title: 'Live Event Notifications', desc: 'Get real-time weather and schedule updates for outdoor Tshechus.' },
                 { title: 'Local Bank Payments', desc: 'Seamlessly pay via mBoB, B-WALLET, and local Bhutanese card portals.' },
               ].map((item, idx) => (
-                <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-[#F4F3EC] border border-[#E6E1D8]">
+                <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-[#F4F3EC] dark:bg-[#162019] border border-[#E6E1D8] dark:border-[#2A3D38]">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#29BBA3] to-[#1E8B7A] text-white flex items-center justify-center flex-shrink-0">
                     <Check className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-[#1E352F]">{item.title}</h4>
-                    <p className="text-xs text-[#66756F] mt-0.5">{item.desc}</p>
+                    <h4 className="font-bold text-sm text-[#1E352F] dark:text-[#E8F5F2]">{item.title}</h4>
+                    <p className="text-xs text-[#66756F] dark:text-[#7AA49D] mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}

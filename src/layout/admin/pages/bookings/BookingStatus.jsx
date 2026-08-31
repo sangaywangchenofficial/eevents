@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AdminLayout } from '../../AdminLayout'
+import { API_BASE_URL } from '../../../../utils/auth';
 
 const BookingStatus = () => {
     const [bookings, setBookings] = useState([]);
@@ -33,7 +34,7 @@ const BookingStatus = () => {
             const token = getAuthToken();
             if (!token) { navigate('/admin-login'); return; }
 
-            const response = await fetch('http://localhost:8000/api/v1/booking/list/', {
+            const response = await fetch(`${API_BASE_URL}/booking/list/`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             });
@@ -86,15 +87,15 @@ const BookingStatus = () => {
 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
                         <p className="text-3xl font-bold text-gray-800 dark:text-stone-100">{bookings.length}</p>
                         <p className="text-sm text-gray-500 dark:text-stone-400 mt-1">Total</p>
                     </div>
-                    <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
                         <p className="text-3xl font-bold text-green-600 dark:text-green-400">{confirmed}</p>
                         <p className="text-sm text-gray-500 dark:text-stone-400 mt-1">Confirmed</p>
                     </div>
-                    <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 text-center shadow-sm">
                         <p className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">{pending}</p>
                         <p className="text-sm text-gray-500 dark:text-stone-400 mt-1">Pending</p>
                     </div>
@@ -112,7 +113,7 @@ const BookingStatus = () => {
                     </div>
                 ) : (
                     <div className="overflow-x-auto shadow-md rounded-lg">
-                        <table className="min-w-full bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
+                        <table className="min-w-full bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
                             <thead className="bg-gray-100 dark:bg-zinc-700">
                                 <tr>
                                     {['ID', 'User', 'Event', 'Quantity', 'Total Price', 'Status'].map(h => (

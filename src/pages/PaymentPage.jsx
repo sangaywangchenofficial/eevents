@@ -13,24 +13,25 @@ const PaymentPage = () => {
     const [loading, setLoading] = useState(false);
     const [selectedBank, setSelectedBank] = useState("");
     const [cartItems, setCartItems] = useState([]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
     const paymentMethods = {
         'Bhutan Banks': [
-            { id: 'bob', label: 'Bank of Bhutan (BoB)', icon: '🏦' },
-            { id: 'bnb', label: 'Bhutan National Bank (BNB)', icon: '🏛️' },
-            { id: 'druk_pnb', label: 'Druk PNB Bank', icon: '💰' },
-            { id: 'tbank', label: 'T-Bank (Bhutan)', icon: '💳' },
-            { id: 'mbank', label: 'ePay Bhutan Development Bank', icon: '📱' },
-            { id: 'dk', label: 'Digital Kidu', icon: '💰' },
+            { id: 'bob', label: 'Bank of Bhutan (BoB)', icon: '/images/bob.png' },
+            { id: 'bnb', label: 'Bhutan National Bank (BNB)', icon: '/images/bnb.jpeg' },
+            { id: 'druk_pnb', label: 'Druk PNB Bank', icon: '/images/druk_pnb.jpeg' },
+            { id: 'tbank', label: 'T-Bank (Bhutan)', icon: '/images/tashibank.jpeg' },
+            { id: 'epay', label: 'ePay Bhutan Development Bank', icon: '/images/epay.jpeg' },
+            { id: 'dk', label: 'Digital Kidu', icon: '/images/dkbank.png' },
         ],
         'Cards': [
-            { id: 'visa', label: 'Visa Card', icon: '💳' },
-            { id: 'mastercard', label: 'Mastercard', icon: '💳' },
+            { id: 'visa', label: 'Visa Card', icon: '/images/visa.jpeg' },
+            { id: 'mastercard', label: 'Mastercard', icon: '/images/mastercard.jpg' },
         ],
         'Cash': [
-            { id: 'cash', label: 'Cash Payment', icon: '💵' },
+            { id: 'cash', label: 'Cash Payment', icon: '/images/cash.png' },
         ],
     };
 
@@ -136,7 +137,7 @@ const PaymentPage = () => {
             await api.post('/place-order', orderData);
             toast.success("Order placed successfully!");
             localStorage.removeItem('cartItems');
-            setTimeout(() => navigate('/my-bookings'), 2000);
+            setTimeout(() => navigate('/userdashboard'), 2000);
         } catch (error) {
             console.error('❌ Order placement error:', error);
             toast.error(error.message || "Failed to place order");
@@ -166,111 +167,92 @@ const PaymentPage = () => {
 
     return (
         <PublicLayout>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                theme="dark"
-                newestOnTop
-            />
-            <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-                <h1 style={{ marginBottom: '30px', color: '#1E1B4B' }}>Checkout and Payment</h1>
+            <ToastContainer position="top-right" autoClose={3000} theme="dark" newestOnTop />
+            <div className="p-5 max-w-6xl mx-auto min-h-screen">
+                <h1 className="text-3xl font-bold mb-8 text-[#1E1B4B] dark:text-[#E8F5F2]">Checkout and Payment</h1>
 
-                <div style={{
-                    backgroundColor: '#fff',
-                    padding: '30px',
-                    borderRadius: '12px',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                    maxWidth: '700px',
-                    margin: '0 auto'
-                }}>
-                    <div style={{ marginBottom: '30px' }}>
-                        <h3 style={{ marginBottom: '15px', color: '#1E1B4B' }}>Order Summary</h3>
-                        <div style={{
-                            padding: '15px',
-                            backgroundColor: '#f8f9fa',
-                            borderRadius: '8px'
-                        }}>
-                            <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
-                                <strong>Total Amount:</strong> Nu. {totalAmount > 0 ? totalAmount.toFixed(2) : '0.00'}
+                <div className="bg-white dark:bg-[#1C2B27] p-8 rounded-xl shadow-lg border border-gray-100 dark:border-[#2A3D38] max-w-3xl mx-auto">
+
+                    <div className="mb-8">
+                        <h3 className="text-xl font-bold mb-4 text-[#1E1B4B] dark:text-[#E8F5F2]">Order Summary</h3>
+                        <div className="p-4 bg-gray-50 dark:bg-[#162019] rounded-lg border border-gray-200 dark:border-[#2A3D38]">
+                            <p className="text-lg font-bold text-gray-900 dark:text-white">
+                                Total Amount: <span className="text-[#29BBA3]">Nu. {totalAmount > 0 ? totalAmount.toFixed(2) : '0.00'}</span>
                             </p>
                             {userId && (
-                                <p style={{ fontSize: '14px', color: '#666' }}>
-                                    <strong>User ID:</strong> {userId}
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-2">
+                                    <span className="font-semibold">User ID:</span> {userId}
                                 </p>
                             )}
                             {cartItems && cartItems.length > 0 && (
-                                <p style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
-                                    <strong>Items:</strong> {cartItems.length} item(s)
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
+                                    <span className="font-semibold">Items:</span> {cartItems.length} item(s)
                                 </p>
                             )}
                         </div>
                     </div>
 
-                    <div style={{ marginBottom: '30px' }}>
-                        <h3 style={{ marginBottom: '15px', color: '#1E1B4B' }}>Select Payment Method</h3>
-
-                        <div style={{ marginBottom: '15px' }}>
-                            <label style={{
-                                display: 'block',
-                                marginBottom: '8px',
-                                fontWeight: '500',
-                                color: '#374151'
-                            }}>
+                    <div className="mb-8">
+                        <h3 className="text-xl font-bold mb-4 text-[#1E1B4B] dark:text-[#E8F5F2]">Select Payment Method</h3>
+                        <div className="mb-4 relative">
+                            <label className="block mb-2 font-medium text-gray-700 dark:text-[#A8C4BE]">
                                 Choose your payment method:
                             </label>
-                            <select
-                                value={paymentMethod}
-                                onChange={handlePaymentMethodChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '12px 15px',
-                                    fontSize: '16px',
-                                    border: '2px solid #e0e0e0',
-                                    borderRadius: '8px',
-                                    backgroundColor: 'white',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s',
-                                    outline: 'none',
-                                    appearance: 'auto'
-                                }}
-                                onFocus={(e) => {
-                                    e.target.style.borderColor = '#6B21A8';
-                                    e.target.style.boxShadow = '0 0 0 3px rgba(107, 33, 168, 0.1)';
-                                }}
-                                onBlur={(e) => {
-                                    e.target.style.borderColor = '#e0e0e0';
-                                    e.target.style.boxShadow = 'none';
-                                }}
-                            >
-                                <option value="">-- Select Payment Method --</option>
-                                {Object.entries(paymentMethods).map(([category, methods]) => (
-                                    <optgroup key={category} label={category}>
-                                        {methods.map((method) => (
-                                            <option key={method.id} value={method.id}>
-                                                {method.icon} {method.label}
-                                            </option>
+
+                            {/* Custom Dropdown */}
+                            <div className="relative">
+                                <div
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                    className="w-full p-3 min-h-[52px] border-2 border-gray-200 dark:border-[#2A3D38] rounded-lg bg-white dark:bg-[#162019] text-gray-900 dark:text-white flex items-center justify-between cursor-pointer focus:outline-none focus:border-[#29BBA3] transition-all"
+                                >
+                                    {selectedMethod ? (
+                                        <div className="flex items-center gap-3">
+                                            <img src={selectedMethod.icon} alt={selectedMethod.label} className="w-8 h-8 object-contain rounded-md bg-white border border-gray-100" />
+                                            <span>{selectedMethod.label}</span>
+                                        </div>
+                                    ) : (
+                                        <span className="text-gray-500">-- Select Payment Method --</span>
+                                    )}
+                                    <svg className={`w-5 h-5 text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+
+                                {isDropdownOpen && (
+                                    <div className="absolute z-50 w-full mt-2 bg-white dark:bg-[#1C2B27] border border-gray-200 dark:border-[#2A3D38] rounded-lg shadow-xl max-h-[300px] overflow-y-auto">
+                                        {Object.entries(paymentMethods).map(([category, methods]) => (
+                                            <div key={category}>
+                                                <div className="px-4 py-2 bg-gray-50 dark:bg-[#162019] font-bold text-sm text-gray-500 dark:text-[#A8C4BE] border-y border-gray-100 dark:border-[#2A3D38] sticky top-0">
+                                                    {category}
+                                                </div>
+                                                {methods.map((method) => (
+                                                    <div
+                                                        key={method.id}
+                                                        onClick={() => {
+                                                            handlePaymentMethodChange({ target: { value: method.id } });
+                                                            setIsDropdownOpen(false);
+                                                        }}
+                                                        className="px-4 py-3 flex items-center gap-3 hover:bg-[#E6F9F6] dark:hover:bg-[#29BBA3]/10 cursor-pointer transition-colors border-b border-gray-50 dark:border-[#2A3D38]/50 last:border-0"
+                                                    >
+                                                        <img src={method.icon} alt={method.label} className="w-8 h-8 object-contain rounded-md bg-white border border-gray-100" />
+                                                        <span className="text-gray-800 dark:text-[#E8F5F2]">{method.label}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         ))}
-                                    </optgroup>
-                                ))}
-                            </select>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         {selectedMethod && (
-                            <div style={{
-                                padding: '12px 15px',
-                                backgroundColor: '#f3e8ff',
-                                borderRadius: '8px',
-                                border: '1px solid #6B21A8',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px'
-                            }}>
-                                <span style={{ fontSize: '24px' }}>{selectedMethod.icon}</span>
+                            <div className="p-4 bg-[#E6F9F6] dark:bg-teal-900/20 rounded-lg border-2 border-[#29BBA3]/50 flex items-center gap-4 mt-6">
+                                <div className="p-2 bg-white rounded-lg border border-gray-200 shadow-sm">
+                                    <img src={selectedMethod.icon} alt={selectedMethod.label} className="w-12 h-12 object-contain" />
+                                </div>
                                 <div>
-                                    <div style={{ fontWeight: '600', color: '#1E1B4B' }}>
+                                    <div className="font-semibold text-[#1E8B7A] dark:text-[#29BBA3]">
                                         {selectedMethod.label}
                                     </div>
-                                    <div style={{ fontSize: '12px', color: '#6B21A8' }}>
+                                    <div className="text-xs text-[#1E8B7A]/80 dark:text-[#29BBA3]/80 mt-0.5">
                                         Category: {selectedMethod.category}
                                     </div>
                                 </div>
@@ -278,82 +260,40 @@ const PaymentPage = () => {
                         )}
                     </div>
 
-                    <div style={{ display: 'flex', gap: '15px' }}>
+                    <div className="flex gap-4">
                         <button
                             onClick={() => navigate(-1)}
-                            style={{
-                                padding: '12px 30px',
-                                border: '2px solid #6B21A8',
-                                borderRadius: '8px',
-                                backgroundColor: 'transparent',
-                                color: '#6B21A8',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s',
-                                flex: 1
-                            }}
-                            onMouseEnter={(e) => { e.target.style.backgroundColor = '#f3e8ff'; }}
-                            onMouseLeave={(e) => { e.target.style.backgroundColor = 'transparent'; }}
+                            className="flex-1 py-3 px-6 border-2 border-[#1E8B7A] dark:border-[#29BBA3] text-[#1E8B7A] dark:text-[#29BBA3] font-bold rounded-xl hover:bg-[#E6F9F6] dark:hover:bg-[#29BBA3]/10 transition-colors"
                         >
                             Go Back
                         </button>
                         <button
                             onClick={handlePlaceOrder}
                             disabled={isButtonDisabled}
-                            style={{
-                                padding: '12px 30px',
-                                border: 'none',
-                                borderRadius: '8px',
-                                backgroundColor: isButtonDisabled ? '#ccc' : '#6B21A8',
-                                color: 'white',
-                                fontWeight: '600',
-                                cursor: isButtonDisabled ? 'not-allowed' : 'pointer',
-                                transition: 'all 0.2s',
-                                flex: 2,
-                                opacity: isButtonDisabled ? 0.6 : 1
-                            }}
+                            className={`flex-[2] py-3 px-6 font-bold rounded-xl text-white transition-all ${isButtonDisabled
+                                ? 'bg-gray-400 cursor-not-allowed opacity-60'
+                                : 'bg-gradient-to-r from-[#1E8B7A] to-[#29BBA3] hover:shadow-lg cursor-pointer'
+                                }`}
                         >
                             {loading ? 'Processing...' : 'Place Order'}
                         </button>
                     </div>
 
                     {!userId && (
-                        <div style={{
-                            marginTop: '20px',
-                            padding: '10px',
-                            backgroundColor: '#fee2e2',
-                            color: '#dc2626',
-                            borderRadius: '8px',
-                            textAlign: 'center'
-                        }}>
+                        <div className="mt-6 p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg text-center font-medium">
                             ⚠️ Please login to place an order
                         </div>
                     )}
 
                     {totalAmount <= 0 && userId && cartItems.length === 0 && (
-                        <div style={{
-                            marginTop: '20px',
-                            padding: '10px',
-                            backgroundColor: '#fef3c7',
-                            color: '#d97706',
-                            borderRadius: '8px',
-                            textAlign: 'center'
-                        }}>
+                        <div className="mt-6 p-3 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-lg text-center font-medium">
                             ⚠️ Your cart is empty. Please add items before proceeding.
                         </div>
                     )}
 
                     {paymentMethod && userId && totalAmount > 0 && cartItems.length > 0 && (
-                        <div style={{
-                            marginTop: '15px',
-                            padding: '10px',
-                            backgroundColor: '#dbeafe',
-                            color: '#1e40af',
-                            borderRadius: '8px',
-                            textAlign: 'center',
-                            fontSize: '14px'
-                        }}>
-                            ✓ You're about to pay Nu. {totalAmount.toFixed(2)} via {selectedMethod?.label || paymentMethod.toUpperCase()}
+                        <div className="mt-4 p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-lg text-center text-sm">
+                            ℹ️ You are about to pay Nu. {totalAmount.toFixed(2)} via {selectedMethod?.label}
                         </div>
                     )}
                 </div>

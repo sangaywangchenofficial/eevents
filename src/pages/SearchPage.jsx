@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Calendar, MapPin, Users, Ticket, ArrowRight, Sparkles, Filter, Heart, ChevronRight } from 'lucide-react';
+import { Search, Calendar, MapPin, Users, Ticket, ArrowRight, Sparkles, Filter, Heart, ChevronRight, Star } from 'lucide-react';
 import PublicLayout from '../publiclayout/PublicLayout';
+import SEO from '../components/SEO';
+import RatingBadge from '../components/RatingBadge';
+import { API_BASE_URL, APP_URL, APP_NAME_CAPITALIZED } from '../utils/auth';
 
 const SearchPage = () => {
   const location = useLocation();
@@ -30,7 +33,7 @@ const SearchPage = () => {
   const fetchSearchResults = async (query) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/v1/event-search/?q=${encodeURIComponent(query)}`);
+      const response = await fetch(`${API_BASE_URL}/event-search/?q=${encodeURIComponent(query)}`);
       if (!response.ok) throw new Error('Search failed');
       const data = await response.json();
       const eventsList = data.data && Array.isArray(data.data) ? data.data : (Array.isArray(data) ? data : []);
@@ -50,7 +53,7 @@ const SearchPage = () => {
   const fetchAllEvents = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/view-events/');
+      const response = await fetch(`${API_BASE_URL}/view-events/`);
       if (!response.ok) throw new Error('Fetch failed');
       const data = await response.json();
       const eventsList = data.data && Array.isArray(data.data) ? data.data : (Array.isArray(data) ? data : []);
@@ -104,19 +107,26 @@ const SearchPage = () => {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-[#FDFDF7] py-10 font-inter">
+      <SEO
+        title={searchQuery ? `Search Results for "${searchQuery}" | ${APP_NAME_CAPITALIZED}` : `Search Events | ${APP_NAME_CAPITALIZED}`}
+        description={`Search results for events, cultural festivals, and workshops in Bhutan on ${APP_NAME_CAPITALIZED}.`}
+        canonical={`${APP_URL}/search`}
+        noindex={true}
+        nofollow={false}
+      />
+      <div className="min-h-screen bg-[#FDFDF7] dark:bg-[#0F1A17] py-10 font-inter">
 
         {/* Sticky Search Header Box */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6E1D8] shadow-xl shadow-teal-900/5">
+          <div className="bg-white dark:bg-[#1C2B27] rounded-3xl p-6 sm:p-8 border border-[#E6E1D8] dark:border-[#2A3D38] shadow-xl shadow-teal-900/5">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
 
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F9F6] text-[#29BBA3] text-xs font-poppins font-semibold uppercase tracking-wide mb-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#29BBA3] text-xs font-poppins font-semibold uppercase tracking-wide mb-2">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Discover Events</span>
                 </div>
-                <h1 className="font-poppins font-extrabold text-2xl sm:text-3xl text-[#1E352F]">
+                <h1 className="font-poppins font-extrabold text-2xl sm:text-3xl text-[#1E352F] dark:text-[#E8F5F2]">
                   {searchQuery ? `Search Results for "${searchQuery}"` : categoryFilter ? `Category: ${categoryFilter}` : 'Explore All Events in Bhutan'}
                 </h1>
                 <p className="text-[#475569] text-sm mt-1">
@@ -126,7 +136,7 @@ const SearchPage = () => {
 
               {/* Search Bar Input */}
               <form onSubmit={handleSearchSubmit} className="w-full md:w-auto flex-1 max-w-lg">
-                <div className="glass-card p-2 rounded-2xl border border-[#E6E1D8] flex items-center gap-2">
+                <div className="glass-card p-2 rounded-2xl border border-[#E6E1D8] dark:border-[#2A3D38] flex items-center gap-2">
                   <div className="relative flex-1 flex items-center pl-3">
                     <Search className="w-5 h-5 text-[#29BBA3] mr-2 flex-shrink-0" />
                     <input
@@ -134,7 +144,7 @@ const SearchPage = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search by event, location, dzongkhag..."
-                      className="w-full py-2 bg-transparent text-[#1E352F] placeholder-slate-400 focus:outline-none text-sm font-inter"
+                      className="w-full py-2 bg-transparent text-[#1E352F] dark:text-[#E8F5F2] placeholder-slate-400 focus:outline-none text-sm font-inter"
                     />
                   </div>
                   <button
@@ -162,8 +172,8 @@ const SearchPage = () => {
           ) : (
             <>
               {/* Filter Counter Bar */}
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E6E1D8]">
-                <p className="text-sm font-poppins font-semibold text-[#1E352F]">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#E6E1D8] dark:border-[#2A3D38]">
+                <p className="text-sm font-poppins font-semibold text-[#1E352F] dark:text-[#E8F5F2]">
                   Showing <span className="text-[#29BBA3] font-bold">{events.length}</span> {events.length === 1 ? 'event' : 'events'}
                 </p>
 
@@ -184,11 +194,11 @@ const SearchPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: idx * 0.05 }}
-                        className="group bg-white rounded-2xl border border-[#E6E1D8] shadow-md hover:shadow-2xl hover:shadow-teal-900/10 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
+                        className="group bg-white dark:bg-[#1C2B27] rounded-2xl border border-[#E6E1D8] dark:border-[#2A3D38] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full transform hover:-translate-y-1"
                       >
                         {/* Event Image */}
                         <div>
-                          <div className="relative h-52 overflow-hidden bg-slate-100">
+                          <div className="relative h-52 rounded-t-2xl overflow-hidden bg-slate-100 dark:bg-[#162019]">
                             <img
                               src={event.event_image || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop'}
                               alt={event.event_name}
@@ -198,7 +208,7 @@ const SearchPage = () => {
 
                             {/* Category Badge */}
                             {(event.category_name || event.category) && (
-                              <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#1E352F] text-[11px] font-poppins font-semibold px-3 py-1 rounded-full shadow-sm">
+                              <span className="absolute top-3 left-3 bg-white dark:bg-[#1C2B27]/90 backdrop-blur-md text-[#1E352F] dark:text-[#E8F5F2] text-[11px] font-poppins font-semibold px-3 py-1 rounded-full shadow-sm">
                                 {event.category_name || event.category}
                               </span>
                             )}
@@ -206,7 +216,7 @@ const SearchPage = () => {
                             {/* Favorite Bookmark */}
                             <button
                               onClick={(e) => toggleFavorite(event.id, e)}
-                              className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${isFav ? 'bg-rose-500 text-white shadow-md' : 'bg-white/80 text-slate-700 hover:bg-white hover:text-rose-500'
+                              className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${isFav ? 'bg-rose-500 text-white shadow-md' : 'bg-white dark:bg-[#1C2B27]/80 text-slate-700 dark:text-[#A8C4BE] hover:bg-white dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] hover:text-rose-500'
                                 }`}
                               aria-label="Favorite event"
                             >
@@ -222,16 +232,22 @@ const SearchPage = () => {
                           {/* Event Body Content */}
                           <div className="p-5 space-y-3">
                             <Link to={`/event/${event.id}`}>
-                              <h3 className="font-poppins font-bold text-lg text-[#1E352F] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
+                              <h3 className="font-poppins font-bold text-lg text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
                                 {event.event_name}
                               </h3>
                             </Link>
+
+                            <RatingBadge 
+                                averageRating={event.average_rating} 
+                                totalReviews={event.total_reviews} 
+                                distribution={event.rating_distribution} 
+                            />
 
                             <p className="text-xs text-[#475569] font-inter line-clamp-2 leading-relaxed">
                               {event.event_description || 'Join us for this exciting cultural event in Bhutan.'}
                             </p>
 
-                            <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] text-xs text-slate-600 font-inter">
+                            <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] text-xs text-slate-600 dark:text-[#7AA49D] font-inter">
                               <div className="flex items-center gap-2">
                                 <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
                                 <span>{formatDate(event.event_date)}</span>
@@ -254,7 +270,7 @@ const SearchPage = () => {
                         <div className="p-5 pt-0 flex gap-2">
                           <Link
                             to={`/event/${event.id}`}
-                            className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] text-[#1E352F] hover:bg-[#F4F3EC] text-center font-poppins font-semibold text-xs transition-colors"
+                            className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] text-[#1E352F] dark:text-[#E8F5F2] hover:bg-[#F4F3EC] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] dark:bg-[#162019] text-center font-poppins font-semibold text-xs transition-colors"
                           >
                             Details
                           </Link>
@@ -273,11 +289,11 @@ const SearchPage = () => {
                 </div>
               ) : (
                 /* Empty Results State */
-                <div className="text-center py-20 bg-white rounded-3xl border border-[#E6E1D8] p-8 max-w-lg mx-auto shadow-sm">
-                  <div className="w-16 h-16 rounded-full bg-[#E6F9F6] text-[#29BBA3] flex items-center justify-center mx-auto mb-4">
+                <div className="text-center py-20 bg-white dark:bg-[#1C2B27] rounded-3xl border border-[#E6E1D8] dark:border-[#2A3D38] p-8 max-w-lg mx-auto shadow-sm">
+                  <div className="w-16 h-16 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#29BBA3] flex items-center justify-center mx-auto mb-4">
                     <Search className="w-8 h-8" />
                   </div>
-                  <h3 className="font-poppins font-bold text-xl text-[#1E352F] mb-2">No Events Found</h3>
+                  <h3 className="font-poppins font-bold text-xl text-[#1E352F] dark:text-[#E8F5F2] mb-2">No Events Found</h3>
                   <p className="text-sm text-[#475569] font-inter mb-6">
                     We couldn't find any events matching "{searchQuery}". Try searching for Paro, Thimphu, or Festivals.
                   </p>
