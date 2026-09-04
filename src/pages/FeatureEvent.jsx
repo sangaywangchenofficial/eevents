@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Calendar, Heart, Ticket, ArrowRight, Sparkles, Star } from 'lucide-react';
-import { getUserId } from '../utils/auth';
+import { MapPin, Calendar, Heart, Ticket, ArrowRight, Sparkles } from 'lucide-react';
+import { API_BASE_URL, BACKEND_ORIGIN, getUserId } from '../utils/auth';
+import { useFavorites } from '../context/FavoritesContext';
 import RatingBadge from '../components/RatingBadge';
 
 /** Fisher-Yates shuffle — returns a new shuffled array */
@@ -16,16 +17,44 @@ const shuffleArray = (arr) => {
 };
 
 const DISPLAY_COUNT = 8;
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop';
+
+const getImageUrl = (img) => {
+  if (!img) return FALLBACK_IMAGE;
+  if (img.startsWith('http://') || img.startsWith('https://')) return img;
+  return `${BACKEND_ORIGIN}${img.startsWith('/') ? '' : '/'}${img}`;
+};
+
+const formatPrice = (price) => {
+  if (price === 'Free' || price === 0 || price === '0' || price === '0.00') return 'Free';
+  const num = Number(price);
+  if (isNaN(num) || num === 0) return 'Free';
+  return `Nu. ${num.toLocaleString()}`;
+};
+
+const formatEventDate = (dateStr) => {
+  if (!dateStr) return null;
+  const d = new Date(dateStr);
+  return isNaN(d.getTime())
+    ? dateStr
+    : d.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+};
 
 const FeaturedEvents = () => {
   const navigate = useNavigate();
   const [allEvents, setAllEvents] = useState([]);
   const [displayed, setDisplayed] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState(new Set());
+  const { isFavorite, toggleFavorite } = useFavorites();
   const userId = getUserId();
 
   useEffect(() => {
+    let isMounted = true;
     const fetchEvents = async () => {
       try {
         const res = await fetch(`${API_BASE_URL}/view-events/`);
@@ -37,32 +66,30 @@ const FeaturedEvents = () => {
             : Array.isArray(json)
               ? json
               : [];
-        setAllEvents(list);
-        setDisplayed(shuffleArray(list).slice(0, DISPLAY_COUNT));
+        if (isMounted) {
+          setAllEvents(list);
+          setDisplayed(shuffleArray(list).slice(0, DISPLAY_COUNT));
+        }
       } catch (err) {
-        console.warn('Failed to fetch events:', err);
-        setAllEvents([]);
-        setDisplayed([]);
+        console.warn('Failed to fetch events in FeaturedEvents:', err);
+        if (isMounted) {
+          setAllEvents([]);
+          setDisplayed([]);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
     fetchEvents();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-
-  const toggleFavorite = (eventId, e) => {
-    e.stopPropagation();
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      next.has(eventId) ? next.delete(eventId) : next.add(eventId);
-      return next;
-    });
-  };
-
   const handleBookClick = (eventId) => {
-    if (!userId) navigate('/login');
-    else navigate(`/event/${eventId}`);
+    navigate(`/event/${eventId}`);
   };
 
   return (
@@ -73,7 +100,7 @@ const FeaturedEvents = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#29BBA3] text-xs font-semibold uppercase tracking-wide mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#A855F7]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#29BBA3]" />
               <span>Handpicked For You</span>
             </div>
             <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F] dark:text-[#E8F5F2]">
@@ -87,7 +114,7 @@ const FeaturedEvents = () => {
           <div className="mt-4 md:mt-0 flex items-center gap-3">
             <Link
               to="/events"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#E6E1D8] dark:border-[#2A3D38] text-[#29BBA3] hover:bg-[#F4F3EC] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] font-semibold text-sm transition-all group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[#E6E1D8] dark:border-[#2A3D38] text-[#29BBA3] hover:bg-[#F4F3EC] dark:bg-[#162019] dark:hover:bg-[#1C2B27] font-semibold text-sm transition-all group"
             >
               <span>View All ({allEvents.length})</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -118,11 +145,10 @@ const FeaturedEvents = () => {
               transition={{ duration: 0.25 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {displayed.map((event, idx) => {
-                const isFav = favorites.has(event.id);
-                const priceNum = Number(event.event_price);
-                const formattedPrice =
-                  isNaN(priceNum) || priceNum === 0 ? 'Free' : `Nu. ${priceNum.toLocaleString()}`;
+              {displayed.map((event) => {
+                const isFav = isFavorite(event.id);
+                const formattedPrice = formatPrice(event.event_price);
+                const eventDate = formatEventDate(event.event_date);
 
                 return (
                   <motion.div
@@ -135,28 +161,35 @@ const FeaturedEvents = () => {
                   >
                     {/* Event Image */}
                     <div className="relative h-48 w-full overflow-hidden rounded-t-2xl bg-slate-100 dark:bg-[#162019]">
-                      <img
-                        src={
-                          event.event_image ||
-                          'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop'
-                        }
-                        alt={event.event_name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                      <Link to={`/event/${event.id}`} className="block w-full h-full">
+                        <img
+                          src={getImageUrl(event.event_image)}
+                          alt={event.event_name}
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = FALLBACK_IMAGE;
+                          }}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </Link>
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
                       {event.category_name && (
-                        <span className="absolute top-3 left-3 bg-white dark:bg-[#1C2B27]/90 backdrop-blur-md text-[#1E352F] dark:text-[#E8F5F2] text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">
+                        <span className="absolute top-3 left-3 bg-white/95 dark:bg-[#1C2B27]/90 backdrop-blur-md text-[#1E352F] dark:text-[#E8F5F2] text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">
                           {event.category_name}
                         </span>
                       )}
 
                       <button
-                        onClick={(e) => toggleFavorite(event.id, e)}
-                        className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${isFav
-                          ? 'bg-rose-500 text-white shadow-md'
-                          : 'bg-white dark:bg-[#1C2B27]/80 text-slate-700 dark:text-[#A8C4BE] hover:bg-white dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] dark:hover:bg-[#1C2B27] dark:bg-[#1C2B27] dark:hover:bg-[#162019] hover:text-rose-500 dark:hover:text-rose-400'
-                          }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(event.id);
+                        }}
+                        className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all ${
+                          isFav
+                            ? 'bg-rose-500 text-white shadow-md'
+                            : 'bg-white/90 dark:bg-[#1C2B27]/80 text-slate-700 dark:text-[#A8C4BE] hover:bg-white dark:hover:bg-[#1C2B27] hover:text-rose-500'
+                        }`}
                         aria-label="Toggle favourite"
                       >
                         <Heart className={`w-4 h-4 ${isFav ? 'fill-white' : ''}`} />
@@ -170,9 +203,11 @@ const FeaturedEvents = () => {
                     {/* Card Body */}
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                       <div>
-                        <h3 className="font-bold text-lg text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
-                          {event.event_name}
-                        </h3>
+                        <Link to={`/event/${event.id}`}>
+                          <h3 className="font-bold text-lg text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#29BBA3] transition-colors">
+                            {event.event_name}
+                          </h3>
+                        </Link>
                         <RatingBadge 
                           averageRating={event.average_rating} 
                           totalReviews={event.total_reviews} 
@@ -184,17 +219,10 @@ const FeaturedEvents = () => {
                       </div>
 
                       <div className="space-y-1.5 pt-2 border-t border-[#FDFDF7] dark:border-[#2A3D38] text-xs text-slate-600 dark:text-[#A8C4BE]">
-                        {event.event_date && (
+                        {eventDate && (
                           <div className="flex items-center gap-2">
                             <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
-                            <span>
-                              {new Date(event.event_date).toLocaleDateString('en-US', {
-                                weekday: 'short',
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric',
-                              })}
-                            </span>
+                            <span>{eventDate}</span>
                           </div>
                         )}
                         {event.event_location && (
@@ -208,7 +236,7 @@ const FeaturedEvents = () => {
                       <div className="pt-2 flex gap-2">
                         <Link
                           to={`/event/${event.id}`}
-                          className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] text-[#1E352F] dark:text-[#E8F5F2] hover:bg-[#F4F3EC] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] dark:bg-[#162019] dark:hover:bg-[#162019] text-center font-semibold text-xs transition-colors"
+                          className="flex-1 py-2.5 rounded-xl border border-[#E6E1D8] dark:border-[#2A3D38] text-[#1E352F] dark:text-[#E8F5F2] hover:bg-[#F4F3EC] dark:bg-[#162019] dark:hover:bg-[#1C2B27] text-center font-semibold text-xs transition-colors"
                         >
                           Details
                         </Link>
@@ -233,4 +261,3 @@ const FeaturedEvents = () => {
 };
 
 export default FeaturedEvents;
-

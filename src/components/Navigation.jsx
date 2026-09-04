@@ -82,8 +82,9 @@ const Navigation = () => {
     { label: 'Home', path: '/', icon: Home },
     { label: 'Events', path: '/events', icon: Calendar },
     { label: 'Categories', path: '/categories', icon: Grid },
-    { label: 'About', path: '/about', icon: Info },
-    { label: 'Contact', path: '/contact', icon: Mail },
+    { label: 'Organizers', path: '/registeredorganizers', icon: Compass },
+    // { label: 'About', path: '/about', icon: Info },
+    // { label: 'Contact', path: '/contact', icon: Mail },
   ];
 
   const privateLinks = [

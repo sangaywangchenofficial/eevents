@@ -11,7 +11,8 @@ import {
     MdOutlineEvent,
     MdCalendarToday,
     MdSearch,
-    MdMessage
+    MdMessage,
+    MdPeopleOutline // Added for organizers icon
 } from 'react-icons/md';
 import { IoAddCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import { APP_NAME_UPPER } from '../utils/auth';
@@ -30,7 +31,8 @@ const AdminSidebar = ({ isDarkMode }) => {
     const [dropdownMenus, setDropdownMenus] = useState({
         eventCategory: false,
         eventMenu: false,
-        bookings: false
+        bookings: false,
+        organizers: false // Added organizers dropdown state
     });
 
     const toggleDropdownMenu = (menu) => {
@@ -78,6 +80,45 @@ const AdminSidebar = ({ isDarkMode }) => {
                         <MdPersonAddAlt1 className="text-xl" />
                         <span>Register User</span>
                     </Link>
+
+                    {/* Organizers Dropdown Collapsible Area */}
+                    <div>
+                        <button
+                            type="button"
+                            onClick={() => toggleDropdownMenu('organizers')}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.organizers ? 'text-[#1E8B7A] dark:text-[#29BBA3] bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/40' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-stone-800/60 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'}`}
+                        >
+                            <div className="flex items-center space-x-3">
+                                <MdPeopleOutline className="text-xl" />
+                                <span>Organizers</span>
+                            </div>
+                            <MdKeyboardArrowDown className={`text-xl text-[#29BBA3] transition-transform duration-300 ${dropdownMenus.organizers ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {/* Sub-menu list container for Organizers items */}
+                        <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.organizers ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                            <div className="pl-6 space-y-1 border-l border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 ml-6 mt-1">
+
+                                {/* Sub item: Add Organizer */}
+                                <Link
+                                    to="/add-organizer"
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-organizer') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                >
+                                    <IoAddCircleOutline className="text-base" />
+                                    <span>Add Organizer</span>
+                                </Link>
+
+                                {/* Sub item: Manage Organizers */}
+                                <Link
+                                    to="/manage-organizers"
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-organizers') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                >
+                                    <IoSettingsOutline className="text-base" />
+                                    <span>Manage Organizers</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Event Category Collapsible Area */}
                     <div>

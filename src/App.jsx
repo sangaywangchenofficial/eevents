@@ -49,6 +49,7 @@ import ManageReview from "./layout/admin/pages/managereview/ManageReview";
 import ManageMessage from "./layout/admin/pages/managemessage/ManageMessage";
 import VerifyEmailSent from "./auth/VerifyEmailSent";
 import VerifyEmail from "./auth/VerifyEmail";
+import RegisteredOrganizers from "./pages/RegisteredOrganizers";
 
 // ✨ NEW: Import the error components
 import { NotFound, ErrorBoundary } from "./ErrorPages";
@@ -100,6 +101,7 @@ function App() {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/verify-email-sent" element={<VerifyEmailSent />} />
                 <Route path="/verify" element={<VerifyEmail />} />
+                <Route path="/registered-organizers" element={<RegisteredOrganizers />} />
 
 
                 {/* Admin Booking Routes */}
