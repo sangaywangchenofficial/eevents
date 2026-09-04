@@ -21,8 +21,9 @@ import {
 } from 'react-icons/fa';
 import { MdRefresh } from 'react-icons/md';
 import { AdminLayout } from '../../AdminLayout';
+import { API_BASE_URL } from '../../../../utils/auth';
 
-const API_BASE = 'http://localhost:8000/api/v1';
+const API_BASE = API_BASE_URL;
 
 const getAuthToken = () =>
     localStorage.getItem('token') ||
@@ -195,7 +196,7 @@ const BookingReport = () => {
                 </div>
 
                 {/* Filter Form */}
-                <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl p-6 shadow-sm mb-6">
+                <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl p-6 shadow-sm mb-6">
                     <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             {/* From Date */}
@@ -285,7 +286,7 @@ const BookingReport = () => {
                                 { label: 'Cancelled', value: stats.cancelled, color: 'text-rose-600 dark:text-rose-400', border: 'border-rose-200 dark:border-rose-700' },
                                 { label: 'Total Revenue', value: `$${stats.totalRevenue.toFixed(2)}`, color: 'text-purple-600 dark:text-purple-400', border: 'border-purple-200 dark:border-purple-700' },
                             ].map(({ label, value, color, border }) => (
-                                <div key={label} className={`bg-white dark:bg-zinc-800 border ${border} rounded-xl p-4 shadow-sm`}>
+                                <div key={label} className={`bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border ${border} rounded-xl p-4 shadow-sm`}>
                                     <p className={`text-xs ${color.replace('text-', 'text-').replace('800', '500').replace('600', '500').replace('400', '400')} mb-1`}>{label}</p>
                                     <p className={`text-2xl font-bold ${color}`}>{value}</p>
                                 </div>
@@ -309,7 +310,7 @@ const BookingReport = () => {
                         </div>
 
                         {/* Table */}
-                        <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl overflow-hidden shadow-sm">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl overflow-hidden shadow-sm">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm">
                                     <thead>
@@ -401,7 +402,7 @@ const BookingReport = () => {
 
                 {/* Empty State */}
                 {!isReportGenerated && !loading && (
-                    <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl p-12 text-center shadow-sm">
+                    <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-2xl p-12 text-center shadow-sm">
                         <div className="text-6xl mb-4">📊</div>
                         <h3 className="text-xl font-semibold text-gray-800 dark:text-stone-100 mb-2">No Report Generated</h3>
                         <p className="text-sm text-gray-500 dark:text-stone-400 max-w-md mx-auto">

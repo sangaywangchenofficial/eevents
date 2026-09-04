@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Calendar, Ticket, ArrowRight, Flame } from 'lucide-react';
+import { API_BASE_URL } from '../utils/auth';
 
 // Removed fallback mock events as per user request
 
@@ -16,7 +17,7 @@ const PopularEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/view-events/');
+      const response = await fetch(`${API_BASE_URL}/view-events/`);
       if (!response.ok) {
         throw new Error(`HTTP status ${response.status}`);
       }
@@ -56,27 +57,27 @@ const PopularEvents = () => {
   };
 
   return (
-    <section className="py-16 bg-white border-t border-purple-50">
+    <section className="py-16 bg-[#FDFDF7] dark:bg-[#0F1A17] border-t border-[#E6E1D8] dark:border-[#2A3D38]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-poppins font-semibold uppercase tracking-wide mb-3">
-              <Flame className="w-3.5 h-3.5 text-rose-600" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF3E0] dark:bg-[#2D1B05] text-[#F47F1D] text-xs font-semibold uppercase tracking-wide mb-3 border border-[#F47F1D]/20">
+              <Flame className="w-3.5 h-3.5 text-[#F47F1D]" />
               <span>Trending Across Dzongkhags</span>
             </div>
-            <h2 className="font-poppins font-extrabold text-3xl sm:text-4xl text-[#1E1B4B]">
+            <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1E352F] dark:text-[#E8F5F2]">
               Popular Upcoming Events
             </h2>
-            <p className="text-[#475569] text-base mt-2 font-inter max-w-xl">
+            <p className="text-[#4A5C57] dark:text-[#A8C4BE] text-base mt-2 max-w-xl">
               Don't miss out on Bhutan's most anticipated cultural gatherings and seasonal celebrations.
             </p>
           </div>
 
           <button
             onClick={() => navigate('/events')}
-            className="mt-4 md:mt-0 inline-flex items-center gap-2 text-[#6B21A8] hover:text-[#581C87] font-poppins font-semibold text-sm group"
+            className="mt-4 md:mt-0 inline-flex items-center gap-2 text-[#1E8B7A] hover:text-[#29BBA3] font-semibold text-sm group"
           >
             <span>Explore All Trending</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -86,8 +87,8 @@ const PopularEvents = () => {
         {/* Loading / Grid */}
         {loading ? (
           <div className="flex flex-col justify-center items-center py-10">
-            <div className="w-10 h-10 border-4 border-rose-600 border-t-transparent rounded-full animate-spin"></div>
-            <p className="mt-4 text-sm font-medium text-slate-500">Loading trending events...</p>
+            <div className="w-10 h-10 border-4 border-[#29BBA3] border-t-transparent rounded-full animate-spin"></div>
+            <p className="mt-4 text-sm font-medium text-[#66756F] dark:text-[#7AA49D]">Loading trending events...</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -99,43 +100,45 @@ const PopularEvents = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 onClick={() => navigate(`/event/${event.id}`)}
-                className="group cursor-pointer bg-white rounded-2xl border border-purple-100 shadow-md hover:shadow-xl hover:shadow-purple-900/10 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
+                className="group cursor-pointer bg-white dark:bg-[#1C2B27] rounded-2xl border border-[#E6E1D8] dark:border-[#2A3D38] shadow-md hover:shadow-xl hover:shadow-teal-900/10 dark:hover:shadow-black/50 transition-all duration-300 overflow-hidden flex flex-col justify-between transform hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="relative h-48 overflow-hidden bg-slate-100">
+                  <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-[#0F1A17]">
                     <img
                       src={event.event_image || event.image || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop'}
                       alt={event.event_name || event.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E352F]/70 dark:from-[#0F1A17]/90 via-transparent to-transparent"></div>
 
-                    <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-[#1E1B4B] text-[11px] font-poppins font-semibold px-3 py-1 rounded-full">
+                    {/* Category badge — saffron orange */}
+                    <span className="absolute top-3 left-3 bg-[#F47F1D]/90 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full">
                       {event.category_name || event.category || 'Event'}
                     </span>
 
-                    <span className="absolute bottom-3 right-3 bg-[#6B21A8] text-white text-xs font-poppins font-bold px-3 py-1 rounded-full shadow-md">
+                    {/* Price badge — golden yellow */}
+                    <span className="absolute bottom-3 right-3 bg-[#F0A71E] text-[#1E352F] dark:text-[#E8F5F2] text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       {formatPrice(event.event_price || event.price)}
                     </span>
                   </div>
 
                   <div className="p-5 space-y-2">
                     {/* Add organizer or just generic if not present from DB */}
-                    <span className="text-[11px] font-medium text-purple-600 uppercase tracking-wider">
+                    <span className="text-[11px] font-semibold text-[#29BBA3] uppercase tracking-wider">
                       {event.organizer || 'Local Organizer'}
                     </span>
 
-                    <h3 className="font-poppins font-bold text-base text-[#1E1B4B] line-clamp-1 group-hover:text-[#6B21A8] transition-colors">
+                    <h3 className="font-bold text-base text-[#1E352F] dark:text-[#E8F5F2] line-clamp-1 group-hover:text-[#1E8B7A] transition-colors">
                       {event.event_name || event.title}
                     </h3>
 
-                    <div className="space-y-1 text-xs text-slate-500 font-inter pt-1">
+                    <div className="space-y-1 text-xs text-[#66756F] dark:text-[#7AA49D] pt-1">
                       <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#6B21A8]" />
+                        <Calendar className="w-3.5 h-3.5 text-[#29BBA3]" />
                         <span>{formatDate(event.event_date || event.date)}</span>
                       </div>
                       <div className="flex items-center gap-1.5 truncate">
-                        <MapPin className="w-3.5 h-3.5 text-[#8B5CF6] flex-shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-[#1E8B7A] flex-shrink-0" />
                         <span className="truncate">{event.event_location || event.location}</span>
                       </div>
                     </div>
@@ -143,7 +146,7 @@ const PopularEvents = () => {
                 </div>
 
                 <div className="p-5 pt-0">
-                  <button className="w-full py-2.5 rounded-xl bg-purple-50 hover:bg-[#6B21A8] text-[#6B21A8] hover:text-white font-poppins font-semibold text-xs transition-colors flex items-center justify-center gap-1.5">
+                  <button className="w-full py-2.5 rounded-xl bg-[#E6F9F6] dark:bg-[#162019] hover:bg-gradient-to-r hover:from-[#29BBA3] hover:to-[#1E8B7A] text-[#1E8B7A] hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 border border-[#C8EDE8] dark:border-[#2A3D38]">
                     <Ticket className="w-3.5 h-3.5" />
                     <span>Reserve Seat</span>
                   </button>

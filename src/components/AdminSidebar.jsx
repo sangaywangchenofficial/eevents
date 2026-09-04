@@ -10,10 +10,12 @@ import {
     MdKeyboardArrowDown,
     MdOutlineEvent,
     MdCalendarToday,
-    MdSearch
+    MdSearch,
+    MdMessage,
+    MdPeopleOutline // Added for organizers icon
 } from 'react-icons/md';
 import { IoAddCircleOutline, IoSettingsOutline } from 'react-icons/io5';
-import logo from '../assets/logo.png';
+import { APP_NAME_UPPER } from '../utils/auth';
 
 const AdminSidebar = ({ isDarkMode }) => {
     const location = useLocation();
@@ -22,14 +24,15 @@ const AdminSidebar = ({ isDarkMode }) => {
     const isActive = (path) => location.pathname === path;
 
     // Shared active and inactive style variables for menu buttons
-    const activeClass = "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/20 dark:shadow-purple-950/40";
-    const inactiveClass = "text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300";
+    const activeClass = "bg-gradient-to-r from-[#29BBA3] to-[#1E8B7A] text-white shadow-lg shadow-teal-900/20 dark:shadow-teal-950/40";
+    const inactiveClass = "text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-teal-900/10 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3] transition-all duration-300";
 
     // Managed multi-dropdown open/close visibility tracking state states
     const [dropdownMenus, setDropdownMenus] = useState({
         eventCategory: false,
         eventMenu: false,
-        bookings: false
+        bookings: false,
+        organizers: false // Added organizers dropdown state
     });
 
     const toggleDropdownMenu = (menu) => {
@@ -40,19 +43,28 @@ const AdminSidebar = ({ isDarkMode }) => {
     };
 
     return (
-        <aside className="w-64 h-screen bg-white dark:bg-zinc-950 border-r border-gray-200 dark:border-stone-800/80 p-5 flex flex-col justify-between sticky top-0 overflow-y-auto transition-colors duration-300">
+        <aside className="w-64 h-screen bg-white dark:bg-[#1C2B27] dark:bg-zinc-950 border-r border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/80 p-5 flex flex-col justify-between sticky top-0 overflow-y-auto transition-colors duration-300">
             <div>
 
                 {/* Main Brand Logo Area */}
                 <div className="flex items-center space-x-3 mb-8 px-2">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <img src={logo} alt="eEvents Logo" className="h-10 w-auto object-contain" />
 =======
                     <img src={logo} alt="eEvents Logo" className="h-14 w-auto object-contain" />
 >>>>>>> feature/homepage
+=======
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#29BBA3] to-[#1E8B7A] flex items-center justify-center shadow-lg flex-shrink-0">
+                        <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-white" stroke="currentColor" strokeWidth="2">
+                            <path d="M3 9l1.5-1.5a2.5 2.5 0 010-3.54L6 3l15 15-1.5 1.5a2.5 2.5 0 01-3.54 0L15 18H9l-1.5 1.5a2.5 2.5 0 01-3.54 0L3 18V9z" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M9 9h6M9 12h6M9 15h4" strokeLinecap="round" />
+                        </svg>
+                    </div>
+>>>>>>> feature/homepage
                     <div>
-                        <h1 className="font-serif font-bold text-gray-900 dark:text-stone-100 tracking-wide leading-none">eEvents Admin</h1>
-                        <span className="text-[10px] text-purple-400/80 font-medium uppercase tracking-widest mt-1 block">Management</span>
+                        <h1 className="font-black text-gray-900 dark:text-[#E8F5F2] dark:text-white text-xl tracking-widest uppercase leading-none">{APP_NAME_UPPER}</h1>
+                        <span className="text-[10px] text-[#29BBA3]/80 font-medium uppercase tracking-widest mt-1 block">Admin Panel</span>
                     </div>
                 </div>
 
@@ -70,35 +82,74 @@ const AdminSidebar = ({ isDarkMode }) => {
 
                     {/* Register User Link */}
                     <Link
-                        to="/admin-registeruser"
+                        to="/manage-users"
                         className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive('/admin-registeruser') ? activeClass : inactiveClass}`}
                     >
                         <MdPersonAddAlt1 className="text-xl" />
                         <span>Register User</span>
                     </Link>
 
+                    {/* Organizers Dropdown Collapsible Area */}
+                    <div>
+                        <button
+                            type="button"
+                            onClick={() => toggleDropdownMenu('organizers')}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.organizers ? 'text-[#1E8B7A] dark:text-[#29BBA3] bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/40' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-stone-800/60 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'}`}
+                        >
+                            <div className="flex items-center space-x-3">
+                                <MdPeopleOutline className="text-xl" />
+                                <span>Organizers</span>
+                            </div>
+                            <MdKeyboardArrowDown className={`text-xl text-[#29BBA3] transition-transform duration-300 ${dropdownMenus.organizers ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {/* Sub-menu list container for Organizers items */}
+                        <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.organizers ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                            <div className="pl-6 space-y-1 border-l border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 ml-6 mt-1">
+
+                                {/* Sub item: Add Organizer */}
+                                <Link
+                                    to="/add-organizer"
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-organizer') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                >
+                                    <IoAddCircleOutline className="text-base" />
+                                    <span>Add Organizer</span>
+                                </Link>
+
+                                {/* Sub item: Manage Organizers */}
+                                <Link
+                                    to="/manage-organizers"
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-organizers') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                >
+                                    <IoSettingsOutline className="text-base" />
+                                    <span>Manage Organizers</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Event Category Collapsible Area */}
                     <div>
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('eventCategory')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventCategory ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventCategory ? 'text-[#1E8B7A] dark:text-[#29BBA3] bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/40' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-stone-800/60 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdOutlineCategory className="text-xl" />
                                 <span>Event Category</span>
                             </div>
-                            <MdKeyboardArrowDown className={`text-xl text-purple-400 transition-transform duration-300 ${dropdownMenus.eventCategory ? 'rotate-180' : ''}`} />
+                            <MdKeyboardArrowDown className={`text-xl text-[#29BBA3] transition-transform duration-300 ${dropdownMenus.eventCategory ? 'rotate-180' : ''}`} />
                         </button>
 
                         {/* Sub-menu options drop list items container */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.eventCategory ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Add Category */}
                                 <Link
                                     to="/add-category"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-category') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-category') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Add Category</span>
@@ -107,7 +158,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Manage Category */}
                                 <Link
                                     to="/manage-category"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-category') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-category') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Manage Category</span>
@@ -121,23 +172,23 @@ const AdminSidebar = ({ isDarkMode }) => {
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('eventMenu')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventMenu ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.eventMenu ? 'text-[#1E8B7A] dark:text-[#29BBA3] bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/40' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-stone-800/60 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdOutlineEvent className="text-xl" />
                                 <span>Event</span>
                             </div>
-                            <MdKeyboardArrowDown className={`text-xl text-purple-400 transition-transform duration-300 ${dropdownMenus.eventMenu ? 'rotate-180' : ''}`} />
+                            <MdKeyboardArrowDown className={`text-xl text-[#29BBA3] transition-transform duration-300 ${dropdownMenus.eventMenu ? 'rotate-180' : ''}`} />
                         </button>
 
                         {/* Sub-menu list container for Event Menu items */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.eventMenu ? 'max-h-24 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Add Menu Item */}
                                 <Link
                                     to="/add-event"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-event') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/add-event') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoAddCircleOutline className="text-base" />
                                     <span>Add Event</span>
@@ -146,7 +197,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Manage Menu Items */}
                                 <Link
                                     to="/manage-event"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-event') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/manage-event') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Manage Event</span>
@@ -160,18 +211,18 @@ const AdminSidebar = ({ isDarkMode }) => {
                         <button
                             type="button"
                             onClick={() => toggleDropdownMenu('bookings')}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.bookings ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-stone-900/40' : 'text-gray-500 dark:text-stone-400 hover:bg-gray-100 dark:hover:bg-stone-800/60 hover:text-purple-600 dark:hover:text-purple-400'}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${dropdownMenus.bookings ? 'text-[#1E8B7A] dark:text-[#29BBA3] bg-[#E6F9F6] dark:bg-[#1C2B27] dark:bg-stone-900/40' : 'text-[#66756F] dark:text-[#7AA49D] dark:text-stone-400 hover:bg-[#E6F9F6] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-[#162019] dark:bg-[#1C2B27] dark:hover:bg-stone-800/60 hover:text-[#1E8B7A] dark:hover:text-[#29BBA3]'}`}
                         >
                             <div className="flex items-center space-x-3">
                                 <MdCalendarToday className="text-xl" />
                                 <span>Bookings</span>
                             </div>
-                            <MdKeyboardArrowDown className={`text-xl text-purple-400 transition-transform duration-300 ${dropdownMenus.bookings ? 'rotate-180' : ''}`} />
+                            <MdKeyboardArrowDown className={`text-xl text-[#29BBA3] transition-transform duration-300 ${dropdownMenus.bookings ? 'rotate-180' : ''}`} />
                         </button>
 
                         {/* Sub-menu list container for Bookings items */}
                         <div className={`overflow-hidden transition-all duration-300 ${dropdownMenus.bookings ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                            <div className="pl-6 space-y-1 border-l border-gray-200 dark:border-stone-800 ml-6 mt-1">
+                            <div className="pl-6 space-y-1 border-l border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800 ml-6 mt-1">
 
                                 {/* Sub item: Bookings List */}
                                 <Link
@@ -180,7 +231,11 @@ const AdminSidebar = ({ isDarkMode }) => {
                                     className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-list') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
 =======
                                     to="/admin/bookings"
+<<<<<<< HEAD
                                     className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin/bookings') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+>>>>>>> feature/homepage
+=======
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/admin/bookings') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
 >>>>>>> feature/homepage
                                 >
                                     <IoAddCircleOutline className="text-base" />
@@ -190,7 +245,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Booking Confirm */}
                                 <Link
                                     to="/booking-confirm"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirm') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirm') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Booking Confirm</span>
@@ -199,7 +254,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Booking Not Confirm */}
                                 <Link
                                     to="/booking-not-confirm"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-not-confirm') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-not-confirm') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Not Confirm</span>
@@ -208,7 +263,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Booking Cancel */}
                                 <Link
                                     to="/booking-cancel"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-cancel') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-cancel') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Cancel</span>
@@ -217,7 +272,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Booking Confirmed */}
                                 <Link
                                     to="/booking-confirmed"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirmed') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-confirmed') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Confirmed</span>
@@ -226,7 +281,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                                 {/* Sub item: Booking Status */}
                                 <Link
                                     to="/booking-status"
-                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-status') ? 'text-purple-600 dark:text-purple-400 font-semibold' : 'text-gray-500 hover:text-gray-700 dark:text-stone-500 dark:hover:text-stone-300'}`}
+                                    className={`flex items-center space-x-2.5 px-4 py-2 rounded-lg transition-all text-xs ${isActive('/booking-status') ? 'text-[#1E8B7A] dark:text-[#29BBA3] font-semibold' : 'text-[#66756F] dark:text-[#7AA49D] hover:text-[#4A5C57] dark:text-[#A8C4BE] dark:text-stone-500 dark:hover:text-stone-300'}`}
                                 >
                                     <IoSettingsOutline className="text-base" />
                                     <span>Bookings Status</span>
@@ -235,7 +290,7 @@ const AdminSidebar = ({ isDarkMode }) => {
                         </div>
                     </div>
 
-                    {/* Search Link */}
+                    {/* Booking Report Link */}
                     <Link
                         to="/booking-report"
                         className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive('/admin-search') ? activeClass : inactiveClass}`}
@@ -265,11 +320,20 @@ const AdminSidebar = ({ isDarkMode }) => {
                         <span>Manage Reviews</span>
                     </Link>
 
+                    {/* Manage Reviews Link */}
+                    <Link
+                        to="/manage-messages"
+                        className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${isActive('/admin-managereviews') ? activeClass : inactiveClass}`}
+                    >
+                        <MdMessage className="text-xl" />
+                        <span>Manage Messages</span>
+                    </Link>
+
                 </nav>
             </div>
 
             {/* Footer Admin Session Meta Area */}
-            <div className="pt-4 border-t border-gray-200 dark:border-stone-800/60 flex items-center justify-between px-2 text-xs text-gray-500 dark:text-stone-500">
+            <div className="pt-4 border-t border-[#E6E1D8] dark:border-[#2A3D38] dark:border-stone-800/60 flex items-center justify-between px-2 text-xs text-[#66756F] dark:text-[#7AA49D] dark:text-stone-500">
                 <span className="truncate">Active Terminal</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
             </div>

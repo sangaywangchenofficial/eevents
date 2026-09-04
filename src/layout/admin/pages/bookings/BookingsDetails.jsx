@@ -48,7 +48,7 @@ const BookingsDetails = () => {
             const token = getAuthToken();
             if (!token) { navigate('/admin-login'); return; }
 
-            const response = await fetch(`http://localhost:8000/api/v1/booking-details/${id}/`, {
+            const response = await fetch(`${API_BASE_URL}/booking-details/${id}/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const BookingsDetails = () => {
 
     const fetchStatusHistory = async (token) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/booking-status-history/${id}/`, {
+            const response = await fetch(`${API_BASE_URL}/booking-status-history/${id}/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const BookingsDetails = () => {
             const token = getAuthToken();
             if (!token) { navigate('/admin-login'); return; }
 
-            const response = await fetch(`http://localhost:8000/api/v1/booking-update-status/${id}/`, {
+            const response = await fetch(`${API_BASE_URL}/booking-update-status/${id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -325,7 +325,7 @@ const BookingsDetails = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Main Booking Details */}
                     <div className="lg:col-span-2">
-                        <div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden">
                             <div className="px-6 py-4 bg-gray-50 dark:bg-zinc-700 border-b border-gray-200 dark:border-zinc-600">
                                 <h2 className="text-lg font-semibold text-gray-800 dark:text-stone-100">
                                     Booking #{booking.id}
@@ -427,7 +427,7 @@ const BookingsDetails = () => {
 
                     {/* Status History Sidebar */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden sticky top-4">
+                        <div className="bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden sticky top-4">
                             <div className="px-6 py-4 bg-gray-50 dark:bg-zinc-700 border-b border-gray-200 dark:border-zinc-600">
                                 <h3 className="text-sm font-semibold text-gray-800 dark:text-stone-100 flex items-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -496,7 +496,7 @@ const BookingsDetails = () => {
 
                         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                        <div className="relative z-10 inline-block align-bottom bg-white dark:bg-zinc-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                        <div className="relative z-10 inline-block align-bottom bg-white dark:bg-[#1C2B27] dark:bg-zinc-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                             <div className="px-6 pt-5 pb-4">
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-lg font-bold text-gray-900 dark:text-stone-100">
@@ -584,7 +584,7 @@ const BookingsDetails = () => {
                                 </button>
                                 <button
                                     onClick={() => setShowStatusModal(false)}
-                                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-zinc-600 shadow-sm px-4 py-2 bg-white dark:bg-zinc-700 text-base font-medium text-gray-700 dark:text-stone-300 hover:bg-gray-50 dark:hover:bg-zinc-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm"
+                                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-zinc-600 shadow-sm px-4 py-2 bg-white dark:bg-[#1C2B27] dark:bg-zinc-700 text-base font-medium text-gray-700 dark:text-stone-300 hover:bg-gray-50 dark:hover:bg-zinc-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm"
                                     disabled={updatingStatus}
                                 >
                                     Cancel

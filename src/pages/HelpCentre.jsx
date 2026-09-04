@@ -27,6 +27,8 @@ import {
     FaStar
 } from 'react-icons/fa';
 import { MdHelp, MdEvent, MdPayment, MdSettings } from 'react-icons/md';
+import SEO from '../components/SEO';
+import { APP_NAME_UPPER, APP_NAME_CAPITALIZED, APP_URL } from '../utils/auth';
 
 const HelpCenter = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -129,7 +131,7 @@ const HelpCenter = () => {
             id: 13,
             category: 'payments',
             question: 'What payment methods are accepted?',
-            answer: 'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and digital wallets. All transactions are secure and encrypted.'
+            answer: 'We accept all Bhutanese mobile banking apps (mBOB, BNB mPAY, T-Bank, BDBL, Druk PNB) via RMA Payment Gateway & QR, as well as international Credit/Debit Cards (Visa, Mastercard).'
         },
         {
             id: 14,
@@ -154,7 +156,7 @@ const HelpCenter = () => {
         {
             id: 17,
             category: 'security',
-            question: 'How does eEvents protect my data?',
+            question: `How does ${APP_NAME_UPPER} protect my data?`,
             answer: 'We use industry-standard encryption (SSL/TLS) for all data transmission. Your personal information is stored securely and never shared with third parties without your consent.'
         },
         {
@@ -233,50 +235,73 @@ const HelpCenter = () => {
 
     const getColorClasses = (color) => {
         const colors = {
-            purple: 'bg-purple-50 text-purple-600 hover:bg-purple-100',
-            blue: 'bg-blue-50 text-blue-600 hover:bg-blue-100',
-            emerald: 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100',
-            amber: 'bg-amber-50 text-amber-600 hover:bg-amber-100',
-            rose: 'bg-rose-50 text-rose-600 hover:bg-rose-100',
-            indigo: 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
+            purple: 'bg-[#F4F3EC] dark:bg-[#162019] text-[#29BBA3] hover:bg-[#E6F9F6] dark:hover:bg-[#1C2B27]',
+            blue: 'bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40',
+            emerald: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/40',
+            amber: 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/40',
+            rose: 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/40',
+            indigo: 'bg-[#E6F9F6] dark:bg-[#162019] text-[#1E8B7A] dark:text-[#29BBA3] hover:bg-[#C8EDE8] dark:hover:bg-[#1C2B27]'
         };
         return colors[color] || colors.purple;
     };
 
     const getIconColor = (color) => {
         const colors = {
-            purple: 'text-purple-600',
+            purple: 'text-[#29BBA3]',
             blue: 'text-blue-600',
             emerald: 'text-emerald-600',
             amber: 'text-amber-600',
             rose: 'text-rose-600',
-            indigo: 'text-indigo-600'
+            indigo: 'text-[#1E8B7A]'
         };
         return colors[color] || colors.purple;
+    };
+
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: (faqs || []).slice(0, 10).map((f) => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: f.answer,
+            },
+        })),
     };
 
     return (
         <>
             <PublicLayout>
-                <div className="min-h-screen bg-white">
+                <SEO
+                    title={`Help Center & FAQs | ${APP_NAME_CAPITALIZED}`}
+                    description={`Find answers to frequently asked questions about booking tickets, payments, refunds, and digital QR passes on ${APP_NAME_CAPITALIZED}.`}
+                    canonical={`${APP_URL}/help-center`}
+                    schema={faqSchema}
+                    breadcrumbs={[
+                        { name: 'Home', item: '/' },
+                        { name: 'Help Center', item: '/help-center' }
+                    ]}
+                />
+                <div className="min-h-screen bg-white dark:bg-[#1C2B27]">
                     {/* Hero Section */}
-                    <section className="relative py-16 md:py-20 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
+                    <section className="relative py-16 md:py-20 bg-white dark:bg-[#1C2B27] overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 dark:from-[#0F1A17]/30 via-white dark:via-[#162019] to-[#F4F3EC]/30 dark:to-[#0F1A17]/30"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <FaQuestionCircle className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] dark:bg-[#162019] border border-[#E6F9F6] dark:border-[#2A3D38] rounded-full px-4 py-1.5 mb-5">
+                                    <FaQuestionCircle className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] dark:text-[#E8F5F2] tracking-wider uppercase">
                                         Help Center
                                     </span>
                                 </div>
 
-                                <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    How Can We <span className="text-purple-600">Help?</span>
+                                <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-[#E8F5F2] mb-4">
+                                    How Can We <span className="text-[#29BBA3]">Help?</span>
                                 </h1>
 
-                                <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+                                <p className="text-gray-500 dark:text-[#7AA49D] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                                     Find answers to common questions or get in touch with our support team.
                                 </p>
 
@@ -284,14 +309,14 @@ const HelpCenter = () => {
                                 <div className="max-w-2xl mx-auto">
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <FaSearch className="text-gray-400 text-sm" />
+                                            <FaSearch className="text-gray-400 dark:text-[#66756F] text-sm" />
                                         </div>
                                         <input
                                             type="text"
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             placeholder="Search for help articles..."
-                                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all duration-300 shadow-sm"
+                                            className="w-full pl-11 pr-4 py-3.5 bg-white dark:bg-[#1C2B27] border border-gray-200 dark:border-[#2A3D38] rounded-xl text-gray-900 dark:text-[#E8F5F2] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1E8B7A] focus:ring-2 focus:ring-[#E6F9F6] transition-all duration-300 shadow-sm"
                                         />
                                     </div>
                                 </div>
@@ -300,16 +325,16 @@ const HelpCenter = () => {
                     </section>
 
                     {/* Help Categories */}
-                    <section className="py-12 bg-gray-50 border-y border-gray-100">
+                    <section className="py-12 bg-gray-50 dark:bg-[#0F1A17] border-y border-gray-100 dark:border-[#2A3D38]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Browse Help <span className="text-purple-600">Topics</span>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Browse Help <span className="text-[#29BBA3]">Topics</span>
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Select a category to find answers to your questions
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -321,17 +346,17 @@ const HelpCenter = () => {
                                                 category.title.toLowerCase().includes('account') ? 'account' :
                                                     category.title.toLowerCase().includes('payment') ? 'payments' :
                                                         category.title.toLowerCase().includes('security') ? 'security' : 'all')}
-                                        className="group bg-white border border-gray-100 rounded-xl p-5 text-left hover:border-purple-200 transition-all duration-300 hover:shadow-sm"
+                                        className="group bg-white dark:bg-[#1C2B27] border border-gray-100 dark:border-[#2A3D38] rounded-xl p-5 text-left hover:border-[#E6E1D8] dark:border-[#2A3D38] transition-all duration-300 hover:shadow-sm"
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className={`w-10 h-10 rounded-lg ${getColorClasses(category.color)} flex items-center justify-center flex-shrink-0 transition-colors duration-300`}>
                                                 <category.icon className="text-base" />
                                             </div>
                                             <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-[#E8F5F2] group-hover:text-[#29BBA3] transition-colors duration-300">
                                                     {category.title}
                                                 </h4>
-                                                <p className="text-xs text-gray-400 mt-0.5 leading-relaxed">
+                                                <p className="text-xs text-gray-600 dark:text-[#7AA49D] mt-0.5 leading-relaxed">
                                                     {category.description}
                                                 </p>
                                             </div>
@@ -343,16 +368,16 @@ const HelpCenter = () => {
                     </section>
 
                     {/* FAQ Section */}
-                    <section className="py-16 bg-white">
+                    <section className="py-16 bg-white dark:bg-[#1C2B27]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Frequently Asked <span className="text-purple-600">Questions</span>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Frequently Asked <span className="text-[#29BBA3]">Questions</span>
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Find quick answers to the most common questions
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             {/* Category Filters */}
@@ -365,8 +390,8 @@ const HelpCenter = () => {
                                             key={category.id}
                                             onClick={() => setActiveCategory(category.id)}
                                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${isActive
-                                                ? 'bg-purple-600 text-white shadow-sm'
-                                                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                                ? 'bg-[#1E8B7A] text-white shadow-sm'
+                                                : 'bg-gray-50 dark:bg-[#0F1A17] text-gray-600 dark:text-[#7AA49D] hover:bg-gray-100 dark:hover:bg-[#162019]'
                                                 }`}
                                         >
                                             <Icon className="text-sm" />
@@ -384,20 +409,20 @@ const HelpCenter = () => {
                                         return (
                                             <div
                                                 key={faq.id}
-                                                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-purple-200 transition-all duration-300"
+                                                className="bg-white dark:bg-[#1C2B27] border border-gray-100 dark:border-[#2A3D38] rounded-xl overflow-hidden hover:border-[#E6E1D8] dark:border-[#2A3D38] transition-all duration-300"
                                             >
                                                 <button
                                                     onClick={() => toggleFaq(faq.id)}
-                                                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors duration-200"
+                                                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-gray-50 dark:hover:bg-[#0F1A17] transition-colors duration-200"
                                                 >
-                                                    <span className="text-sm font-medium text-gray-900">
+                                                    <span className="text-sm font-medium text-gray-900 dark:text-[#E8F5F2]">
                                                         {faq.question}
                                                     </span>
                                                     <span className="flex-shrink-0">
                                                         {isExpanded ? (
-                                                            <FaChevronUp className="text-purple-600 text-sm" />
+                                                            <FaChevronUp className="text-[#29BBA3] text-sm" />
                                                         ) : (
-                                                            <FaChevronDown className="text-gray-400 text-sm" />
+                                                            <FaChevronDown className="text-gray-400 dark:text-[#7AA49D] text-sm" />
                                                         )}
                                                     </span>
                                                 </button>
@@ -405,7 +430,7 @@ const HelpCenter = () => {
                                                     className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                                                         }`}
                                                 >
-                                                    <div className="px-5 pb-4 pt-1 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+                                                    <div className="px-5 pb-4 pt-1 text-sm text-gray-500 dark:text-[#7AA49D] leading-relaxed border-t border-gray-100 dark:border-[#2A3D38]">
                                                         {faq.answer}
                                                     </div>
                                                 </div>
@@ -416,56 +441,56 @@ const HelpCenter = () => {
                             ) : (
                                 <div className="text-center py-12">
                                     <div className="text-4xl mb-3">🔍</div>
-                                    <p className="text-gray-500 text-sm">No results found for "{searchQuery}"</p>
-                                    <p className="text-gray-400 text-xs mt-1">Try adjusting your search or browse categories</p>
+                                    <p className="text-gray-500 dark:text-[#7AA49D] text-sm">No results found for "{searchQuery}"</p>
+                                    <p className="text-gray-400 dark:text-[#66756F] text-xs mt-1">Try adjusting your search or browse categories</p>
                                 </div>
                             )}
                         </div>
                     </section>
 
                     {/* Contact Support Section */}
-                    <section className="py-16 bg-gray-50 border-y border-gray-100">
+                    <section className="py-16 bg-gray-50 dark:bg-[#0F1A17] border-y border-gray-100 dark:border-[#2A3D38]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-white border border-gray-100 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-sm">
+                            <div className="bg-white dark:bg-[#1C2B27] border border-gray-100 dark:border-[#2A3D38] rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-sm">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                                     <div>
-                                        <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-4">
-                                            <FaHeadset className="text-purple-600 text-xs" />
-                                            <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                        <div className="inline-flex items-center gap-2 bg-[#F4F3EC] dark:bg-[#162019] border border-[#E6F9F6] dark:border-[#2A3D38] rounded-full px-4 py-1.5 mb-4">
+                                            <FaHeadset className="text-[#29BBA3] text-xs" />
+                                            <span className="text-xs font-medium text-[#1E352F] dark:text-[#E8F5F2] tracking-wider uppercase">
                                                 Still Need Help?
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                                            We're Here to <span className="text-purple-600">Support</span>
+                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2] mb-2">
+                                            We're Here to <span className="text-[#29BBA3]">Support</span>
                                         </h3>
-                                        <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                                        <p className="text-sm text-gray-500 dark:text-[#7AA49D] leading-relaxed mb-6">
                                             Can't find what you're looking for? Our support team is ready to assist you.
                                         </p>
                                         <div className="space-y-3">
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaEnvelope className="text-purple-600" />
-                                                <span className="text-gray-600">support@eevents.bt</span>
+                                                <FaEnvelope className="text-[#29BBA3]" />
+                                                <span className="text-gray-600 dark:text-[#7AA49D]">support@tixelo.bt</span>
                                             </div>
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaPhone className="text-purple-600" />
-                                                <span className="text-gray-600">+975 2 123 456</span>
+                                                <FaPhone className="text-[#29BBA3]" />
+                                                <span className="text-gray-600 dark:text-[#7AA49D]">+975 2 123 456</span>
                                             </div>
                                             <div className="flex items-center gap-3 text-sm">
-                                                <FaClock className="text-purple-600" />
-                                                <span className="text-gray-600">Mon-Fri: 9:00 AM - 6:00 PM</span>
+                                                <FaClock className="text-[#29BBA3]" />
+                                                <span className="text-gray-600 dark:text-[#7AA49D]">Mon-Fri: 9:00 AM - 6:00 PM</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-3">
                                         <Link
                                             to="/contact"
-                                            className="w-full py-3 px-6 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm font-medium text-center shadow-sm hover:shadow-md"
+                                            className="w-full py-3 px-6 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-all duration-300 text-sm font-medium text-center shadow-sm hover:shadow-md"
                                         >
                                             Contact Support
                                         </Link>
                                         <Link
                                             to="/faqs"
-                                            className="w-full py-3 px-6 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-all duration-300 text-sm font-medium text-center border border-gray-200"
+                                            className="w-full py-3 px-6 bg-gray-50 dark:bg-[#0F1A17] text-gray-700 dark:text-[#A8C4BE] rounded-lg hover:bg-gray-100 dark:hover:bg-[#162019] transition-all duration-300 text-sm font-medium text-center border border-gray-200 dark:border-[#2A3D38]"
                                         >
                                             View All FAQs
                                         </Link>
@@ -475,32 +500,6 @@ const HelpCenter = () => {
                         </div>
                     </section>
 
-                    {/* Quick Links */}
-                    <section className="py-12 bg-white">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-                                <Link to="/about" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
-                                    About Us
-                                </Link>
-                                <span className="text-gray-300">|</span>
-                                <Link to="/contact" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
-                                    Contact
-                                </Link>
-                                <span className="text-gray-300">|</span>
-                                <Link to="/privacy" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
-                                    Privacy Policy
-                                </Link>
-                                <span className="text-gray-300">|</span>
-                                <Link to="/terms" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
-                                    Terms of Service
-                                </Link>
-                                <span className="text-gray-300">|</span>
-                                <Link to="/cookies" className="text-gray-500 hover:text-purple-600 transition-colors duration-200">
-                                    Cookie Policy
-                                </Link>
-                            </div>
-                        </div>
-                    </section>
                 </div>
             </PublicLayout>
         </>

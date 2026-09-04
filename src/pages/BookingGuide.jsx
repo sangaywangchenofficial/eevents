@@ -34,6 +34,8 @@ import {
     FaHeadset // <-- This was missing
 } from 'react-icons/fa';
 import { MdEvent, MdLocationOn, MdDateRange, MdPayment } from 'react-icons/md';
+import SEO from '../components/SEO';
+import { APP_NAME_CAPITALIZED, APP_URL } from '../utils/auth';
 
 const BookingGuide = () => {
     const [activeStep, setActiveStep] = useState(1);
@@ -97,9 +99,9 @@ const BookingGuide = () => {
 
     // Payment methods
     const paymentMethods = [
-        { name: 'Credit/Debit Card', icon: FaCreditCard, description: 'Visa, Mastercard, American Express' },
-        { name: 'PayPal', icon: FaCreditCard, description: 'Secure online payments' },
-        { name: 'Digital Wallets', icon: FaMobileAlt, description: 'Apple Pay, Google Pay' }
+        { name: 'mBOB & Mobile Banking', icon: FaMobileAlt, description: 'mBOB (BoB), BNB mPAY, T-Bank, BDBL & RMA QR' },
+        { name: 'RMA Payment Gateway', icon: FaCreditCard, description: 'Direct local interbank transfer via RMA NGW' },
+        { name: 'International Cards', icon: FaShieldAlt, description: 'Visa & Mastercard for international visitors' }
     ];
 
     // Tips for booking
@@ -154,27 +156,27 @@ const BookingGuide = () => {
     const renderStepImage = (image) => {
         const images = {
             discover: (
-                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8 text-center border border-purple-100">
+                <div className="bg-gradient-to-br from-[#FDFDF7] dark:from-[#0F1A17] to-[#F4F3EC] dark:to-[#162019] rounded-2xl p-8 text-center border border-[#E6F9F6] dark:border-[#2A3D38]">
                     <div className="text-6xl mb-4">🔍</div>
-                    <p className="text-gray-600 text-sm">Browse and discover events</p>
+                    <p className="text-gray-600 dark:text-[#7AA49D] text-sm">Browse and discover events</p>
                 </div>
             ),
             select: (
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 text-center border border-blue-100">
+                <div className="bg-gradient-to-br from-blue-50 dark:from-blue-950/40 to-cyan-50 dark:to-cyan-950/40 rounded-2xl p-8 text-center border border-blue-100 dark:border-blue-900/40">
                     <div className="text-6xl mb-4">🎫</div>
-                    <p className="text-gray-600 text-sm">Select your tickets</p>
+                    <p className="text-gray-600 dark:text-[#7AA49D] text-sm">Select your tickets</p>
                 </div>
             ),
             payment: (
-                <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-8 text-center border border-emerald-100">
+                <div className="bg-gradient-to-br from-emerald-50 dark:from-emerald-950/40 to-green-50 dark:to-green-950/40 rounded-2xl p-8 text-center border border-emerald-100 dark:border-emerald-900/40">
                     <div className="text-6xl mb-4">💳</div>
-                    <p className="text-gray-600 text-sm">Secure payment</p>
+                    <p className="text-gray-600 dark:text-[#7AA49D] text-sm">Secure payment</p>
                 </div>
             ),
             ticket: (
-                <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-8 text-center border border-amber-100">
+                <div className="bg-gradient-to-br from-amber-50 dark:from-amber-950/40 to-yellow-50 dark:to-yellow-950/40 rounded-2xl p-8 text-center border border-amber-100 dark:border-amber-900/40">
                     <div className="text-6xl mb-4">📧</div>
-                    <p className="text-gray-600 text-sm">Get your e-tickets</p>
+                    <p className="text-gray-600 dark:text-[#7AA49D] text-sm">Get your e-tickets</p>
                 </div>
             )
         };
@@ -184,25 +186,34 @@ const BookingGuide = () => {
     return (
         <>
             <PublicLayout>
-                <div className="min-h-screen bg-white">
+                <SEO
+                    title={`Booking Guide | ${APP_NAME_CAPITALIZED}`}
+                    description={`Learn how to browse, select ticket tiers, complete secure Bhutanese banking payments, and manage instant digital QR passes on ${APP_NAME_CAPITALIZED}.`}
+                    canonical={`${APP_URL}/booking-guide`}
+                    breadcrumbs={[
+                        { name: 'Home', item: '/' },
+                        { name: 'Booking Guide', item: '/booking-guide' }
+                    ]}
+                />
+                <div className="min-h-screen bg-white dark:bg-[#1C2B27]">
                     {/* Hero Section */}
-                    <section className="relative py-16 md:py-20 bg-white overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30"></div>
+                    <section className="relative py-16 md:py-20 bg-white dark:bg-[#1C2B27] overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FDFDF7]/30 dark:from-[#0F1A17]/30 via-white dark:via-[#162019] to-[#F4F3EC]/30 dark:to-[#0F1A17]/30"></div>
 
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="max-w-3xl mx-auto text-center">
-                                <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 rounded-full px-4 py-1.5 mb-5">
-                                    <FaTicketAlt className="text-purple-600 text-xs" />
-                                    <span className="text-xs font-medium text-purple-700 tracking-wider uppercase">
+                                <div className="inline-flex items-center gap-2 bg-[#F4F3EC] dark:bg-[#162019] border border-[#E6F9F6] dark:border-[#2A3D38] rounded-full px-4 py-1.5 mb-5">
+                                    <FaTicketAlt className="text-[#29BBA3] text-xs" />
+                                    <span className="text-xs font-medium text-[#1E352F] dark:text-[#E8F5F2] tracking-wider uppercase">
                                         Booking Guide
                                     </span>
                                 </div>
 
-                                <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4">
-                                    How to Book <span className="text-purple-600">Tickets</span>
+                                <h1 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-[#E8F5F2] mb-4">
+                                    How to Book <span className="text-[#29BBA3]">Tickets</span>
                                 </h1>
 
-                                <p className="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+                                <p className="text-gray-500 dark:text-[#7AA49D] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
                                     A simple guide to help you book tickets for your favorite events quickly and easily.
                                 </p>
                             </div>
@@ -210,40 +221,40 @@ const BookingGuide = () => {
                     </section>
 
                     {/* Quick Stats */}
-                    <section className="py-8 bg-gray-50 border-y border-gray-100">
+                    <section className="py-8 bg-gray-50 dark:bg-[#0F1A17] border-y border-gray-100 dark:border-[#2A3D38]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">4</p>
-                                    <p className="text-xs text-gray-500">Simple Steps</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">4</p>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Simple Steps</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">5 min</p>
-                                    <p className="text-xs text-gray-500">Average Time</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">5 min</p>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Average Time</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">100%</p>
-                                    <p className="text-xs text-gray-500">Secure Payment</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">100%</p>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Secure Payment</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-bold text-purple-600">24/7</p>
-                                    <p className="text-xs text-gray-500">Support Available</p>
+                                    <p className="text-2xl font-bold text-[#29BBA3]">24/7</p>
+                                    <p className="text-xs text-gray-500 dark:text-[#7AA49D]">Support Available</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
                     {/* Booking Steps */}
-                    <section className="py-16 bg-white">
+                    <section className="py-16 bg-white dark:bg-[#1C2B27]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-12">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Booking in <span className="text-purple-600">4 Simple Steps</span>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Booking in <span className="text-[#29BBA3]">4 Simple Steps</span>
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Follow these steps to secure your tickets
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             {/* Step Navigation */}
@@ -253,13 +264,13 @@ const BookingGuide = () => {
                                         key={step.number}
                                         onClick={() => setActiveStep(step.number)}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${activeStep === step.number
-                                            ? 'bg-purple-600 text-white shadow-sm'
-                                            : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                            ? 'bg-[#1E8B7A] text-white shadow-sm'
+                                            : 'bg-gray-50 dark:bg-[#0F1A17] text-gray-600 dark:text-[#7AA49D] hover:bg-gray-100 dark:hover:bg-[#162019]'
                                             }`}
                                     >
                                         <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${activeStep === step.number
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-gray-200 text-gray-500'
+                                            ? 'bg-white dark:bg-[#1C2B27]/20 text-white'
+                                            : 'bg-gray-200 dark:bg-[#2A3D38] text-gray-500 dark:text-[#E8F5F2]'
                                             }`}>
                                             {step.number}
                                         </span>
@@ -274,24 +285,24 @@ const BookingGuide = () => {
                                     <div key={step.number} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                                         <div>
                                             <div className="flex items-center gap-3 mb-4">
-                                                <div className="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center">
+                                                <div className="w-10 h-10 rounded-lg bg-[#E6F9F6] dark:bg-[#1C2B27] text-[#29BBA3] flex items-center justify-center">
                                                     <step.icon className="text-xl" />
                                                 </div>
-                                                <h3 className="text-2xl font-bold text-gray-900">
+                                                <h3 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
                                                     Step {step.number}: {step.title}
                                                 </h3>
                                             </div>
-                                            <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                                            <p className="text-gray-500 dark:text-[#7AA49D] text-sm leading-relaxed mb-6">
                                                 {step.description}
                                             </p>
-                                            <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
-                                                <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                                            <div className="bg-gray-50 dark:bg-[#0F1A17] rounded-xl p-5 border border-gray-100 dark:border-[#2A3D38]">
+                                                <h4 className="text-xs font-semibold text-[#1E8B7A] dark:text-[#7AA49D] uppercase tracking-wider mb-3">
                                                     💡 Pro Tips
                                                 </h4>
                                                 <ul className="space-y-2">
                                                     {step.tips.map((tip, index) => (
-                                                        <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                                                            <FaCheckCircle className="text-purple-600 text-xs mt-0.5 flex-shrink-0" />
+                                                        <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-[#7AA49D]">
+                                                            <FaCheckCircle className="text-[#29BBA3] text-xs mt-0.5 flex-shrink-0" />
                                                             {tip}
                                                         </li>
                                                     ))}
@@ -305,8 +316,8 @@ const BookingGuide = () => {
                                                     onClick={() => setActiveStep(Math.max(1, activeStep - 1))}
                                                     disabled={activeStep === 1}
                                                     className={`flex items-center gap-1 text-sm ${activeStep === 1
-                                                        ? 'text-gray-300 cursor-not-allowed'
-                                                        : 'text-gray-500 hover:text-purple-600 transition-colors'
+                                                        ? 'text-gray-300 dark:text-[#2A3D38] cursor-not-allowed'
+                                                        : 'text-gray-500 dark:text-[#7AA49D] hover:text-[#29BBA3] transition-colors'
                                                         }`}
                                                 >
                                                     <FaChevronLeft className="text-xs" />
@@ -316,8 +327,8 @@ const BookingGuide = () => {
                                                     onClick={() => setActiveStep(Math.min(4, activeStep + 1))}
                                                     disabled={activeStep === 4}
                                                     className={`flex items-center gap-1 text-sm ${activeStep === 4
-                                                        ? 'text-gray-300 cursor-not-allowed'
-                                                        : 'text-gray-500 hover:text-purple-600 transition-colors'
+                                                        ? 'text-gray-300 dark:text-[#2A3D38] cursor-not-allowed'
+                                                        : 'text-gray-500 dark:text-[#7AA49D] hover:text-[#29BBA3] transition-colors'
                                                         }`}
                                                 >
                                                     Next
@@ -332,35 +343,35 @@ const BookingGuide = () => {
                     </section>
 
                     {/* Payment Methods */}
-                    <section className="py-16 bg-gray-50 border-y border-gray-100">
+                    <section className="py-16 bg-gray-50 dark:bg-[#0F1A17] border-y border-gray-100 dark:border-[#2A3D38]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Secure <span className="text-purple-600">Payment</span> Options
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Secure <span className="text-[#29BBA3]">Payment</span> Options
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Choose from multiple secure payment methods
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                                 {paymentMethods.map((method, index) => {
                                     const Icon = method.icon;
                                     return (
-                                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 text-center hover:border-purple-200 transition-all duration-300">
-                                            <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                                        <div key={index} className="bg-white dark:bg-[#1C2B27] border border-gray-100 dark:border-[#2A3D38] rounded-xl p-5 text-center hover:border-[#E6E1D8] dark:border-[#2A3D38] transition-all duration-300">
+                                            <div className="w-12 h-12 rounded-full bg-[#F4F3EC] dark:bg-[#162019] text-[#29BBA3] flex items-center justify-center mx-auto mb-3">
                                                 <Icon className="text-xl" />
                                             </div>
-                                            <h4 className="text-sm font-semibold text-gray-900">{method.name}</h4>
-                                            <p className="text-xs text-gray-400 mt-1">{method.description}</p>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-[#E8F5F2]">{method.name}</h4>
+                                            <p className="text-xs text-gray-600 dark:text-[#7AA49D] mt-1">{method.description}</p>
                                         </div>
                                     );
                                 })}
                             </div>
 
                             <div className="mt-6 text-center">
-                                <p className="text-xs text-gray-400 flex items-center justify-center gap-1">
+                                <p className="text-xs text-gray-600 dark:text-[#7AA49D] flex items-center justify-center gap-1">
                                     <FaShieldAlt className="text-emerald-500" />
                                     All payments are secure and encrypted
                                 </p>
@@ -369,26 +380,26 @@ const BookingGuide = () => {
                     </section>
 
                     {/* Booking Tips */}
-                    <section className="py-16 bg-white">
+                    <section className="py-16 bg-white dark:bg-[#1C2B27]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Booking <span className="text-purple-600">Tips</span>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Booking <span className="text-[#29BBA3]">Tips</span>
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Make the most of your booking experience
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {bookingTips.map((tip, index) => (
-                                    <div key={index} className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center hover:border-purple-200 transition-all duration-300">
-                                        <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                                    <div key={index} className="bg-gray-50 dark:bg-[#0F1A17] border border-gray-100 dark:border-[#2A3D38] rounded-xl p-5 text-center hover:border-[#E6E1D8] dark:border-[#2A3D38] transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-full bg-[#F4F3EC] dark:bg-[#162019] text-[#29BBA3] flex items-center justify-center mx-auto mb-3">
                                             <tip.icon className="text-xl" />
                                         </div>
-                                        <h4 className="text-sm font-semibold text-gray-900">{tip.title}</h4>
-                                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">{tip.description}</p>
+                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-[#E8F5F2]">{tip.title}</h4>
+                                        <p className="text-xs text-gray-600 dark:text-[#7AA49D] mt-1 leading-relaxed">{tip.description}</p>
                                     </div>
                                 ))}
                             </div>
@@ -396,23 +407,23 @@ const BookingGuide = () => {
                     </section>
 
                     {/* FAQ Section */}
-                    <section className="py-16 bg-gray-50 border-y border-gray-100">
+                    <section className="py-16 bg-gray-50 dark:bg-[#0F1A17] border-y border-gray-100 dark:border-[#2A3D38]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="text-center mb-10">
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    Frequently Asked <span className="text-purple-600">Questions</span>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2]">
+                                    Frequently Asked <span className="text-[#29BBA3]">Questions</span>
                                 </h2>
-                                <p className="text-sm text-gray-400 mt-1">
+                                <p className="text-sm text-gray-600 dark:text-[#7AA49D] mt-1">
                                     Common questions about booking tickets
                                 </p>
-                                <div className="mt-2.5 w-12 h-0.5 bg-purple-600 rounded-full mx-auto"></div>
+                                <div className="mt-2.5 w-12 h-0.5 bg-[#1E8B7A] rounded-full mx-auto"></div>
                             </div>
 
                             <div className="max-w-3xl mx-auto space-y-3">
                                 {bookingFaqs.map((faq, index) => (
-                                    <div key={index} className="bg-white border border-gray-100 rounded-xl p-5 hover:border-purple-200 transition-all duration-300">
-                                        <h4 className="text-sm font-semibold text-gray-900 mb-1">{faq.question}</h4>
-                                        <p className="text-xs text-gray-500 leading-relaxed">{faq.answer}</p>
+                                    <div key={index} className="bg-white dark:bg-[#1C2B27] border border-gray-100 dark:border-[#2A3D38] rounded-xl p-5 hover:border-[#E6E1D8] dark:border-[#2A3D38] transition-all duration-300">
+                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-[#E8F5F2] mb-1">{faq.question}</h4>
+                                        <p className="text-xs text-gray-500 dark:text-[#7AA49D] leading-relaxed">{faq.answer}</p>
                                     </div>
                                 ))}
                             </div>
@@ -420,7 +431,7 @@ const BookingGuide = () => {
                             <div className="text-center mt-6">
                                 <Link
                                     to="/help-center"
-                                    className="text-sm text-purple-600 hover:text-purple-700 font-medium inline-flex items-center gap-1 transition-colors"
+                                    className="text-sm text-[#29BBA3] hover:text-[#1E352F] dark:text-[#E8F5F2] font-medium inline-flex items-center gap-1 transition-colors"
                                 >
                                     View all FAQs
                                     <FaArrowRight className="text-xs" />
@@ -430,26 +441,26 @@ const BookingGuide = () => {
                     </section>
 
                     {/* CTA Section */}
-                    <section className="py-16 bg-white">
+                    <section className="py-16 bg-white dark:bg-[#1C2B27]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                                    Ready to <span className="text-purple-600">Book</span> Your Tickets?
+                            <div className="bg-gradient-to-br from-[#FDFDF7] dark:from-[#0F1A17] to-[#F4F3EC] dark:to-[#162019] border border-[#E6F9F6] dark:border-[#2A3D38] rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
+                                <h3 className="text-2xl font-bold text-gray-900 dark:text-[#E8F5F2] mb-2">
+                                    Ready to <span className="text-[#29BBA3]">Book</span> Your Tickets?
                                 </h3>
-                                <p className="text-sm text-gray-500 mb-6">
+                                <p className="text-sm text-gray-500 dark:text-[#7AA49D] mb-6">
                                     Start exploring events and secure your spot today.
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                                     <Link
                                         to="/events"
-                                        className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
+                                        className="px-6 py-3 bg-[#1E8B7A] text-white rounded-lg hover:bg-[#1E352F] transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md inline-flex items-center gap-2"
                                     >
                                         Browse Events
                                         <FaArrowRight className="text-sm" />
                                     </Link>
                                     <Link
                                         to="/help"
-                                        className="px-6 py-3 bg-white text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 text-sm font-medium border border-gray-200 inline-flex items-center gap-2"
+                                        className="px-6 py-3 bg-white dark:bg-[#1C2B27] text-gray-700 dark:text-[#A8C4BE] rounded-lg hover:bg-gray-50 dark:hover:bg-[#0F1A17] transition-all duration-300 text-sm font-medium border border-gray-200 dark:border-[#2A3D38] inline-flex items-center gap-2"
                                     >
                                         Need Help?
                                         <FaHeadset className="text-sm" />
